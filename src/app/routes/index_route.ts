@@ -19,6 +19,7 @@ const moduleRoutes = [
     route: AuthRoutes,
   },
 
+
   {
     path: '/upload',
     route: FileUploadeRoute,
