@@ -1,0 +1,2 @@
+Tue Aug 22 2023-->18:16:44--> [PH] error: globalErrorHandler: E11000 duplicate key error collection: school_management.users index: email_1 dup key: { email: "ahmadmusa9806@gmail.com" }
+Tue Aug 22 2023-->18:16:53--> [PH] error: globalErrorHandler: E11000 duplicate key error collection: school_management.users index: userId_1 dup key: { userId: "S2023418" }

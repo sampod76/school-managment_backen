@@ -34,7 +34,7 @@ const authMiddleware =
       // {role,email}
 
       // if (
-      //   !tokenCookie &&
+      //   tokenCookie &&
       //   verifiedUser?.role &&
       //   verifiedUser.role === ENUM_USER_ROLE.ADMIN
       // ) {
