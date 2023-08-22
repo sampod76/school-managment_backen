@@ -95,7 +95,7 @@ app.set('views', path.resolve('./views/success.ejs'));
 import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 // import { uploadSingleImage } from './app/middlewares/uploader.multer';
-import routers from './app/routes/index_route';
+import routes from './app/routes/index_route';
 
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -107,7 +107,7 @@ app.get('/', async (req: Request, res: Response, next: NextFunction) => {
 });
 
 //Application route
-app.use('/api/v1', routers);
+app.use('/api/v1', routes);
 
 // Set the views directory and the view engine
 
