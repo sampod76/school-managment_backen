@@ -1,24 +1,27 @@
-// import express from 'express';
+import express from 'express';
+import validateRequestZod from '../../middlewares/validateRequestZod';
+import { AuthController } from './auth.controller';
+import { AuthValidation } from './auth.validation';
 // import validateRequest from '../../middlewares/validateRequest';
-// import { AuthValidation } from './auth.validation';
-// import { AuthController } from './auth.controller';
-// const router = express.Router();
+
+const router = express.Router();
 
 // router.post(
 //   '/',
 //   validateRequest(AuthValidation.loginZodSchema),
 //   AuthController.loginAdmin
 // );
-// router.post(
-//   '/login',
-//   validateRequest(AuthValidation.loginZodSchema),
-//   AuthController.loginUser
-// );
 
-// router.post(
-//   '/refresh-token',
-//   validateRequest(AuthValidation.refreshTokenZodSchema),
-//   AuthController.refreshToken
-// );
+router.post(
+  '/login',
+  validateRequestZod(AuthValidation.loginZodSchema),
+  AuthController.loginUser
+);
 
-// export const AuthRoutes = router;
+router.post(
+  '/refresh-token',
+  validateRequestZod(AuthValidation.refreshTokenZodSchema),
+  AuthController.refreshToken
+);
+
+export const AuthRoutes = router;

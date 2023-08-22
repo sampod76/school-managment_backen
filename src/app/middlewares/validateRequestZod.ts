@@ -4,7 +4,7 @@ import { AnyZodObject, ZodEffects } from 'zod';
 //
 const validateRequestZod =
   (schema: AnyZodObject | ZodEffects<AnyZodObject>) =>
-  async (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       await schema.parseAsync({
         body: req.body,
@@ -19,7 +19,6 @@ const validateRequestZod =
   };
 
 export default validateRequestZod;
-
 /*
  ফাংশনের ভিতর থেকে অন্য আরেকটি ফাংশন রিটার্ন করার অনেকগুলো কারণ আছে | এখানে যেটি ব্যবহার করা হয়েছে আমাদের রাউর থেকে যখন কোন ফাংশন ডিক্লেয়ার করা হয় তখন ওই ফাংশনে কোন প্যারামিটার নেই না বাই ডিফল্ট  | 
  2.শুধুমাত্র তিনটা জিনিস নাই তাও কন্ট্রোলারে , req,res,next
