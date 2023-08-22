@@ -1,6 +1,6 @@
 export enum ENUM_USER_ROLE {
-  SUPER_ADMIN = 'admin',
+  SUPER_ADMIN = 'super-admin',
   ADMIN = 'admin',
-  GENERAL_USER = 'general-user',
-  MODERATOR = 'moderator',
+  TEACHER = 'teacher',
+  STUDENT = 'student',
 }

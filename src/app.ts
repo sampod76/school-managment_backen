@@ -18,7 +18,7 @@ const app: Application = express();
 
 // app.use(
 //   cors({
-//     origin: ['https://salontrainingpro.app', 'http://localhost:3000'],
+//     origin: ['https://example.app', 'http://localhost:3000'],
 //     credentials: true,
 //   })
 // );
@@ -32,7 +32,7 @@ app.use(
 );
 
 //  app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", 'https://salontrainingpro.app')
+//   res.header("Access-Control-Allow-Origin", 'https://example.app')
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Accept")
 //   next()
 // })
@@ -131,25 +131,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 const test = async () => {
   try {
-    // console.log(result, result2);
-    // const result = await Lession.updateMany(
-    //   {},
-    //   {
-    //     $set: {
-    //       vedio:
-    //         'https://player.vimeo.com/video/829783962?h=47a19669a0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
-    //     },
-    //   }
-    // );
-    // console.log(result);
-    // const result = await PhotoContestUser.deleteMany();
-    // console.log(result);
-    // const result3 = await GeneralUser.updateMany(
-    //   {},
-    //   {
-    //     purchase_courses: [],
-    //   }
-    // );
+ 
     // const result = await FileUploade.deleteMany({});
     // const result = await RunContest.find({});
     // const result5 = await Purchased_courses.deleteMany();
