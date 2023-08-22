@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\.ca4cdff28952301e5ce6ec839d599c8573797c5f-audit.json",
+    "files": [
+        {
+            "date": 1692687711329,
+            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-22-13-error.log",
+            "hash": "3dbb8c02b8a917d8b6dbc78641a5aaee861752dedfc4b2bca4ad1965a6e99189"
+        }
+    ],
+    "hashType": "sha256"
+}
