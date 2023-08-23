@@ -4,7 +4,7 @@ exports.UserValidation = void 0;
 const zod_1 = require("zod");
 const createUserZodSchema = zod_1.z.object({
     body: zod_1.z.object({
-        phoneNumber: zod_1.z.string({
+        phone_number: zod_1.z.string({
             required_error: 'Phone number is required',
         }),
         userId: zod_1.z.string({
@@ -29,7 +29,7 @@ const createUserZodSchema = zod_1.z.object({
 });
 const updateUserZodSchema = zod_1.z.object({
     body: zod_1.z.object({
-        phoneNumber: zod_1.z.string({}).optional(),
+        phone_number: zod_1.z.string({}).optional(),
         password: zod_1.z.string({}).optional(),
         name: zod_1.z
             .object({

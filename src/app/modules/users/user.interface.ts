@@ -2,17 +2,17 @@ import { Model } from 'mongoose';
 
 /* eslint-disable no-unused-vars */
 export type UserName = {
-  firstName: string;
-  lastName: string;
+  name_bangla: string;
+  name_english: string;
 };
 
 export type IUser = {
   userId: string;
   password: string;
-  phoneNumber: string;
-  role: 'student' | 'teacher' | 'admin';
+  phone_number?: string;
+  role: 'student' | 'teacher' | 'admin' | 'super-admin';
   name: UserName;
-  email: string;
+  email?: string;
 };
 
 export type UserModel = {
@@ -21,7 +21,7 @@ export type UserModel = {
   ): Promise<
     Pick<
       IUser,
-      'email' | 'name' | 'phoneNumber' | 'password' | 'role' | 'userId'
+      'email' | 'name' | 'phone_number' | 'password' | 'role' | 'userId'
     >
   >;
   isPasswordMatched(

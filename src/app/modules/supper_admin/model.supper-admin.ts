@@ -6,7 +6,7 @@ import {
   ENUM_RELIGION,
   ENUM_YN,
 } from '../../../enums/usersEnums';
-import { IStudent, StudentModel } from './interface.student';
+import { IStudent, StudentModel } from './interface.supper-admin';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {
@@ -95,7 +95,6 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
       relationship: { type: String, trim: true },
       number: { type: String, trim: true },
     },
-    password:{ type: String, trim: true,min:6 }
   },
   {
     timestamps: true,

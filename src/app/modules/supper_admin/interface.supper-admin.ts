@@ -50,7 +50,7 @@ export type IPreviousExamInfo = {
 
 export type IStudent = {
   userId: string;
-  students: {
+  teacher: {
     name_bangla: string;
     name_english: string;
     birth_registration_number?: string;
@@ -117,7 +117,6 @@ export type IStudent = {
     relationship: string;
     number?: string;
   };
-  password:string;
 };
 
 export type StudentModel = Model<IStudent, Record<string, unknown>>;

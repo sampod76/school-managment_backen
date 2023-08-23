@@ -12,8 +12,6 @@ export const classType = [
   'দশম',
 ];
 
-
-
 export const studentSearchableFields = [
   'userId',
   'email',

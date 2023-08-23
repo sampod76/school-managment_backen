@@ -102,7 +102,6 @@ const createStudentZodSchema = z.object({
         number: z.string().optional(),
       })
       .optional(),
-      password:z.string()
   }),
 });
 const updateStudentZodSchema = z.object({

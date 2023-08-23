@@ -9,7 +9,7 @@ export type ILoginUserResponse = {
   userId: string;
   password: string;
   role: string;
-  phoneNumber: string;
+  phone_number: string;
 };
 
 export type IRefreshTokenResponse = {
