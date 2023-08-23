@@ -2,14 +2,14 @@ import express from 'express';
 // import { AuthRouter } from '../modules/auth/auth.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
-import { UserRoutes } from '../modules/user/user.route';
+import { UserRoutes } from '../modules/users/user.route';
 
 //https://docs.google.com/document/d/1gTsTpFvhfZB-2y0_BbZQVzmbG3YwsZwPrwAbsYqpOzM/edit
 const router = express.Router();
 
 const moduleRoutes = [
   {
-    path: '/auth',
+    path: '/users',
     route: UserRoutes,
   },
 

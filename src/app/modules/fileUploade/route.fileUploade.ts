@@ -1,6 +1,5 @@
 import express from 'express';
-import { ENUM_USER_ROLE } from '../../../enums/users';
-import authMiddleware from '../../middlewares/authMiddleware';
+// import authMiddleware from '../../middlewares/authMiddleware';
 import {
   uploadMultipleImage,
   uploadSingleImage,
@@ -16,7 +15,7 @@ const router = express.Router();
 router
   .route('/uploade-single-image')
   .post(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     uploadSingleImage,
     FileUploadeController.uploadeSingleFileByServer
   );
@@ -24,7 +23,7 @@ router
 router
   .route('/uploade-profile-image')
   .post(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     uploadSingleImageByProfile,
     FileUploadeController.uploadeProfileFileByServer
   );
@@ -32,7 +31,7 @@ router
 router
   .route('/uploade-multipal-images')
   .post(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     uploadMultipleImage,
     FileUploadeController.uploadeMultipalFileByServer
   );
@@ -40,7 +39,7 @@ router
 router
   .route('/uploade-vedio')
   .post(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     uploadVideoFile,
     FileUploadeController.uploadeSingleFileByServer
   );
@@ -50,11 +49,11 @@ router
 router
   .route('/')
   .get(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     FileUploadeController.getAllFileUploade
   )
   .post(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     validateRequestZod(FileUploadeValidation.createFileUploadezodSchema),
     FileUploadeController.createFileUploade
   );
@@ -62,11 +61,11 @@ router
 router
   .route('/:id')
   .get(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     FileUploadeController.getSingleFileUploade
   )
   .put(
-    authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     validateRequestZod(FileUploadeValidation.updateFileUploadezodSchema),
     FileUploadeController.updateFileUploade
   )

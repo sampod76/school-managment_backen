@@ -3,7 +3,7 @@ import { Secret } from 'jsonwebtoken';
 import config from '../../../config';
 import { jwtHelpers } from '../../../helper/jwtHelpers';
 import ApiError from '../../errors/ApiError';
-import { User } from '../user/user.model';
+import { User } from '../users/user.model';
 import {
   ILoginUser,
   ILoginUserResponse,

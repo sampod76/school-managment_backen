@@ -4,16 +4,18 @@ exports.AuthValidation = void 0;
 const zod_1 = require("zod");
 const loginZodSchema = zod_1.z.object({
     body: zod_1.z.object({
-        email: zod_1.z.string().email().optional(),
-        password: zod_1.z.string().optional(),
-        uid: zod_1.z.string({ required_error: 'UserId is required' }),
-        role: zod_1.z.string({ required_error: 'role is required' }).optional(),
+        userId: zod_1.z.string({
+            required_error: 'User id is required',
+        }),
+        password: zod_1.z.string({
+            required_error: 'Password is required',
+        }),
     }),
 });
 const refreshTokenZodSchema = zod_1.z.object({
     cookies: zod_1.z.object({
         refreshToken: zod_1.z.string({
-            required_error: 'refreshToken is required',
+            required_error: 'Refresh Token is required',
         }),
     }),
 });
