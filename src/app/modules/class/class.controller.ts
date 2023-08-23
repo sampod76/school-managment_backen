@@ -2,14 +2,14 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../share/catchAsync';
 import sendResponse from '../../share/sendResponse';
-import { IUser } from './user.interface';
-import { UserService } from './user.service';
+import { IClass } from './class.interface';
+import { ClassService } from './class.service';
 
-const createUser = catchAsync(async (req: Request, res: Response) => {
+const createClass = catchAsync(async (req: Request, res: Response) => {
   const user = req.body;
-  const result = await UserService.createUser(user);
+  const result = await ClassService.createClass(user);
 
-  sendResponse<IUser>(res, {
+  sendResponse<IClass>(res, {
     success: true,
     statusCode: httpStatus.OK,
     message: 'user created successfully!',
@@ -70,8 +70,8 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 //   });
 // });
 
-export const userController = {
-  createUser,
+export const classController = {
+  createClass,
   // getAllUsers,
   // getSingleUser,
   // updateUser,

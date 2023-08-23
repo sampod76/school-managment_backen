@@ -1,0 +1,26 @@
+Wed Aug 23 2023-->17:19:5--> [PH] error: globalErrorHandler: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "sectionName"
+    ],
+    "message": "sectionName is required"
+  },
+  {
+    "expected": "'active' | 'inactive'",
+    "received": "undefined",
+    "code": "invalid_type",
+    "path": [
+      "body",
+      "status"
+    ],
+    "message": "status is required"
+  }
+]
+Wed Aug 23 2023-->17:21:19--> [PH] error: globalErrorHandler: SectionService is not defined
+Wed Aug 23 2023-->17:21:32--> [PH] error: globalErrorHandler: Unexpected token } in JSON at position 63
+Wed Aug 23 2023-->17:21:48--> [PH] error: globalErrorHandler: SectionService is not defined
+Wed Aug 23 2023-->17:25:7--> [PH] error: globalErrorHandler: SectionService is not defined

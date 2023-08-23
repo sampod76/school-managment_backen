@@ -2,25 +2,25 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../share/catchAsync';
 import sendResponse from '../../share/sendResponse';
-import { IUser } from './user.interface';
-import { UserService } from './user.service';
+import { ISection } from './section.interface';
+import { SectionService } from './section.service';
 
-const createUser = catchAsync(async (req: Request, res: Response) => {
-  const user = req.body;
-  const result = await UserService.createUser(user);
+const createSection = catchAsync(async (req: Request, res: Response) => {
+  const section = req.body;
+  const result = await SectionService.createSection(section);
 
-  sendResponse<IUser>(res, {
+  sendResponse<ISection>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'user created successfully!',
+    message: 'section created successfully!',
     data: result,
   });
 });
 
-// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
+// const getAllSections = catchAsync(async (req: Request, res: Response) => {
 //   // const  = req.headers.authorization;
 //   // console.log(, '');
-//   const result = await UserService.getAllUsers();
+//   const result = await SectionService.getAllSection();
 
 //   sendResponse<IUser[]>(res, {
 //     success: true,
@@ -70,10 +70,10 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 //   });
 // });
 
-export const userController = {
-  createUser,
-  // getAllUsers,
-  // getSingleUser,
-  // updateUser,
-  // deleteUser,
+export const sectionController = {
+  createSection,
+  // getAllSection,
+  // getSingleSection,
+  // updateSection,
+  // deleteSection,
 };
