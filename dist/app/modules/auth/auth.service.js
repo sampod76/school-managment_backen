@@ -70,16 +70,16 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         !(yield user_model_1.User.isPasswordMatched(password, isUserExist.password))) {
         throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Password is incorrect');
     }
-    const { phone_number, role } = isUserExist;
-    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ phone_number, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
-    const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ phone_number, role }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
+    const { name, role } = isUserExist;
+    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
+    const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
     return {
         accessToken,
         refreshToken,
         userId,
         password,
         role,
-        phone_number,
+        name
     };
 });
 const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {

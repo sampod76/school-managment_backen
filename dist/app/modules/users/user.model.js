@@ -27,11 +27,11 @@ exports.UserSchema = new mongoose_1.Schema({
         required: true,
     },
     name: {
-        firstName: {
+        name_bangla: {
             type: String,
             required: true,
         },
-        lastName: {
+        name_english: {
             type: String,
             required: true,
         },
@@ -42,11 +42,11 @@ exports.UserSchema = new mongoose_1.Schema({
     },
     phone_number: {
         type: String,
-        required: true,
+        // required: true,
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
     },
 }, {
     timestamps: true,

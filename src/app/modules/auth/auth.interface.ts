@@ -7,9 +7,10 @@ export type ILoginUserResponse = {
   accessToken: string;
   refreshToken?: string;
   userId: string;
-  password: string;
+  name:any;
+  password?: string;
   role: string;
-  phone_number: string;
+  phone_number?: string;
 };
 
 export type IRefreshTokenResponse = {

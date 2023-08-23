@@ -79,6 +79,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
 // import { uploadSingleImage } from './app/middlewares/uploader.multer';
 const index_route_1 = __importDefault(require("./app/routes/index_route"));
+const usersEnums_1 = require("./enums/usersEnums");
 app.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.send({ message: 'server is running....' });
@@ -115,6 +116,7 @@ const test = () => __awaiter(void 0, void 0, void 0, function* () {
         // const result2 = await PhotoContestUser.deleteMany({});
         // const result2 = await RunContest.deleteMany({});
         // console.log(result2);
+        console.log(usersEnums_1.ENUM_USER_ROLE.STUDENT);
     }
     catch (error) {
         console.log(error);
