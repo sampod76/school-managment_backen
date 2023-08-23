@@ -7,6 +7,6 @@
 // };
 // export type Guardian={
 //     father_name: string;
-//     father_occupation: string;
+//     father_profession: string;
 //     father_contact_no: string;
 // }
