@@ -8,7 +8,7 @@ import { IGenericResponse } from '../../interface/common';
 import { IPaginationOption } from '../../interface/pagination';
 import { studentSearchableFields } from './constant.student';
 import { IStudent, IStudentFilters } from './interface.student';
-import { StudentModel } from './model.student';
+import { Student } from './model.student';
 
 const getAllStudentsFromDb = async (
   filters: IStudentFilters,
@@ -47,15 +47,12 @@ const getAllStudentsFromDb = async (
   const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
 
-  const result = await StudentModel.find(whereConditions)
-    .populate('academicSemester')
-    .populate('academicDepartment')
-    .populate('academicFaculty')
+  const result = await Student.find(whereConditions)
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
 
-  const total = await StudentModel.countDocuments(whereConditions);
+  const total = await Student.countDocuments(whereConditions);
 
   return {
     meta: {
@@ -68,10 +65,11 @@ const getAllStudentsFromDb = async (
 };
 
 const getSingleStudentFromDb = async (id: string): Promise<IStudent | null> => {
-  const result = await StudentModel.findOne({ id })
-    .populate('academicSemester')
-    .populate('academicDepartment')
-    .populate('academicFaculty');
+  const result = await Student.findOne({ _id:id })
+  return result;
+};
+const createSingleStudentFromDb = async (data:IStudent): Promise<IStudent | null> => {
+  const result = await Student.create(data)
   return result;
 };
 
@@ -80,13 +78,13 @@ const updateStudentFromDb = async (
   id: string,
   payload: Partial<IStudent>
 ): Promise<IStudent | null> => {
-  const isExist = await StudentModel.findOne({ id });
+  const isExist = await Student.findOne({ id });
 
   if (!isExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found !');
   }
 
-  const { name, guardian, localGuardian, ...studentData } = payload;
+  const { address,father_info,guardianInfo,mother_info,students, ...studentData } = payload;
 
   const updatedStudentData: Partial<IStudent> = { ...studentData };
 
@@ -99,49 +97,55 @@ const updateStudentFromDb = async (
 
   // dynamically handling
 
-  if (name && Object.keys(name).length > 0) {
-    Object.keys(name).forEach(key => {
-      const nameKey = `name.${key}` as keyof Partial<IStudent>; // `name.fisrtName`
-      (updatedStudentData as any)[nameKey] = name[key as keyof typeof name];
+  if (students && Object.keys(students).length > 0) {
+    Object.keys(students).forEach(key => {
+      const studentsKey = `students.${key}` as keyof Partial<IStudent>; // `students.fisrtstudents`
+      (updatedStudentData as any)[studentsKey] = students[key as keyof typeof students];
+    });
+  }
+  if (address && Object.keys(address).length > 0) {
+    Object.keys(address).forEach(key => {
+      const addressKey = `address.${key}` as keyof Partial<IStudent>; // `address.fisrtaddress`
+      (updatedStudentData as any)[addressKey] = address[key as keyof typeof address];
+    });
+  }
+  if (mother_info && Object.keys(mother_info).length > 0) {
+    Object.keys(mother_info).forEach(key => {
+      const mother_infoKey = `mother_info.${key}` as keyof Partial<IStudent>; // `mother_info.fisrtmother_info`
+      (updatedStudentData as any)[mother_infoKey] = mother_info[key as keyof typeof mother_info];
     });
   }
 
-  if (guardian && Object.keys(guardian).length > 0) {
-    Object.keys(guardian).forEach(key => {
-      const guardianKey = `guardian.${key}` as keyof Partial<IStudent>; // `guardian.fisrtguardian`
-      (updatedStudentData as any)[guardianKey] =
-        guardian[key as keyof typeof guardian]; // updatedStudentData['guardian.motherContactNo']=guardian[motherContactNo]
-      // updatedStudentData --> object create --> "guardian.motherContactNo": 0177
+  if (father_info && Object.keys(father_info).length > 0) {
+    Object.keys(father_info).forEach(key => {
+      const father_infoKey = `father_info.${key}` as keyof Partial<IStudent>; // `father_info.fisrtfather_info`
+      (updatedStudentData as any)[father_infoKey] =
+        father_info[key as keyof typeof father_info]; // updatedStudentData['father_info.motherContactNo']=father_info[motherContactNo]
+      // updatedStudentData --> object create --> "father_info.motherContactNo": 0177
     });
   }
-  if (localGuardian && Object.keys(localGuardian).length > 0) {
-    Object.keys(localGuardian).forEach(key => {
+  if (guardianInfo && Object.keys(guardianInfo).length > 0) {
+    Object.keys(guardianInfo).forEach(key => {
       const localGuradianKey =
-        `localGuardian.${key}` as keyof Partial<IStudent>; // `localGuardian.fisrtName`
+        `guardianInfo.${key}` as keyof Partial<IStudent>; // `guardianInfo.fisrtName`
       (updatedStudentData as any)[localGuradianKey] =
-        localGuardian[key as keyof typeof localGuardian];
+        guardianInfo[key as keyof typeof guardianInfo];
     });
   }
 
-  const result = await StudentModel.findOneAndUpdate(
-    { id },
-    updatedStudentData,
-    {
-      new: true,
-    }
-  );
+  const result = await Student.findOneAndUpdate({ id }, updatedStudentData, {
+    new: true,
+  });
   return result;
 };
 
 const deleteStudentFromDb = async (id: string): Promise<IStudent | null> => {
-  const result = await StudentModel.findByIdAndDelete(id)
-    .populate('academicSemester')
-    .populate('academicDepartment')
-    .populate('academicFaculty');
+  const result = await Student.findByIdAndDelete(id)
   return result;
 };
 
 export const StudentService = {
+  createSingleStudentFromDb,
   getAllStudentsFromDb,
   getSingleStudentFromDb,
   updateStudentFromDb,

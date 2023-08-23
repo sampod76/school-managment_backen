@@ -1,10 +1,16 @@
 import express from 'express';
-import { StudentValidation } from './validation.student';
 import validateRequestZod from '../../middlewares/validateRequestZod';
 import { StudentController } from './controller.student';
+import { StudentValidation } from './validation.student';
 
 const router = express.Router();
-router.route('/').get(StudentController.getAllStudents);
+router
+  .route('/')
+  .get(StudentController.getAllStudents)
+  .post(
+    validateRequestZod(StudentValidation.createStudentZodSchema),
+    StudentController.createSingleStudent
+  );
 
 router
   .route('/:id')

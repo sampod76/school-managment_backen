@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
+import httpStatus from 'http-status';
+import { PAGINATION_FIELDS } from '../../../constant/pagination';
 import catchAsync from '../../share/catchAsync';
 import pick from '../../share/pick';
-import { studentFilterableFields } from './constant.student';
 import sendResponse from '../../share/sendResponse';
+import { studentFilterableFields } from './constant.student';
 import { IStudent } from './interface.student';
-import httpStatus from 'http-status';
 import { StudentService } from './service.student';
-import { PAGINATION_FIELDS } from '../../../constant/pagination';
 
 const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   const filter = pick(req.query, studentFilterableFields);
@@ -25,6 +25,15 @@ const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const createSingleStudent = catchAsync(async (req: Request, res: Response) => {
+  const result = await StudentService.createSingleStudentFromDb(req.body);
+  sendResponse<IStudent>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student create successfully !',
+    data: result,
+  });
+});
 const getSingleStudent = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
@@ -70,4 +79,5 @@ export const StudentController = {
   getSingleStudent,
   updateStudent,
   deleteStudent,
+  createSingleStudent
 };
