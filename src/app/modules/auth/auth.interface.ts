@@ -11,6 +11,7 @@ export type ILoginUserResponse = {
   password?: string;
   role: string;
   phone_number?: string;
+  // _id:string
 };
 
 export type IRefreshTokenResponse = {

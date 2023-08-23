@@ -80,7 +80,20 @@ const createStudentZodSchema = z.object({
       profession: z.string().optional(),
       year_of_death: z.string().optional(),
     }),
-    address: z.object({
+    current_address: z.object({
+      division: z.string(),
+      district: z.string(),
+      sub_district: z.string(),
+      city_corporation: z.string().optional(),
+      union: z.string(),
+      ward_number: z.string(),
+      mouza: z.string().optional(),
+      village: z.string(),
+      house_house_holding_number: z.string().optional(),
+      post_office: z.string(),
+      postal_code: z.string(),
+    }),
+    permanent_address: z.object({
       division: z.string(),
       district: z.string(),
       sub_district: z.string(),

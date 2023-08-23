@@ -97,7 +97,7 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     userId,
     password,
     role,
-    name
+    name,
   };
 };
 

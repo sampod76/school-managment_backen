@@ -97,7 +97,20 @@ export type IStudent = {
     profession?: string;
     year_of_death?: string;
   };
-  address: {
+  current_address: {
+    division: string;
+    district: string;
+    sub_district: string;
+    city_corporation?: string;
+    union: string;
+    ward_number: string;
+    mouza?: string;
+    village: string;
+    house_house_holding_number?: string;
+    post_office: string;
+    postal_code: string;
+  };
+  permanent_address: {
     division: string;
     district: string;
     sub_district: string;
