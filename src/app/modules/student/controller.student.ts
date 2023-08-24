@@ -26,6 +26,7 @@ const getAllStudents = catchAsync(async (req: Request, res: Response) => {
 });
 
 const createSingleStudent = catchAsync(async (req: Request, res: Response) => {
+  console.log(req.body);
   const result = await StudentService.createSingleStudentFromDb(req.body);
   sendResponse<IStudent>(res, {
     statusCode: httpStatus.OK,

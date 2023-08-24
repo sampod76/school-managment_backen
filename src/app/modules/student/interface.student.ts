@@ -75,7 +75,7 @@ export type IStudent = {
     hobbies?: string[];
     favorite_books?: string[];
     financial_assistance_needed?: yesNoType; //type of
-    opinion: string;
+    opinion?: string;
   };
   mother_info: {
     name_bangla: string;

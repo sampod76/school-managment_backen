@@ -7,7 +7,8 @@ import {
   ENUM_RELIGION,
   ENUM_YN,
 } from '../../../enums/usersEnums';
-
+// 1A8ytGPemE2Ht4UnHtdo7N1dcME73A24G9
+// 16NBtzZScNjcKUP7M1Pf8ro8wqbr2tvzJe
 const createStudentZodSchema = z.object({
   body: z.object({
     userId: z.string(),
@@ -17,35 +18,38 @@ const createStudentZodSchema = z.object({
       birth_registration_number: z.string().optional(),
       date_of_birth: z.string(),
       birth_district: z.string().optional(),
-      gender: z
-        .enum([...Object.values(ENUM_GENDER)] as [string, ...string[]])
-        ,
+      gender: z.enum([...Object.values(ENUM_GENDER)] as [string, ...string[]]),
       nationality: z.string().optional(),
-      religion: z
-        .enum([...Object.values(ENUM_RELIGION)] as [string, ...string[]])
-        ,
-      desired_class: z
-        .enum([...Object.values(ENUM_CLASS)] as [string, ...string[]])
-      ,
-      marital_status: z
-        .enum([...Object.values(ENUM_MARITAL_STATUS)] as [string, ...string[]])
-       ,
+      religion: z.enum([...Object.values(ENUM_RELIGION)] as [
+        string,
+        ...string[]
+      ]),
+      desired_class: z.enum([...Object.values(ENUM_CLASS)] as [
+        string,
+        ...string[]
+      ]),
+      marital_status: z.enum([...Object.values(ENUM_MARITAL_STATUS)] as [
+        string,
+        ...string[]
+      ]),
       blood_group: z
         .enum([...Object.values(ENUM_BLOOD_GROUP_TYPE)] as [
           string,
           ...string[]
         ])
         .optional(),
-      minority_ethnicity: z
-        .enum([...Object.values(ENUM_YN)] as [string, ...string[]])
-       ,
+      minority_ethnicity: z.enum([...Object.values(ENUM_YN)] as [
+        string,
+        ...string[]
+      ]),
       photo: z.string().optional(),
       previous_exam_info: z
         .array(
           z.object({
-            class_name: z
-              .enum([...Object.values(ENUM_CLASS)] as [string, ...string[]])
-              ,
+            class_name: z.enum([...Object.values(ENUM_CLASS)] as [
+              string,
+              ...string[]
+            ]),
             exam_name: z.string(),
             result: z.string(),
             exam_time: z.string().optional(),
@@ -55,10 +59,11 @@ const createStudentZodSchema = z.object({
         .optional(),
       hobbies: z.array(z.string()).optional(),
       favorite_books: z.array(z.string()).optional(),
-      financial_assistance_needed: z
-        .enum([...Object.values(ENUM_YN)] as [string, ...string[]])
-        ,
-      opinion: z.string(),
+      financial_assistance_needed: z.enum([...Object.values(ENUM_YN)] as [
+        string,
+        ...string[]
+      ]),
+      opinion: z.string().optional(),
     }),
     mother_info: z.object({
       name_bangla: z.string(),
@@ -115,7 +120,7 @@ const createStudentZodSchema = z.object({
         number: z.string().optional(),
       })
       .optional(),
-      password:z.string()
+    password: z.string(),
   }),
 });
 const updateStudentZodSchema = z.object({
@@ -190,7 +195,20 @@ const updateStudentZodSchema = z.object({
       profession: z.string().optional(),
       year_of_death: z.string().optional(),
     }),
-    address: z.object({
+    current_address: z.object({
+      division: z.string().optional(),
+      district: z.string().optional(),
+      sub_district: z.string().optional(),
+      city_corporation: z.string().optional(),
+      union: z.string().optional(),
+      ward_number: z.string().optional(),
+      mouza: z.string().optional(),
+      village: z.string().optional(),
+      house_house_holding_number: z.string().optional(),
+      post_office: z.string().optional(),
+      postal_code: z.string().optional(),
+    }),
+    permanent_address: z.object({
       division: z.string().optional(),
       district: z.string().optional(),
       sub_district: z.string().optional(),

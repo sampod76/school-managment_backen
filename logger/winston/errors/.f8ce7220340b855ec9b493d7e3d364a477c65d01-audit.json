@@ -19,6 +19,16 @@
             "date": 1692810545904,
             "name": "D:\\job\\PayraSoft\\school_management\\server_side\\logger\\winston\\errors\\PHU-2023-08-23-23-error.log",
             "hash": "f54c802aece569235becbabf49c072041d1e517c1b907ab852f2b17813b6cec9"
+        },
+        {
+            "date": 1692889515241,
+            "name": "D:\\job\\PayraSoft\\school_management\\server_side\\logger\\winston\\errors\\PHU-2023-08-24-21-error.log",
+            "hash": "dd66766888c875e357b2da95b74cf8556cef9aae1591e6c2fc16743ebf56a32d"
+        },
+        {
+            "date": 1692899308252,
+            "name": "D:\\job\\PayraSoft\\school_management\\server_side\\logger\\winston\\errors\\PHU-2023-08-24-23-error.log",
+            "hash": "18b45a3ab681d21820dd273df624e6b3d3aee0b1f87a595580f5cc6e8ed5e82b"
         }
     ],
     "hashType": "sha256"
