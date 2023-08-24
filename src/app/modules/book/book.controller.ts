@@ -2,33 +2,33 @@ import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 import catchAsync from '../../share/catchAsync';
 import sendResponse from '../../share/sendResponse';
-import { IUser } from './user.interface';
-import { UserService } from './user.service';
+import { IBook } from './book.interface';
+import { BookService } from './book.service';
 
-const createUser = catchAsync(async (req: Request, res: Response) => {
-  const user = req.body;
-  const result = await UserService.createUser(user);
+const createBook = catchAsync(async (req: Request, res: Response) => {
+  const book = req.body;
+  const result = await BookService.createBook(book);
 
-  sendResponse<IUser>(res, {
+  sendResponse<IBook>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'user created successfully!',
+    message: 'book created successfully!',
     data: result,
   });
 });
 
-const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  // const test = req.headers.authorization;
-  // console.log(test, 'testing');
-  const result = await UserService.getAllUsers();
+// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
+//   // const  = req.headers.authorization;
+//   // console.log(, '');
+//   const result = await UserService.getAllUsers();
 
-  sendResponse<IUser[]>(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Users retrieved successfully',
-    data: result,
-  });
-});
+//   sendResponse<IUser[]>(res, {
+//     success: true,
+//     statusCode: httpStatus.OK,
+//     message: 'Users retrieved successfully',
+//     data: result,
+//   });
+// });
 
 // const getSingleUser = catchAsync(async (req: Request, res: Response) => {
 //   const id = req.params.id;
@@ -70,9 +70,9 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
 //   });
 // });
 
-export const userController = {
-  createUser,
-  getAllUsers,
+export const bookController = {
+  createBook,
+  // getAllUsers,
   // getSingleUser,
   // updateUser,
   // deleteUser,
