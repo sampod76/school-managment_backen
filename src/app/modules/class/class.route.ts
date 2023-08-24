@@ -2,14 +2,12 @@ import express from 'express';
 import validateRequestZod from '../../middlewares/validateRequestZod';
 import { classController } from './class.controller';
 import { ClassValidation } from './class.validation';
-// import { ENUM_USER_ROLE } from '../../../enums/user';
-// import auth from '../../middlewares/auth';
-// import validateRequest from '../../middlewares/validateRequest';
 
 const router = express.Router();
 
-// router.get('/:id', authMiddleware(ENUM_USER_ROLE.ADMIN), userController.getSingleUser);
-// router.get('/', auth(ENUM_USER_ROLE.ADMIN), userController.getAllUsers);
+router.get('/:id', classController.getSingleClass);
+
+router.get('/', classController.getAllClasses);
 
 router.post(
   '/create-class',
@@ -17,13 +15,12 @@ router.post(
   classController.createClass
 );
 
-// router.patch(
-//   '/:id',
-//   validateRequest(UserValidation.updateUserZodSchema),
-//   auth(ENUM_USER_ROLE.ADMIN),
-//   userController.updateUser
-// );
+router.patch(
+  '/:id',
+  validateRequestZod(ClassValidation.updateClassZodSchema),
+  classController.updateClass
+);
 
-// router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), userController.deleteUser);
+router.delete('/:id', classController.deleteClass);
 
 export const ClassRoutes = router;

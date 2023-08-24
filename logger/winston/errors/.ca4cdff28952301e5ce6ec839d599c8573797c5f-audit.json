@@ -6,9 +6,24 @@
     "auditLog": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\.ca4cdff28952301e5ce6ec839d599c8573797c5f-audit.json",
     "files": [
         {
-            "date": 1692858492931,
-            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-24-12-error.log",
-            "hash": "1902c9c704a24fac76446e8ae5755e7745e05c1e81d2552447f94225a0da485b"
+            "date": 1692869321484,
+            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-24-15-error.log",
+            "hash": "5c08d08dadd81b92db0b0c976a5f1585ac69bf02f75148e4c8ec94bd2436b78c"
+        },
+        {
+            "date": 1692871236113,
+            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-24-16-error.log",
+            "hash": "4fad2d72d31cc7fd80f53a99d20364311ddc4559bc170de86dbda06f0fbc4c8b"
+        },
+        {
+            "date": 1692874845069,
+            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-24-17-error.log",
+            "hash": "9b0be0b1d1026fe35b467eeb8b5b5cb919387b0c656f17986911a4f6eab55df5"
+        },
+        {
+            "date": 1692880469198,
+            "name": "F:\\office main file\\payrasoft\\school-management-backend\\school-managment_backen\\logger\\winston\\errors\\PHU-2023-08-24-18-error.log",
+            "hash": "c763ba6515798f5d29cc640299048821a86519aacacd3aaf1fcb4593eeeb028a"
         }
     ],
     "hashType": "sha256"

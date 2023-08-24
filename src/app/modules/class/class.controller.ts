@@ -12,68 +12,66 @@ const createClass = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IClass>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'class created successfully!',
+    message: 'Class created successfully!',
     data: result,
   });
 });
 
-// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-//   // const  = req.headers.authorization;
-//   // console.log(, '');
-//   const result = await UserService.getAllUsers();
+const getAllClasses = catchAsync(async (req: Request, res: Response) => {
+  const result = await ClassService.getAllClasses();
 
-//   sendResponse<IUser[]>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'Users retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IClass[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Class retrieved successfully',
+    data: result,
+  });
+});
 
-// const getSingleUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
+const getSingleClass = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-//   const result = await UserService.getSingleUser(id);
+  const result = await ClassService.getSingleClass(id);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IClass>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Class retrieved successfully',
+    data: result,
+  });
+});
 
-// const updateUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const updatedData = req.body;
+const updateClass = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
 
-//   const result = await UserService.updateUser(id, updatedData);
+  const result = await ClassService.updateClass(id, updatedData);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User updated successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IClass>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Class updated successfully',
+    data: result,
+  });
+});
 
-// const deleteUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
+const deleteClass = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-//   const result = await UserService.deleteUser(id);
+  const result = await ClassService.deleteClass(id);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User deleted successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IClass>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Class deleted successfully',
+    data: result,
+  });
+});
 
 export const classController = {
   createClass,
-  // getAllUsers,
-  // getSingleUser,
-  // updateUser,
-  // deleteUser,
+  getAllClasses,
+  getSingleClass,
+  updateClass,
+  deleteClass,
 };

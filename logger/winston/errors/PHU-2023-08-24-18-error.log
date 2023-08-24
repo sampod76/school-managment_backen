@@ -1,0 +1,1 @@
+Thu Aug 24 2023-->18:36:58--> [PH] error: globalErrorHandler: Book validation failed: class: Cast to ObjectId failed for value "" (type string) at path "class" because of "BSONError"

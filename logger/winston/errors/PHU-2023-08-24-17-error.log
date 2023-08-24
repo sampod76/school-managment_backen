@@ -1,0 +1,30 @@
+Thu Aug 24 2023-->17:0:45--> [PH] error: globalErrorHandler: [
+  {
+    "received": "64e723d315a7f34215b33cdc",
+    "code": "invalid_enum_value",
+    "options": [
+      "A",
+      "B"
+    ],
+    "path": [
+      "body",
+      "class"
+    ],
+    "message": "Invalid enum value. Expected 'A' | 'B', received '64e723d315a7f34215b33cdc'"
+  }
+]
+Thu Aug 24 2023-->17:7:44--> [PH] error: globalErrorHandler: [
+  {
+    "received": "64e723d315a7f34215b33cdc",
+    "code": "invalid_enum_value",
+    "options": [
+      "A",
+      "B"
+    ],
+    "path": [
+      "body",
+      "class"
+    ],
+    "message": "Invalid enum value. Expected 'A' | 'B', received '64e723d315a7f34215b33cdc'"
+  }
+]
