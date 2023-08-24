@@ -11,7 +11,7 @@ import { IStudent, StudentModel } from './interface.student';
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {
     userId: { type: String, trim: true },
-    students: {
+    student: {
       name_bangla: { type: String, trim: true },
       name_english: { type: String, trim: true },
       birth_registration_number: { type: String, trim: true },
