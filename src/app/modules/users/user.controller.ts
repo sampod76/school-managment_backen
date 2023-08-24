@@ -17,18 +17,18 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-//   // const  = req.headers.authorization;
-//   // console.log(, '');
-//   const result = await UserService.getAllUsers();
+const getAllUsers = catchAsync(async (req: Request, res: Response) => {
+  // const test = req.headers.authorization;
+  // console.log(test, 'testing');
+  const result = await UserService.getAllUsers();
 
-//   sendResponse<IUser[]>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'Users retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IUser[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Users retrieved successfully',
+    data: result,
+  });
+});
 
 // const getSingleUser = catchAsync(async (req: Request, res: Response) => {
 //   const id = req.params.id;
@@ -72,7 +72,7 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
 
 export const userController = {
   createUser,
-  // getAllUsers,
+  getAllUsers,
   // getSingleUser,
   // updateUser,
   // deleteUser,

@@ -21,22 +21,20 @@ const paypal_rest_sdk_1 = __importDefault(require("paypal-rest-sdk"));
 const path_1 = __importDefault(require("path"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+// app.use(cors());
 // app.use(
 //   cors({
-//     origin: ['https://salontrainingpro.app/'],
+//     origin: ['https://example.app', 'http://localhost:3000'],
 //     credentials: true,
 //   })
 // );
-// app.use(
-//   cors({
-//     origin: '*',
-//     credentials: true,
-//     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-//   })
-// );
+app.use((0, cors_1.default)({
+    origin: '*',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+}));
 //  app.use(function (req, res, next) {
-//   res.header("Access-Control-Allow-Origin", 'https://salontrainingpro.app')
+//   res.header("Access-Control-Allow-Origin", 'https://example.app')
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Accept")
 //   next()
 // })
@@ -111,25 +109,6 @@ app.use((req, res, next) => {
 });
 const test = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // console.log(result, result2);
-        // const result = await Lession.updateMany(
-        //   {},
-        //   {
-        //     $set: {
-        //       vedio:
-        //         'https://player.vimeo.com/video/829783962?h=47a19669a0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479',
-        //     },
-        //   }
-        // );
-        // console.log(result);
-        // const result = await PhotoContestUser.deleteMany();
-        // console.log(result);
-        // const result3 = await GeneralUser.updateMany(
-        //   {},
-        //   {
-        //     purchase_courses: [],
-        //   }
-        // );
         // const result = await FileUploade.deleteMany({});
         // const result = await RunContest.find({});
         // const result5 = await Purchased_courses.deleteMany();

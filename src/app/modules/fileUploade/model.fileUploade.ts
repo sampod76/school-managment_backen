@@ -3,10 +3,7 @@ import { FileUploadeModel, IFileUploade } from './interface.fileUploade';
 
 const FileUploadeSchema = new Schema<IFileUploade, FileUploadeModel>(
   {
-    userId: {
-      //get request
-      type: Types.ObjectId,
-    },
+    userId:Types.ObjectId,
     title: {
       type: String,
       trim: true,

@@ -12,7 +12,7 @@ const createClass = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IClass>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'user created successfully!',
+    message: 'class created successfully!',
     data: result,
   });
 });

@@ -24,101 +24,65 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
-const http_status_1 = __importDefault(require("http-status"));
 const config_1 = __importDefault(require("../../../config"));
-const users_1 = require("../../../enums/users");
-const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const catchAsync_1 = __importDefault(require("../../share/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../share/sendResponse"));
 const auth_service_1 = require("./auth.service");
+// import { ILoginUserResponse, IRefreshTokenResponse } from './auth.interface';
+// import { AuthService } from './auth.service';
+// const loginAdmin = catchAsync(async (req: Request, res: Response) => {
+//   const { ...loginData } = req.body;
+//   const result = await AuthService.loginAdmin(loginData);
+//   const { refreshToken, ...others } = result;
+//   // set refresh token into cookie
+//   const cookieOptions = {
+//     secure: config.env === 'production',
+//     httpOnly: true,
+//   };
+//   res.cookie('refreshToken', refreshToken, cookieOptions);
+//   sendResponse<ILoginUserResponse>(res, {
+//     statusCode: 200,
+//     success: true,
+//     message: 'User logged in successfully !',
+//     data: others,
+//   });
+// });
 const loginUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b, _c, _d, _e, _f;
-    const _g = req.body, { uid, role = users_1.ENUM_USER_ROLE.GENERAL_USER } = _g, payload = __rest(_g, ["uid", "role"]);
-    let result = null;
-    if (uid) {
-        result = yield auth_service_1.AuthService.loginUserByUidFromDb(uid, role);
-    }
-    else {
-        result = yield auth_service_1.AuthService.loginUserFromDb(payload);
-    }
-    const { refreshToken } = result, othersData = __rest(result, ["refreshToken"]);
-    // console.log(req.cookies, 13);
+    const loginData = __rest(req.body, []);
+    const result = yield auth_service_1.AuthService.loginUser(loginData);
+    const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
+    console.log(others, 'test');
     // set refresh token into cookie
     const cookieOptions = {
-        // secure: config.env === 'production' ? true : false,
-        //same
-        // secure: config.env === 'production',
-        secure: true,
+        secure: config_1.default.env === 'production',
         httpOnly: true,
-        // signed: true,
-        sameSite: 'none',
     };
-    //এটার মাধ্যমে ক্লাইন সাইডে আমার পাঠানো রেসপন্স এর বাইরেও অটোমেটিকলি সে এই cookie সেট করে দেবে
     res.cookie('refreshToken', refreshToken, cookieOptions);
-    // res.cookie('accessToken', othersData.accessToken, cookieOptions);
-    //set refre
     (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
+        statusCode: 200,
         success: true,
-        message: 'successfull login',
-        data: {
-            _id: (_a = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _a === void 0 ? void 0 : _a._id,
-            name: (_b = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _b === void 0 ? void 0 : _b.name,
-            status: (_c = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _c === void 0 ? void 0 : _c.status,
-            email: (_d = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _d === void 0 ? void 0 : _d.email,
-            phone: (_e = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _e === void 0 ? void 0 : _e.phone,
-            role: (_f = othersData === null || othersData === void 0 ? void 0 : othersData.isUserExist) === null || _f === void 0 ? void 0 : _f.role,
-            // ...result,
-            accessToken: othersData.accessToken,
-        },
+        message: 'User logged in successfully !',
+        data: others,
     });
 }));
 const refreshToken = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { refreshToken } = req.cookies;
-    if (!refreshToken) {
-        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Token does not found');
-    }
-    const resultByAccessToken = yield auth_service_1.AuthService.refreshToken(refreshToken);
+    const result = yield auth_service_1.AuthService.refreshToken(refreshToken);
+    // set refresh token into cookie
     const cookieOptions = {
-        // secure: config.env === 'production' ? true :false,
-        //same
         secure: config_1.default.env === 'production',
         httpOnly: true,
     };
-    //এটার মাধ্যমে ক্লাইন সাইডে আমার পাঠানো রেসপন্স এর বাইরেও অটোমেটিকলি সে এই cookie সেট করে দেবে
     res.cookie('refreshToken', refreshToken, cookieOptions);
-    //set refre
     (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
+        statusCode: 200,
         success: true,
-        message: 'successfull login',
-        data: resultByAccessToken,
-    });
-}));
-const myProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _h, _j;
-    //set refre
-    const result = yield auth_service_1.AuthService.myProfileFromDb((_h = req === null || req === void 0 ? void 0 : req.user) === null || _h === void 0 ? void 0 : _h._id, (_j = req === null || req === void 0 ? void 0 : req.user) === null || _j === void 0 ? void 0 : _j.role);
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: 'successfull get profile',
-        data: result,
-    });
-}));
-const myProfileUpdate = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    //set refre
-    const result = yield auth_service_1.AuthService.updateProfileFromDb(req);
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: 'successfull update profile',
+        message: 'Token generated successfully !',
         data: result,
     });
 }));
 exports.AuthController = {
+    //   loginAdmin,
     loginUser,
     refreshToken,
-    myProfile,
-    myProfileUpdate,
 };

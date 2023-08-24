@@ -9,7 +9,7 @@ import { UserValidation } from './user.validation';
 const router = express.Router();
 
 // router.get('/:id', authMiddleware(ENUM_USER_ROLE.ADMIN), userController.getSingleUser);
-// router.get('/', auth(ENUM_USER_ROLE.ADMIN), userController.getAllUsers);
+router.get('/', /* auth(ENUM_USER_ROLE.ADMIN), */ userController.getAllUsers);
 
 router.post(
   '/create-user',
