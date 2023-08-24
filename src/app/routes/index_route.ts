@@ -1,5 +1,4 @@
 import express from 'express';
-// import { AuthRouter } from '../modules/auth/auth.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
