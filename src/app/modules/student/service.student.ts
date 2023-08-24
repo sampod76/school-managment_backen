@@ -101,7 +101,8 @@ const updateStudentFromDb = async (
   }
 
   const {
-    address,
+    current_address,
+    permanent_address,
     father_info,
     guardianInfo,
     mother_info,
@@ -118,11 +119,18 @@ const updateStudentFromDb = async (
         student[key as keyof typeof student];
     });
   }
-  if (address && Object.keys(address).length > 0) {
-    Object.keys(address).forEach(key => {
-      const addressKey = `address.${key}` as keyof Partial<IStudent>; // `address.fisrtaddress`
-      (updatedStudentData as any)[addressKey] =
-        address[key as keyof typeof address];
+  if (current_address && Object.keys(current_address).length > 0) {
+    Object.keys(current_address).forEach(key => {
+      const current_addressKey = `current_address.${key}` as keyof Partial<IStudent>; // `current_address.fisrtcurrent_address`
+      (updatedStudentData as any)[current_addressKey] =
+        current_address[key as keyof typeof current_address];
+    });
+  }
+  if (permanent_address && Object.keys(permanent_address).length > 0) {
+    Object.keys(permanent_address).forEach(key => {
+      const permanent_addressKey = `permanent_address.${key}` as keyof Partial<IStudent>; // `permanent_address.fisrtpermanent_address`
+      (updatedStudentData as any)[permanent_addressKey] =
+        permanent_address[key as keyof typeof permanent_address];
     });
   }
   if (mother_info && Object.keys(mother_info).length > 0) {
