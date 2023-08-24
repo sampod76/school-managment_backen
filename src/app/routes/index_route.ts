@@ -1,7 +1,10 @@
 import express from 'express';
 // import { AuthRouter } from '../modules/auth/auth.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
+import { BookRoutes } from '../modules/book/book.route';
+import { ClassRoutes } from '../modules/class/class.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
+import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
 import { UserRoutes } from '../modules/users/user.route';
 
@@ -21,6 +24,21 @@ const moduleRoutes = [
     // only user login and refresh-token
     path: '/auth',
     route: AuthRoutes,
+  },
+  {
+    // only user login and refresh-token
+    path: '/section',
+    route: SectionRoutes,
+  },
+  {
+    // only user login and refresh-token
+    path: '/class',
+    route: ClassRoutes,
+  },
+  {
+    // only user login and refresh-token
+    path: '/book',
+    route: BookRoutes,
   },
   {
     path: '/upload',
