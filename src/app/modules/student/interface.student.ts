@@ -50,7 +50,7 @@ export type IPreviousExamInfo = {
 
 export type IStudent = {
   userId: string;
-  students: {
+  student: {
     name_bangla: string;
     name_english: string;
     birth_registration_number?: string;
