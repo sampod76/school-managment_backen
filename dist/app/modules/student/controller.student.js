@@ -33,6 +33,7 @@ const getAllStudents = (0, catchAsync_1.default)((req, res) => __awaiter(void 0,
     });
 }));
 const createSingleStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log(req.body);
     const result = yield service_student_1.StudentService.createSingleStudentFromDb(req.body);
     (0, sendResponse_1.default)(res, {
         statusCode: http_status_1.default.OK,

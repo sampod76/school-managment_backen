@@ -51,7 +51,6 @@ const loginUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void
     const loginData = __rest(req.body, []);
     const result = yield auth_service_1.AuthService.loginUser(loginData);
     const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
-    console.log(others, 'test');
     // set refresh token into cookie
     const cookieOptions = {
         secure: config_1.default.env === 'production',

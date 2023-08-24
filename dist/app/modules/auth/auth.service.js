@@ -79,7 +79,7 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         userId,
         password,
         role,
-        name
+        name,
     };
 });
 const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {

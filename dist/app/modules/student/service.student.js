@@ -82,8 +82,8 @@ const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, fu
             userId: data.userId,
             password: data.password,
             name: {
-                name_english: data.students.name_english,
-                name_bangla: data.students.name_bangla,
+                name_english: data.student.name_english,
+                name_bangla: data.student.name_bangla,
             },
             role: "super-admin",
             // role: ENUM_USER_ROLE.STUDENT,
@@ -99,20 +99,27 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
     if (!isExist) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Student not found !');
     }
-    const { address, father_info, guardianInfo, mother_info, students } = payload, studentData = __rest(payload, ["address", "father_info", "guardianInfo", "mother_info", "students"]);
+    const { current_address, permanent_address, father_info, guardianInfo, mother_info, student } = payload, studentData = __rest(payload, ["current_address", "permanent_address", "father_info", "guardianInfo", "mother_info", "student"]);
     const updatedStudentData = Object.assign({}, studentData);
-    if (students && Object.keys(students).length > 0) {
-        Object.keys(students).forEach(key => {
-            const studentsKey = `students.${key}`; // `students.fisrtstudents`
-            updatedStudentData[studentsKey] =
-                students[key];
+    if (student && Object.keys(student).length > 0) {
+        Object.keys(student).forEach(key => {
+            const studentKey = `student.${key}`; // `student.fisrtstudents`
+            updatedStudentData[studentKey] =
+                student[key];
         });
     }
-    if (address && Object.keys(address).length > 0) {
-        Object.keys(address).forEach(key => {
-            const addressKey = `address.${key}`; // `address.fisrtaddress`
-            updatedStudentData[addressKey] =
-                address[key];
+    if (current_address && Object.keys(current_address).length > 0) {
+        Object.keys(current_address).forEach(key => {
+            const current_addressKey = `current_address.${key}`; // `current_address.fisrtcurrent_address`
+            updatedStudentData[current_addressKey] =
+                current_address[key];
+        });
+    }
+    if (permanent_address && Object.keys(permanent_address).length > 0) {
+        Object.keys(permanent_address).forEach(key => {
+            const permanent_addressKey = `permanent_address.${key}`; // `permanent_address.fisrtpermanent_address`
+            updatedStudentData[permanent_addressKey] =
+                permanent_address[key];
         });
     }
     if (mother_info && Object.keys(mother_info).length > 0) {

@@ -5,7 +5,7 @@ const mongoose_1 = require("mongoose");
 const usersEnums_1 = require("../../../enums/usersEnums");
 exports.studentSchema = new mongoose_1.Schema({
     userId: { type: String, trim: true },
-    students: {
+    student: {
         name_bangla: { type: String, trim: true },
         name_english: { type: String, trim: true },
         birth_registration_number: { type: String, trim: true },
@@ -69,7 +69,20 @@ exports.studentSchema = new mongoose_1.Schema({
         profession: { type: String, trim: true },
         year_of_death: { type: String, trim: true },
     },
-    address: {
+    current_address: {
+        division: { type: String, trim: true },
+        district: { type: String, trim: true },
+        sub_district: { type: String, trim: true },
+        city_corporation: { type: String, trim: true },
+        union: { type: String, trim: true },
+        ward_number: { type: String, trim: true },
+        mouza: { type: String, trim: true },
+        village: { type: String, trim: true },
+        house_house_holding_number: { type: String, trim: true },
+        post_office: { type: String, trim: true },
+        postal_code: { type: String, trim: true },
+    },
+    permanent_address: {
         division: { type: String, trim: true },
         district: { type: String, trim: true },
         sub_district: { type: String, trim: true },
