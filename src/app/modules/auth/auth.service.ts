@@ -11,11 +11,11 @@ import {
 } from './auth.interface';
 
 // const loginAdmin = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
-//   const { phoneNumber, password } = payload;
+//   const { phone_number, password } = payload;
 
-//   // const isUserExist = await UserExistService.isUserExist(phoneNumber);
-//   // const isUserExist = await Admin.findOne({ phoneNumber });
-//   const isUserExist = await Admin.isUserExist(phoneNumber);
+//   // const isUserExist = await UserExistService.isUserExist(phone_number);
+//   // const isUserExist = await Admin.findOne({ phone_number });
+//   const isUserExist = await Admin.isUserExist(phone_number);
 //   console.log(isUserExist, 'hi');
 
 //   if (!isUserExist) {
@@ -77,16 +77,16 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     throw new ApiError(httpStatus.UNAUTHORIZED, 'Password is incorrect');
   }
 
-  const { phoneNumber, role } = isUserExist;
+  const {name, role } = isUserExist;
 
   const accessToken = jwtHelpers.createToken(
-    { phoneNumber, role },
+    { userId, role },
     config.jwt.secret as Secret,
     config.jwt.expires_in as string
   );
 
   const refreshToken = jwtHelpers.createToken(
-    { phoneNumber, role },
+    { userId, role },
     config.jwt.refresh_secret as Secret,
     config.jwt.refresh_expires_in as string
   );
@@ -97,7 +97,7 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     userId,
     password,
     role,
-    phoneNumber,
+    name
   };
 };
 

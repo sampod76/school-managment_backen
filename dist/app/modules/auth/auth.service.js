@@ -19,10 +19,10 @@ const jwtHelpers_1 = require("../../../helper/jwtHelpers");
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const user_model_1 = require("../users/user.model");
 // const loginAdmin = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
-//   const { phoneNumber, password } = payload;
-//   // const isUserExist = await UserExistService.isUserExist(phoneNumber);
-//   // const isUserExist = await Admin.findOne({ phoneNumber });
-//   const isUserExist = await Admin.isUserExist(phoneNumber);
+//   const { phone_number, password } = payload;
+//   // const isUserExist = await UserExistService.isUserExist(phone_number);
+//   // const isUserExist = await Admin.findOne({ phone_number });
+//   const isUserExist = await Admin.isUserExist(phone_number);
 //   console.log(isUserExist, 'hi');
 //   if (!isUserExist) {
 //     throw new ApiError(httpStatus.NOT_FOUND, 'Admin does not exist');
@@ -70,16 +70,16 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
         !(yield user_model_1.User.isPasswordMatched(password, isUserExist.password))) {
         throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Password is incorrect');
     }
-    const { phoneNumber, role } = isUserExist;
-    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ phoneNumber, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
-    const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ phoneNumber, role }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
+    const { name, role } = isUserExist;
+    const accessToken = jwtHelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
+    const refreshToken = jwtHelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.refresh_secret, config_1.default.jwt.refresh_expires_in);
     return {
         accessToken,
         refreshToken,
         userId,
         password,
         role,
-        phoneNumber,
+        name
     };
 });
 const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {

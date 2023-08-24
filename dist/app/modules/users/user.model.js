@@ -27,11 +27,11 @@ exports.UserSchema = new mongoose_1.Schema({
         required: true,
     },
     name: {
-        firstName: {
+        name_bangla: {
             type: String,
             required: true,
         },
-        lastName: {
+        name_english: {
             type: String,
             required: true,
         },
@@ -40,20 +40,20 @@ exports.UserSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    phoneNumber: {
+    phone_number: {
         type: String,
-        required: true,
+        // required: true,
     },
     email: {
         type: String,
-        required: true,
+        // required: true,
     },
 }, {
     timestamps: true,
 });
 exports.UserSchema.statics.isUserExist = function (userId) {
     return __awaiter(this, void 0, void 0, function* () {
-        return yield exports.User.findOne({ userId }, { phoneNumber: 1, password: 1, role: 1, userId: 1 });
+        return yield exports.User.findOne({ userId }, { phone_number: 1, password: 1, role: 1, userId: 1 });
     });
 };
 exports.UserSchema.statics.isPasswordMatched = function (givenPassword, savedPassword) {

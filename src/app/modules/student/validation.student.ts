@@ -10,7 +10,7 @@ import {
 
 const createStudentZodSchema = z.object({
   body: z.object({
-    user_id: z.string(),
+    userId: z.string(),
     students: z.object({
       name_bangla: z.string(),
       name_english: z.string(),
@@ -102,11 +102,12 @@ const createStudentZodSchema = z.object({
         number: z.string().optional(),
       })
       .optional(),
+      password:z.string()
   }),
 });
 const updateStudentZodSchema = z.object({
   body: z.object({
-    user_id: z.string().optional(),
+    userId: z.string().optional(),
     students: z.object({
       name_bangla: z.string().optional(),
       name_english: z.string().optional(),

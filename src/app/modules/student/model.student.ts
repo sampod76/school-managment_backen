@@ -10,7 +10,7 @@ import { IStudent, StudentModel } from './interface.student';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {
-    user_id: { type: String, trim: true },
+    userId: { type: String, trim: true },
     students: {
       name_bangla: { type: String, trim: true },
       name_english: { type: String, trim: true },
@@ -95,6 +95,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
       relationship: { type: String, trim: true },
       number: { type: String, trim: true },
     },
+    password:{ type: String, trim: true,min:6 }
   },
   {
     timestamps: true,

@@ -15,11 +15,11 @@ export const UserSchema = new Schema<IUser, UserModel>(
       required: true,
     },
     name: {
-      firstName: {
+      name_bangla: {
         type: String,
         required: true,
       },
-      lastName: {
+      name_english: {
         type: String,
         required: true,
       },
@@ -28,13 +28,13 @@ export const UserSchema = new Schema<IUser, UserModel>(
       type: String,
       required: true,
     },
-    phoneNumber: {
+    phone_number: {
       type: String,
-      required: true,
+      // required: true,
     },
     email: {
       type: String,
-      required: true,
+      // required: true,
     },
   },
   {
@@ -46,11 +46,11 @@ UserSchema.statics.isUserExist = async function (
   userId: string
 ): Promise<Pick<
   IUser,
-  'email' | 'name' | 'phoneNumber' | 'password' | 'role' | 'userId'
+  'email' | 'name' | 'phone_number' | 'password' | 'role' | 'userId'
 > | null> {
   return await User.findOne(
     { userId },
-    { phoneNumber: 1, password: 1, role: 1, userId: 1 }
+    { phone_number: 1, password: 1, role: 1, userId: 1 }
   );
 };
 

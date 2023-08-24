@@ -96,6 +96,7 @@ import httpStatus from 'http-status';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 // import { uploadSingleImage } from './app/middlewares/uploader.multer';
 import routes from './app/routes/index_route';
+import { ENUM_USER_ROLE } from './enums/usersEnums';
 
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -138,6 +139,7 @@ const test = async () => {
     // const result2 = await PhotoContestUser.deleteMany({});
     // const result2 = await RunContest.deleteMany({});
     // console.log(result2);
+    console.log(ENUM_USER_ROLE.STUDENT)
   } catch (error) {
     console.log(error);
   }
