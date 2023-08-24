@@ -77,8 +77,8 @@ const createSingleStudentFromDb = async (
       userId: data.userId,
       password: data.password,
       name: {
-        name_english: data.students.name_english,
-        name_bangla: data.students.name_bangla,
+        name_english: data.student.name_english,
+        name_bangla: data.student.name_bangla,
       },
       role: "super-admin",
       // role: ENUM_USER_ROLE.STUDENT,
@@ -105,17 +105,17 @@ const updateStudentFromDb = async (
     father_info,
     guardianInfo,
     mother_info,
-    students,
+    student,
     ...studentData
   } = payload;
 
   const updatedStudentData: Partial<IStudent> = { ...studentData };
 
-  if (students && Object.keys(students).length > 0) {
-    Object.keys(students).forEach(key => {
-      const studentsKey = `students.${key}` as keyof Partial<IStudent>; // `students.fisrtstudents`
-      (updatedStudentData as any)[studentsKey] =
-        students[key as keyof typeof students];
+  if (student && Object.keys(student).length > 0) {
+    Object.keys(student).forEach(key => {
+      const studentKey = `student.${key}` as keyof Partial<IStudent>; // `student.fisrtstudents`
+      (updatedStudentData as any)[studentKey] =
+        student[key as keyof typeof student];
     });
   }
   if (address && Object.keys(address).length > 0) {

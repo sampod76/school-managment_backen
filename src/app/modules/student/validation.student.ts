@@ -11,7 +11,7 @@ import {
 const createStudentZodSchema = z.object({
   body: z.object({
     userId: z.string(),
-    students: z.object({
+    student: z.object({
       name_bangla: z.string(),
       name_english: z.string(),
       birth_registration_number: z.string().optional(),
@@ -108,7 +108,7 @@ const createStudentZodSchema = z.object({
 const updateStudentZodSchema = z.object({
   body: z.object({
     userId: z.string().optional(),
-    students: z.object({
+    student: z.object({
       name_bangla: z.string().optional(),
       name_english: z.string().optional(),
       birth_registration_number: z.string().optional(),
