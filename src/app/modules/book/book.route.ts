@@ -2,14 +2,11 @@ import express from 'express';
 import validateRequestZod from '../../middlewares/validateRequestZod';
 import { bookController } from './book.controller';
 import { BookValidation } from './book.validation';
-// import { ENUM_USER_ROLE } from '../../../enums/user';
-// import auth from '../../middlewares/auth';
-// import validateRequest from '../../middlewares/validateRequest';
 
 const router = express.Router();
 
-// router.get('/:id', authMiddleware(ENUM_USER_ROLE.ADMIN), userController.getSingleUser);
-// router.get('/', auth(ENUM_USER_ROLE.ADMIN), userController.getAllUsers);
+router.get('/:id', bookController.getSingleBook);
+router.get('/', bookController.getAllBooks);
 
 router.post(
   '/create-book',
@@ -17,13 +14,13 @@ router.post(
   bookController.createBook
 );
 
-// router.patch(
-//   '/:id',
-//   validateRequest(UserValidation.updateUserZodSchema),
-//   auth(ENUM_USER_ROLE.ADMIN),
-//   userController.updateUser
-// );
+router.patch(
+  '/:id',
+  validateRequestZod(BookValidation.updateBookZodSchema),
 
-// router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), userController.deleteUser);
+  bookController.updateBook
+);
+
+router.delete('/:id', bookController.deleteBook);
 
 export const BookRoutes = router;

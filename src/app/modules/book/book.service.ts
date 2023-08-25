@@ -7,67 +7,64 @@ const createBook = (BookData: IBook): Promise<IBook | null> => {
   const createdCLass = BookModel.create(BookData);
 
   if (!createdCLass) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to create Book first'
-    );
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'failed to create Book');
   }
 
   return createdCLass;
 };
 
-// const getAllUsers = async (): Promise<IUser[] | null> => {
-//   const allUsers = User.find();
+const getAllBooks = async (): Promise<IBook[] | null> => {
+  const allUsers = BookModel.find();
 
-//   if (!allUsers) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Users'
-//     );
-//   }
+  if (!allUsers) {
+    throw new ApiError(
+      httpStatus.EXPECTATION_FAILED,
+      'failed to get all books'
+    );
+  }
 
-//   return allUsers;
-// };
+  return allUsers;
+};
 
-// const getSingleUser = async (id: string): Promise<IUser | null> => {
-//   const result = await User.findOne({ _id: id });
+const getSingleBook = async (id: string): Promise<IBook | null> => {
+  const result = await BookModel.findOne({ _id: id });
 
-//   return result;
-// };
+  return result;
+};
 
-// const updateUser = async (
-//   id: string,
-//   payload: Partial<IUser>
-// ): Promise<IUser | null> => {
-//   const result = await User.findOneAndUpdate({ _id: id }, payload, {
-//     new: true,
-//   });
-//   if (!result) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
-//   return result;
-// };
+const updateBook = async (
+  id: string,
+  payload: Partial<IBook>
+): Promise<IBook | null> => {
+  const result = await BookModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Book not found!');
+  }
+  return result;
+};
 
-// const deleteUser = async (id: string): Promise<IUser | null> => {
-//   const isExist = await User.findOne({ _id: id });
+const deleteBook = async (id: string): Promise<IBook | null> => {
+  const isExist = await BookModel.findOne({ _id: id });
 
-//   if (!isExist) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Book not found!');
+  }
 
-//   const user = await User.findOneAndDelete({ _id: id });
+  const user = await BookModel.findOneAndDelete({ _id: id });
 
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete user');
-//   }
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete book');
+  }
 
-//   return user;
-// };
+  return user;
+};
 
 export const BookService = {
   createBook,
-  // getAllUsers,
-  // getSingleUser,
-  // updateUser,
-  // deleteUser,
+  getAllBooks,
+  getSingleBook,
+  updateBook,
+  deleteBook,
 };

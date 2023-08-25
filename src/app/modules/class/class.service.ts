@@ -16,58 +16,61 @@ const createClass = (ClassData: IClass): Promise<IClass | null> => {
   return createdCLass;
 };
 
-// const getAllUsers = async (): Promise<IUser[] | null> => {
-//   const allUsers = User.find();
+const getAllClasses = async (): Promise<IClass[] | null> => {
+  const allUsers = ClassModel.find();
 
-//   if (!allUsers) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Users'
-//     );
-//   }
+  if (!allUsers) {
+    throw new ApiError(
+      httpStatus.EXPECTATION_FAILED,
+      'failed to get all Classes'
+    );
+  }
 
-//   return allUsers;
-// };
+  return allUsers;
+};
 
-// const getSingleUser = async (id: string): Promise<IUser | null> => {
-//   const result = await User.findOne({ _id: id });
+const getSingleClass = async (id: string): Promise<IClass | null> => {
+  const result = await ClassModel.findOne({ _id: id });
 
-//   return result;
-// };
+  return result;
+};
 
-// const updateUser = async (
-//   id: string,
-//   payload: Partial<IUser>
-// ): Promise<IUser | null> => {
-//   const result = await User.findOneAndUpdate({ _id: id }, payload, {
-//     new: true,
-//   });
-//   if (!result) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
-//   return result;
-// };
+const updateClass = async (
+  id: string,
+  payload: Partial<IClass>
+): Promise<IClass | null> => {
+  const result = await ClassModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
+  }
+  return result;
+};
 
-// const deleteUser = async (id: string): Promise<IUser | null> => {
-//   const isExist = await User.findOne({ _id: id });
+const deleteClass = async (id: string): Promise<IClass | null> => {
+  console.log('before', id);
 
-//   if (!isExist) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
+  const isExist = await ClassModel.findOne({ _id: id });
+  console.log('after', isExist);
 
-//   const user = await User.findOneAndDelete({ _id: id });
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
+  }
 
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete user');
-//   }
+  const user = await ClassModel.findOneAndDelete({ _id: id });
 
-//   return user;
-// };
+  if (!user) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Class');
+  }
+
+  return user;
+};
 
 export const ClassService = {
   createClass,
-  // getAllUsers,
-  // getSingleUser,
-  // updateUser,
-  // deleteUser,
+  getAllClasses,
+  getSingleClass,
+  updateClass,
+  deleteClass,
 };
