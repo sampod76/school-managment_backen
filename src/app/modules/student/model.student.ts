@@ -1,12 +1,7 @@
 import { Schema, model } from 'mongoose';
-import {
-  ENUM_CLASS,
-  ENUM_GENDER,
-  ENUM_MARITAL_STATUS,
-  ENUM_RELIGION,
-  ENUM_YN,
-} from '../../../enums/usersEnums';
+
 import { IStudent, StudentModel } from './interface.student';
+import { CLASS_VALUES, GENDER_VALUES, MARITAL_STATUS_VALUES, RELIGION_VALUES, YN_VALUES } from './constant.student';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {
@@ -17,24 +12,24 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
       birth_registration_number: { type: String, trim: true },
       date_of_birth: { type: String, trim: true },
       birth_district: { type: String, trim: true },
-      gender: { type: String, trim: true, enum: Object.values(ENUM_GENDER) },
+      gender: { type: String, trim: true, enum: GENDER_VALUES},
       nationality: [{ type: String, trim: true }],
-      religion: { type: String, trim: true, enum: Object.values(ENUM_RELIGION) },
+      religion: { type: String, trim: true, enum: RELIGION_VALUES},
       desired_class: {
         type: String,
         trim: true,
-        enum: Object.values(ENUM_CLASS),
+        enum: CLASS_VALUES,
       },
       marital_status: {
         type: String,
         trim: true,
-        enum: Object.values(ENUM_MARITAL_STATUS),
+        enum: MARITAL_STATUS_VALUES,
       },
       blood_group: { type: String, trim: true },
       minority_ethnicity: {
         type: String,
         trim: true,
-        enum: Object.values(ENUM_YN),
+        enum: YN_VALUES,
       },
       photo: { type: String, trim: true },
       previous_exam_info: [
@@ -42,7 +37,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
           class_name: {
             type: String,
             trim: true,
-            enum: Object.values(ENUM_CLASS),
+            enum: CLASS_VALUES,
           },
           exam_name: { type: String, trim: true },
           result: { type: String, trim: true },

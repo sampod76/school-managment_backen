@@ -2,6 +2,7 @@
 
 import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
+import { ENUM_USER_ROLE } from '../../../enums/usersEnums';
 import { paginationHelper } from '../../../helper/paginationHelper';
 import ApiError from '../../errors/ApiError';
 import { IGenericResponse } from '../../interface/common';
@@ -80,8 +81,8 @@ const createSingleStudentFromDb = async (
         name_english: data.student.name_english,
         name_bangla: data.student.name_bangla,
       },
-      role: "super-admin",
-      // role: ENUM_USER_ROLE.STUDENT,
+      // role: "super-admin",
+      role: ENUM_USER_ROLE.STUDENT,
     };
     const userResult =await UserService.createUser(userdata);
     console.log(userResult)

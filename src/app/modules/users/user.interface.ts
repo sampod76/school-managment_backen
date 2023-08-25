@@ -10,7 +10,7 @@ export type IUser = {
   userId: string;
   password: string;
   phone_number?: string;
-  role: 'student' | 'teacher' | 'admin' | 'super-admin';
+  role: "student" | 'teacher' | 'admin' | 'super-admin';
   name: UserName;
   email?: string;
 };
