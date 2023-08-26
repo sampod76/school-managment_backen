@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const usersEnums_1 = require("../../../enums/usersEnums");
 const paginationHelper_1 = require("../../../helper/paginationHelper");
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const user_service_1 = require("../users/user.service");
@@ -77,19 +78,25 @@ const getSingleStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, functio
 });
 const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield model_student_1.Student.create(data);
+    let userResult = null;
     if (result._id) {
         const userdata = {
             userId: data.userId,
             password: data.password,
             name: {
-                name_english: data.students.name_english,
-                name_bangla: data.students.name_bangla,
+                name_english: data.student.name_english,
+                name_bangla: data.student.name_bangla,
             },
-            role: "super-admin",
-            // role: ENUM_USER_ROLE.STUDENT,
+            // role: "super-admin",
+            role: usersEnums_1.ENUM_USER_ROLE.STUDENT,
+            // student: String(result._id),
+            student: result._id.toString(),
         };
-        const userResult = yield user_service_1.UserService.createUser(userdata);
+        userResult = yield user_service_1.UserService.createUser(userdata);
         console.log(userResult);
+    }
+    if (!userResult) {
+        yield model_student_1.Student.findByIdAndDelete({ _id: result._id });
     }
     return result;
 });
@@ -99,20 +106,27 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
     if (!isExist) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Student not found !');
     }
-    const { address, father_info, guardianInfo, mother_info, students } = payload, studentData = __rest(payload, ["address", "father_info", "guardianInfo", "mother_info", "students"]);
+    const { current_address, permanent_address, father_info, guardianInfo, mother_info, student } = payload, studentData = __rest(payload, ["current_address", "permanent_address", "father_info", "guardianInfo", "mother_info", "student"]);
     const updatedStudentData = Object.assign({}, studentData);
-    if (students && Object.keys(students).length > 0) {
-        Object.keys(students).forEach(key => {
-            const studentsKey = `students.${key}`; // `students.fisrtstudents`
-            updatedStudentData[studentsKey] =
-                students[key];
+    if (student && Object.keys(student).length > 0) {
+        Object.keys(student).forEach(key => {
+            const studentKey = `student.${key}`; // `student.fisrtstudents`
+            updatedStudentData[studentKey] =
+                student[key];
         });
     }
-    if (address && Object.keys(address).length > 0) {
-        Object.keys(address).forEach(key => {
-            const addressKey = `address.${key}`; // `address.fisrtaddress`
-            updatedStudentData[addressKey] =
-                address[key];
+    if (current_address && Object.keys(current_address).length > 0) {
+        Object.keys(current_address).forEach(key => {
+            const current_addressKey = `current_address.${key}`; // `current_address.fisrtcurrent_address`
+            updatedStudentData[current_addressKey] =
+                current_address[key];
+        });
+    }
+    if (permanent_address && Object.keys(permanent_address).length > 0) {
+        Object.keys(permanent_address).forEach(key => {
+            const permanent_addressKey = `permanent_address.${key}`; // `permanent_address.fisrtpermanent_address`
+            updatedStudentData[permanent_addressKey] =
+                permanent_address[key];
         });
     }
     if (mother_info && Object.keys(mother_info).length > 0) {
@@ -137,9 +151,27 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
                 guardianInfo[key];
         });
     }
-    const result = yield model_student_1.Student.findOneAndUpdate({ id }, updatedStudentData, {
+    const result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, updatedStudentData, {
         new: true,
     });
+    return result;
+});
+const approvedStudentAdminssionFromDb = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = null;
+    if ((data === null || data === void 0 ? void 0 : data.admission_approved) === usersEnums_1.ENUM_YN.NO) {
+        result = yield model_student_1.Student.findByIdAndDelete(id);
+        if (!result) {
+            throw new ApiError_1.default(404, 'কোন কিছু ভুল হচ্ছে');
+        }
+    }
+    else {
+        result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, data, {
+            new: true,
+        });
+    }
+    if (!result) {
+        throw new ApiError_1.default(400, 'কোন কিছু ভুল হচ্ছে');
+    }
     return result;
 });
 const deleteStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -152,4 +184,5 @@ exports.StudentService = {
     getSingleStudentFromDb,
     updateStudentFromDb,
     deleteStudentFromDb,
+    approvedStudentAdminssionFromDb,
 };

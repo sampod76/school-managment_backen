@@ -17,21 +17,18 @@ const uploadeSingleFileByServer = catchAsync(
   async (req: Request, res: Response) => {
     const fileDetails = req.file;
     const file = {
-      filename: fileDetails?.filename,
+      filename: fileDetails?.filename as string,
       mimetype: fileDetails?.mimetype,
       destination: fileDetails?.destination,
-      path:
-        fileDetails?.fieldname === 'image'
-          ? `uploadFile/images`
-          : `uploadFile/vedios`,
+      path: `uploadFile/images`,
       size: fileDetails?.size,
     };
-    console.log(fileDetails, '29 conste');
+    const result = await FileUploadeService.createFileUploadeByDb(file);
     sendResponse<any>(res, {
       success: true,
       statusCode: httpStatus.OK,
       message: 'successfull uploade single file',
-      data: file,
+      data: result,
     });
   }
 );
@@ -40,20 +37,19 @@ const uploadeProfileFileByServer = catchAsync(
   async (req: Request, res: Response) => {
     const fileDetails = req.file;
     const file = {
-      filename: fileDetails?.filename,
+      filename: fileDetails?.filename as string,
       mimetype: fileDetails?.mimetype,
       destination: fileDetails?.destination,
-      path:
-        fileDetails?.fieldname === 'image'
-          ? `uploadFile/profile`
-          : `uploadFile/vedios`,
-      size: fileDetails?.size,
+      path: 'uploadFile/profile',
+      size: Number(fileDetails?.size),
     };
+
+    const result = await FileUploadeService.createFileUploadeByDb(file);
     sendResponse<any>(res, {
       success: true,
       statusCode: httpStatus.OK,
       message: 'successfull uploade single file',
-      data: file,
+      data: result,
     });
   }
 );

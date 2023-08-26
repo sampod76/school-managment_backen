@@ -7,7 +7,7 @@ import { BookService } from './book.service';
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   const book = req.body;
-  const result = await BookService.createBook(book);
+  const result = await BookService.createBookFromDb(book);
 
   sendResponse<IBook>(res, {
     success: true,
@@ -17,63 +17,61 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-//   // const  = req.headers.authorization;
-//   // console.log(, '');
-//   const result = await UserService.getAllUsers();
+const getAllBooks = catchAsync(async (req: Request, res: Response) => {
+  const result = await BookService.getAllBooksFromDb();
 
-//   sendResponse<IUser[]>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'Users retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IBook[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Books retrieved successfully',
+    data: result,
+  });
+});
 
-// const getSingleUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
+const getSingleBook = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-//   const result = await UserService.getSingleUser(id);
+  const result = await BookService.getSingleBookFromDb(id);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User retrieved successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IBook>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Book retrieved successfully',
+    data: result,
+  });
+});
 
-// const updateUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const updatedData = req.body;
+const updateBook = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
 
-//   const result = await UserService.updateUser(id, updatedData);
+  const result = await BookService.updateBookFromDb(id, updatedData);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User updated successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IBook>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Book updated successfully',
+    data: result,
+  });
+});
 
-// const deleteUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
+const deleteBook = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
 
-//   const result = await UserService.deleteUser(id);
+  const result = await BookService.deleteBookFromDb(id);
 
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User deleted successfully',
-//     data: result,
-//   });
-// });
+  sendResponse<IBook>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Book deleted successfully',
+    data: result,
+  });
+});
 
 export const bookController = {
   createBook,
-  // getAllUsers,
-  // getSingleUser,
-  // updateUser,
-  // deleteUser,
+  getAllBooks,
+  getSingleBook,
+  updateBook,
+  deleteBook,
 };

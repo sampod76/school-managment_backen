@@ -19,13 +19,14 @@ const getAllStudents = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IStudent[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Students retrieved successfully !',
+    message: 'Students retrieved successfully!',
     meta: result.meta,
     data: result.data,
   });
 });
 
 const createSingleStudent = catchAsync(async (req: Request, res: Response) => {
+  console.log(req.body);
   const result = await StudentService.createSingleStudentFromDb(req.body);
   sendResponse<IStudent>(res, {
     statusCode: httpStatus.OK,
@@ -61,6 +62,20 @@ const updateStudent = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const approvedStudentAdminssion = catchAsync(async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const updatedData = req.body;
+
+  const result = await StudentService.approvedStudentAdminssionFromDb(id, updatedData);
+
+  sendResponse<any>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'অ্যাপ্লিকেশন আপডেট সফল হয়েছে',
+    data: result,
+  });
+});
+
 const deleteStudent = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
@@ -79,5 +94,6 @@ export const StudentController = {
   getSingleStudent,
   updateStudent,
   deleteStudent,
-  createSingleStudent
+  createSingleStudent,
+  approvedStudentAdminssion
 };

@@ -40,17 +40,15 @@ const uploadeSingleFileByServer = (0, catchAsync_1.default)((req, res) => __awai
         filename: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.filename,
         mimetype: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.mimetype,
         destination: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.destination,
-        path: (fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.fieldname) === 'image'
-            ? `uploadFile/images`
-            : `uploadFile/vedios`,
+        path: `uploadFile/images`,
         size: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size,
     };
-    console.log(fileDetails, '29 conste');
+    const result = yield service_fileUploade_1.FileUploadeService.createFileUploadeByDb(file);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
         message: 'successfull uploade single file',
-        data: file,
+        data: result,
     });
 }));
 const uploadeProfileFileByServer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -59,16 +57,15 @@ const uploadeProfileFileByServer = (0, catchAsync_1.default)((req, res) => __awa
         filename: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.filename,
         mimetype: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.mimetype,
         destination: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.destination,
-        path: (fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.fieldname) === 'image'
-            ? `uploadFile/profile`
-            : `uploadFile/vedios`,
-        size: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size,
+        path: 'uploadFile/profile',
+        size: Number(fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size),
     };
+    const result = yield service_fileUploade_1.FileUploadeService.createFileUploadeByDb(file);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
         message: 'successfull uploade single file',
-        data: file,
+        data: result,
     });
 }));
 const uploadeMultipalFileByServer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

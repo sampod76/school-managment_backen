@@ -2,28 +2,38 @@ import express from 'express';
 import validateRequestZod from '../../middlewares/validateRequestZod';
 import { classController } from './class.controller';
 import { ClassValidation } from './class.validation';
-// import { ENUM_USER_ROLE } from '../../../enums/user';
-// import auth from '../../middlewares/auth';
-// import validateRequest from '../../middlewares/validateRequest';
 
 const router = express.Router();
 
-// router.get('/:id', authMiddleware(ENUM_USER_ROLE.ADMIN), userController.getSingleUser);
-// router.get('/', auth(ENUM_USER_ROLE.ADMIN), userController.getAllUsers);
-
-router.post(
-  '/create-class',
-  validateRequestZod(ClassValidation.createClassZodSchema),
-  classController.createClass
-);
-
+// router.get('/:id', classController.getSingleClass);
+// router.get('/', classController.getAllClasses);
+// router.post(
+//   '/create-class',
+//   validateRequestZod(ClassValidation.createClassZodSchema),
+//   classController.createClass
+// );
 // router.patch(
 //   '/:id',
-//   validateRequest(UserValidation.updateUserZodSchema),
-//   auth(ENUM_USER_ROLE.ADMIN),
-//   userController.updateUser
+//   validateRequestZod(ClassValidation.updateClassZodSchema),
+//   classController.updateClass
 // );
+// router.delete('/:id', classController.deleteClass);
 
-// router.delete('/:id', auth(ENUM_USER_ROLE.ADMIN), userController.deleteUser);
+router
+  .route('/')
+  .get(classController.getAllClasses)
+  .post(
+    validateRequestZod(ClassValidation.createClassZodSchema),
+    classController.createClass
+  );
+
+router
+  .route(':/id')
+  .get(classController.getSingleClass)
+  .patch(
+    validateRequestZod(ClassValidation.updateClassZodSchema),
+    classController.updateClass
+  )
+  .delete(classController.deleteClass);
 
 export const ClassRoutes = router;

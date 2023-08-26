@@ -21,4 +21,11 @@ router
     StudentController.updateStudent
   );
 
+router
+  .route('/approved-student-adminssion')
+  .patch(
+    validateRequestZod(StudentValidation.updataAdmitionsData),
+    StudentController.approvedStudentAdminssion
+  );
+
 export const StudentRoutes = router;

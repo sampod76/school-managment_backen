@@ -1,4 +1,5 @@
-/* eslint-disable no-unused-vars */
+import { Types } from 'mongoose';
+import { IClass } from '../class/class.interface';
 
 import { ObjectId } from "mongoose";
 
@@ -8,19 +9,6 @@ export type IBook = {
   bookCode: string;
   bookType: string;
   status: 'active' | 'inactive';
+  // class: string;
+  class: Types.ObjectId | IClass;
 };
-
-// export type UserModel = {
-//   isUserExist(
-//     userId: string
-//   ): Promise<
-//     Pick<
-//       IUser,
-//       'email' | 'name' | 'phoneNumber' | 'password' | 'role' | 'userId'
-//     >
-//   >;
-//   isPasswordMatched(
-//     givenPassword: string,
-//     savedPassword: string
-//   ): Promise<boolean>;
-// } & Model<IUser>;

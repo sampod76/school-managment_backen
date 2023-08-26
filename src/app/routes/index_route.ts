@@ -1,4 +1,5 @@
 import express from 'express';
+import { TeacherSalaryRoute } from '../modules/Teacher_Salary/teacherSalary.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
@@ -20,24 +21,24 @@ const moduleRoutes = [
     route: StudentRoutes,
   },
   {
-    // only user login and refresh-token
     path: '/auth',
     route: AuthRoutes,
   },
   {
-    // only user login and refresh-token
     path: '/section',
     route: SectionRoutes,
   },
   {
-    // only user login and refresh-token
-    path: '/class',
+    path: '/classes',
     route: ClassRoutes,
   },
   {
-    // only user login and refresh-token
-    path: '/book',
+    path: '/books',
     route: BookRoutes,
+  },
+  {
+    path: '/teacherSalary',
+    route: TeacherSalaryRoute,
   },
   {
     path: '/upload',

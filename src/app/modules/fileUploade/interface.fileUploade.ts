@@ -10,7 +10,7 @@ export type IFileUploadeFilters = {
 };
 
 export type IFileUploade = {
-  userId: string; /* | IAdmin | IGeneralUser; */
+  userId?: string; /* | IAdmin | IGeneralUser; */
   title?: string;
   filename: string;
   path: string;
@@ -19,6 +19,7 @@ export type IFileUploade = {
   mimetype?: string;
   category?: string;
   tag?: string[];
+  destination?:string
 };
 
 export type FileUploadeModel = Model<IFileUploade, Record<string, unknown>>;
