@@ -4,7 +4,7 @@ import { WorkScheduleRoute } from '../modules/WorkSchedule/workSchedule.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
-// import { EventsRoute } from '../modules/event/event.route';
+import { EventsRoute } from '../modules/event/event.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
 import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
@@ -46,10 +46,10 @@ const moduleRoutes = [
     path: '/work_schedule',
     route: WorkScheduleRoute,
   },
-  // {
-  //   path: '/events',
-  //   route: EventsRoute,
-  // },
+  {
+    path: '/events',
+    route: EventsRoute,
+  },
   {
     path: '/upload',
     route: FileUploadeRoute,

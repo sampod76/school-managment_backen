@@ -3,10 +3,10 @@ import ApiError from '../../errors/ApiError';
 import { IWorkSchedule } from './workSchedule.interface';
 import { WorkScheduleModel } from './workSchedule.model';
 
-
-
-const createWorkSchedule = (WorkScheduleData: IWorkSchedule): Promise<IWorkSchedule | null> => {
-  const createdWorkSchedule= WorkScheduleModel.create(WorkScheduleData);
+const createWorkSchedule = (
+  WorkScheduleData: IWorkSchedule
+): Promise<IWorkSchedule | null> => {
+  const createdWorkSchedule = WorkScheduleModel.create(WorkScheduleData);
 
   if (!createdWorkSchedule) {
     throw new ApiError(
@@ -18,7 +18,7 @@ const createWorkSchedule = (WorkScheduleData: IWorkSchedule): Promise<IWorkSched
   return createdWorkSchedule;
 };
 const getAllWorkSchedule = async (): Promise<IWorkSchedule[] | null> => {
-  const allWorkScheduleService = WorkScheduleModel.find({})
+  const allWorkScheduleService = WorkScheduleModel.find({});
   if (!allWorkScheduleService) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
@@ -27,33 +27,39 @@ const getAllWorkSchedule = async (): Promise<IWorkSchedule[] | null> => {
   }
   return allWorkScheduleService;
 };
-const getSingleWorkService = async (id: string): Promise<IWorkSchedule | null> => {
-    const result = await WorkScheduleModel.findOne({ _id: id });
-  
-    return result;
-  };
+const getSingleWorkService = async (
+  id: string
+): Promise<IWorkSchedule | null> => {
+  const result = await WorkScheduleModel.findOne({ _id: id });
+
+  return result;
+};
 
 const updateWorkScheduleService = async (
   id: string,
   payload: Partial<IWorkSchedule>
 ): Promise<IWorkSchedule | null> => {
-  const result = await WorkScheduleModel.findOneAndUpdate({ _id: id }, payload, {
-    new: true,
-  });
+  const result = await WorkScheduleModel.findOneAndUpdate(
+    { _id: id },
+    payload,
+    {
+      new: true,
+    }
+  );
   if (!result) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Work Schedule not found!');
   }
   return result;
 };
 
-const deleteWorkScheduleService = async (id: string): Promise<IWorkSchedule | null> => {
-  
-
+const deleteWorkScheduleService = async (
+  id: string
+): Promise<IWorkSchedule | null> => {
   const isExist = await WorkScheduleModel.findOne({ _id: id });
   console.log('after', isExist);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'Work not found!');
   }
 
   const work = await WorkScheduleModel.findOneAndDelete({ _id: id });
@@ -66,36 +72,38 @@ const deleteWorkScheduleService = async (id: string): Promise<IWorkSchedule | nu
 };
 
 const getTodaysWork = async (): Promise<IWorkSchedule[] | null> => {
-    const currentDate = new Date();
-  
-    const todaysWork = await WorkScheduleModel.find({
-        createdAt: {
-        $gte: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()),
-        $lt: new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1),
-      },
-    });
-  
-    if (!todaysWork) {
-      throw new ApiError(
-        httpStatus.EXPECTATION_FAILED,
-        'Failed to get today\'s events'
-      );
-    }
-  
-    return todaysWork;
-  };
-  
+  const currentDate = new Date();
 
-  
+  const todaysWork = await WorkScheduleModel.find({
+    createdAt: {
+      $gte: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate()
+      ),
+      $lt: new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth(),
+        currentDate.getDate() + 1
+      ),
+    },
+  });
+
+  if (!todaysWork) {
+    throw new ApiError(
+      httpStatus.EXPECTATION_FAILED,
+      "Failed to get today's Work"
+    );
+  }
+
+  return todaysWork;
+};
 
 export const WorkScheduleService = {
-    createWorkSchedule,
-    getAllWorkSchedule,
-    updateWorkScheduleService,
-    deleteWorkScheduleService,
-    getSingleWorkService,
-    getTodaysWork
- 
-
-
+  createWorkSchedule,
+  getAllWorkSchedule,
+  updateWorkScheduleService,
+  deleteWorkScheduleService,
+  getSingleWorkService,
+  getTodaysWork,
 };
