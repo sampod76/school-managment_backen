@@ -3,6 +3,8 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
+import { ExpenseRoutes } from '../modules/new_expense/newExpense.route';
+import { EarningRoutes } from '../modules/new_income/newIncome.route';
 import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
 import { UserRoutes } from '../modules/users/user.route';
@@ -30,6 +32,14 @@ const moduleRoutes = [
   {
     path: '/classes',
     route: ClassRoutes,
+  },
+  {
+    path: '/income',
+    route: EarningRoutes,
+  },
+  {
+    path: '/expense',
+    route: ExpenseRoutes,
   },
   {
     path: '/books',
