@@ -49,6 +49,7 @@ const getAllStudentsFromDb = async (
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await Student.find(whereConditions)
+   
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
@@ -66,7 +67,7 @@ const getAllStudentsFromDb = async (
 };
 
 const getSingleStudentFromDb = async (id: string): Promise<IStudent | null> => {
-  const result = await Student.findOne({ _id: id });
+  const result = await Student.findOne({ _id: id }).populate('student.photo');
   return result;
 };
 const createSingleStudentFromDb = async (
@@ -160,7 +161,8 @@ const updateStudentFromDb = async (
   }
   if (other_guardian_info && Object.keys(other_guardian_info).length > 0) {
     Object.keys(other_guardian_info).forEach(key => {
-      const localGuradianKey = `other_guardian_info.${key}` as keyof Partial<IStudent>; // `other_guardian_info.fisrtName`
+      const localGuradianKey =
+        `other_guardian_info.${key}` as keyof Partial<IStudent>; // `other_guardian_info.fisrtName`
       (updatedStudentData as any)[localGuradianKey] =
         other_guardian_info[key as keyof typeof other_guardian_info];
     });
