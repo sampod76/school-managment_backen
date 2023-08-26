@@ -73,7 +73,7 @@ const getAllStudentsFromDb = (filters, paginationOptions) => __awaiter(void 0, v
     };
 });
 const getSingleStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield model_student_1.Student.findOne({ _id: id });
+    const result = yield model_student_1.Student.findOne({ _id: id }).populate('student.photo');
     return result;
 });
 const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, function* () {
