@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { IStudent, StudentModel } from './interface.student';
+import { ENUM_YN } from '../../../enums/usersEnums';
 import {
   CLASS_VALUES,
   GENDER_VALUES,
@@ -8,7 +8,7 @@ import {
   RELIGION_VALUES,
   YN_VALUES,
 } from './constant.student';
-import { ENUM_YN } from '../../../enums/usersEnums';
+import { IStudent, StudentModel } from './interface.student';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {

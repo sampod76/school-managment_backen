@@ -106,7 +106,7 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
     if (!isExist) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Student not found !');
     }
-    const { current_address, permanent_address, father_info, guardianInfo, mother_info, student } = payload, studentData = __rest(payload, ["current_address", "permanent_address", "father_info", "guardianInfo", "mother_info", "student"]);
+    const { current_address, permanent_address, father_info, other_guardian_info, mother_info, student } = payload, studentData = __rest(payload, ["current_address", "permanent_address", "father_info", "other_guardian_info", "mother_info", "student"]);
     const updatedStudentData = Object.assign({}, studentData);
     if (student && Object.keys(student).length > 0) {
         Object.keys(student).forEach(key => {
@@ -144,11 +144,11 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
             // updatedStudentData --> object create --> "father_info.motherContactNo": 0177
         });
     }
-    if (guardianInfo && Object.keys(guardianInfo).length > 0) {
-        Object.keys(guardianInfo).forEach(key => {
-            const localGuradianKey = `guardianInfo.${key}`; // `guardianInfo.fisrtName`
+    if (other_guardian_info && Object.keys(other_guardian_info).length > 0) {
+        Object.keys(other_guardian_info).forEach(key => {
+            const localGuradianKey = `other_guardian_info.${key}`; // `other_guardian_info.fisrtName`
             updatedStudentData[localGuradianKey] =
-                guardianInfo[key];
+                other_guardian_info[key];
         });
     }
     const result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, updatedStudentData, {

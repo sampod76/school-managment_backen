@@ -111,7 +111,7 @@ const updateStudentFromDb = async (
     current_address,
     permanent_address,
     father_info,
-    guardianInfo,
+    other_guardian_info,
     mother_info,
     student,
     ...studentData
@@ -158,11 +158,11 @@ const updateStudentFromDb = async (
       // updatedStudentData --> object create --> "father_info.motherContactNo": 0177
     });
   }
-  if (guardianInfo && Object.keys(guardianInfo).length > 0) {
-    Object.keys(guardianInfo).forEach(key => {
-      const localGuradianKey = `guardianInfo.${key}` as keyof Partial<IStudent>; // `guardianInfo.fisrtName`
+  if (other_guardian_info && Object.keys(other_guardian_info).length > 0) {
+    Object.keys(other_guardian_info).forEach(key => {
+      const localGuradianKey = `other_guardian_info.${key}` as keyof Partial<IStudent>; // `other_guardian_info.fisrtName`
       (updatedStudentData as any)[localGuradianKey] =
-        guardianInfo[key as keyof typeof guardianInfo];
+        other_guardian_info[key as keyof typeof other_guardian_info];
     });
   }
 
