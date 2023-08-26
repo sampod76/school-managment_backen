@@ -1,0 +1,22 @@
+Thu Aug 24 2023-->13:4:39--> [PH] error: globalErrorHandler: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "userId"
+    ],
+    "message": "User id is required"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "password"
+    ],
+    "message": "Password is required"
+  }
+]

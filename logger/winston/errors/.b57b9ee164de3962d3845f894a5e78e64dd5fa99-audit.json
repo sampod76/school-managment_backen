@@ -1,0 +1,25 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Pyrasoft\\School_Management\\school-managment_backend\\logger\\winston\\errors\\.b57b9ee164de3962d3845f894a5e78e64dd5fa99-audit.json",
+    "files": [
+        {
+            "date": 1692860138315,
+            "name": "C:\\Pyrasoft\\School_Management\\school-managment_backend\\logger\\winston\\errors\\PHU-2023-08-24-12-error.log",
+            "hash": "97f77b695425f5178b19a0554f9efbb42e5f3af537fc52d9b5fd9e93b0088e9e"
+        },
+        {
+            "date": 1692860679016,
+            "name": "C:\\Pyrasoft\\School_Management\\school-managment_backend\\logger\\winston\\errors\\PHU-2023-08-24-13-error.log",
+            "hash": "a7fbf793dddc2ac0d6893e171e9cbc725d83ccd6f876d03971f220e93a3521db"
+        },
+        {
+            "date": 1692882792808,
+            "name": "C:\\Pyrasoft\\School_Management\\school-managment_backend\\logger\\winston\\errors\\PHU-2023-08-24-19-error.log",
+            "hash": "079d1a1e3db4e7a7984e7f8aa6055a13b89516eaf5e818ac284c69b715dfcf6a"
+        }
+    ],
+    "hashType": "sha256"
+}

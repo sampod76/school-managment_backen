@@ -1,9 +1,12 @@
 /* eslint-disable no-unused-vars */
 
+import { ObjectId } from "mongoose";
+
 export type IBook = {
+  _id:ObjectId
   bookName: string;
   bookCode: string;
-  bookType: 'A' | 'B';
+  bookType: string;
   status: 'active' | 'inactive';
 };
 
