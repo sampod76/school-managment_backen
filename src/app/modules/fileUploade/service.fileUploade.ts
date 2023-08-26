@@ -19,7 +19,6 @@ const createFileUploadeByDb = async (
     : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
 
   const result = await FileUploade.create(payload);
-
   return result;
 };
 
