@@ -44,7 +44,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
         trim: true,
         enum: YN_VALUES,
       },
-      photo: { type: Schema.Types.ObjectId, ref:"Profile" },
+      photo: { type: Schema.Types.ObjectId, ref:"FileUploade" },
       previous_exam_info: [
         {
           class_name: {
