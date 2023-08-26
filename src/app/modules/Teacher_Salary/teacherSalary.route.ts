@@ -3,27 +3,17 @@ import validateRequestZod from '../../middlewares/validateRequestZod';
 import { teacherSalaryController } from './teacherSalary.controller';
 import { TeacherSalaryValidation } from './teacherSalary.validation';
 
-
-
 const router = express.Router();
-
-
 
 router
   .route('/')
-//   .get(teacherSalaryController.createTeacherSalary)
+  .get(teacherSalaryController.getAllTeacherSalary)
   .post(
     validateRequestZod(TeacherSalaryValidation.createTeacherSalaryZodSchema),
-   teacherSalaryController.createTeacherSalary
+    teacherSalaryController.createTeacherSalary
   );
 
-// router
-//   .route(':/id')
-//   .get(classController.getSingleClass)
-//   .patch(
-//     validateRequestZod(ClassValidation.updateClassZodSchema),
-//     classController.updateClass
-//   )
-//   .delete(classController.deleteClass);
+router.delete('/:id', teacherSalaryController.deleteTeacherSalaryController);
+router.patch('/:id', teacherSalaryController.updateTeacherSalary);
 
 export const TeacherSalaryRoute = router;

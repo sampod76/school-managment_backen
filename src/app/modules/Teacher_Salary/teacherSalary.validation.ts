@@ -5,14 +5,14 @@ const createTeacherSalaryZodSchema = z.object({
     teacher_name: z.string({
       required_error: 'Teacher Name is required',
     }),
-    teacher_designation: z.enum(['A','B'],{
-      required_error: 'Teacher Name is required',
+    teacher_designation: z.string({
+      required_error: 'Teacher designation is required',
     }),
-    teacher_salary_scale: z.string({
-      required_error: 'Teacher Name is required',
+    teacher_salary_scale: z.enum(['A','B'],{
+      required_error: 'Teacher salary_scale is required',
     }),
     salary: z.string({
-      required_error: 'Teacher Name is required',
+      required_error: 'Teacher salary is required',
     }),
     status: z.enum(['active', 'inactive'], {
       required_error: 'Status is required',

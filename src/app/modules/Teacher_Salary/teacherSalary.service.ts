@@ -10,86 +10,60 @@ const CreateTeacherSalary = (TeacherSalaryData: ITeacherSalary): Promise<ITeache
   if (!createdTeacherSalary) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Class first'
+      'failed to create Teachers Salary first'
     );
   }
 
   return createdTeacherSalary;
 };
+const getAllTeacherSalary = async (): Promise<ITeacherSalary[] | null> => {
+  const allTeacherSalary = TeacherSalaryModel.find({})
+  if (!allTeacherSalary) {
+    throw new ApiError(
+      httpStatus.EXPECTATION_FAILED,
+      'failed to get Teachers Salary'
+    );
+  }
+  return allTeacherSalary;
+};
 
-// const getAllClasses = async (): Promise<IClass[] | null> => {
-//   const allClass = ClassModel.aggregate([
-//     {$match:{}},
-//     {
-//       $lookup: {
-//         from: 'books',
-//         let: { id: '$_id' },
-//         pipeline: [
-//           {
-//             $match: {
-//               $expr: { $eq: ['$class', '$$id'] },
-//             },
-//           },
-          
-//         ],
-//         as: 'books',
-//       },
-//     },
 
-//   ]);
+const updateTeacherSalary = async (
+  id: string,
+  payload: Partial<ITeacherSalary>
+): Promise<ITeacherSalary | null> => {
+  const result = await TeacherSalaryModel.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+  if (!result) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher Salary not found!');
+  }
+  return result;
+};
 
-//   if (!allClass) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Classes'
-//     );
-//   }
+const deleteTeacherService = async (id: string): Promise<ITeacherSalary | null> => {
+  
 
-//   return allClass;
-// };
+  const isExist = await TeacherSalaryModel.findOne({ _id: id });
+  console.log('after', isExist);
 
-// const getSingleClass = async (id: string): Promise<IClass | null> => {
-//   const result = await ClassModel.findOne({ _id: id });
+  if (!isExist) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found!');
+  }
 
-//   return result;
-// };
+  const teacherSalary = await TeacherSalaryModel.findOneAndDelete({ _id: id });
 
-// const updateClass = async (
-//   id: string,
-//   payload: Partial<IClass>
-// ): Promise<IClass | null> => {
-//   const result = await ClassModel.findOneAndUpdate({ _id: id }, payload, {
-//     new: true,
-//   });
-//   if (!result) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
-//   }
-//   return result;
-// };
+  if (!teacherSalary) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Teacher salary');
+  }
 
-// const deleteClass = async (id: string): Promise<IClass | null> => {
-//   console.log('before', id);
-
-//   const isExist = await ClassModel.findOne({ _id: id });
-//   console.log('after', isExist);
-
-//   if (!isExist) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
-//   }
-
-//   const user = await ClassModel.findOneAndDelete({ _id: id });
-
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Class');
-//   }
-
-//   return user;
-// };
+  return teacherSalary;
+};
 
 export const TeacherSalaryService = {
     CreateTeacherSalary,
-//   getAllClasses,
-//   getSingleClass,
-//   updateClass,
-//   deleteClass,
+    getAllTeacherSalary,
+    deleteTeacherService,
+    updateTeacherSalary
+
 };

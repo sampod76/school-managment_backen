@@ -1,8 +1,10 @@
 import express from 'express';
 import { TeacherSalaryRoute } from '../modules/Teacher_Salary/teacherSalary.route';
+import { WorkScheduleRoute } from '../modules/WorkSchedule/workSchedule.route';
 import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
+import { EventsRoute } from '../modules/event/event.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
 import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
@@ -37,8 +39,16 @@ const moduleRoutes = [
     route: BookRoutes,
   },
   {
-    path: '/teacherSalary',
+    path: '/teacher_salary',
     route: TeacherSalaryRoute,
+  },
+  {
+    path: '/work_schedule',
+    route: WorkScheduleRoute,
+  },
+  {
+    path: '/events',
+    route: EventsRoute,
   },
   {
     path: '/upload',
