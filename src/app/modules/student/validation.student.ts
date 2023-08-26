@@ -106,7 +106,7 @@ const createStudentZodSchema = z.object({
       post_office: z.string(),
       postal_code: z.string(),
     }),
-    guardianInfo: z
+    other_guardian_info: z
       .object({
         name: z.string(),
         nid: z.string().optional(),
@@ -212,7 +212,7 @@ const updateStudentZodSchema = z.object({
       post_office: z.string().optional(),
       postal_code: z.string().optional(),
     }),
-    guardianInfo: z
+    other_guardian_info: z
       .object({
         name: z.string().optional(),
         nid: z.string().optional(),

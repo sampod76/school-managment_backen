@@ -110,7 +110,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
       post_office: { type: String, trim: true },
       postal_code: { type: String, trim: true },
     },
-    guardianInfo: {
+    other_guardian_info: {
       name: { type: String, trim: true },
       nid: { type: String, trim: true },
       profession: { type: String, trim: true },

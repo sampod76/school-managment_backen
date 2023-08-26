@@ -125,7 +125,7 @@ export type IStudent = {
     post_office: string;
     postal_code: string;
   };
-  guardianInfo?: {
+  other_guardian_info?: {
     name: string;
     nid?: string;
     profession?: string;
