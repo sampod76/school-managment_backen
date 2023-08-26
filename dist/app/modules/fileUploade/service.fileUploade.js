@@ -28,7 +28,9 @@ const createFileUploadeByDb = (payload) => __awaiter(void 0, void 0, void 0, fun
     payload.url =
         payload.path === 'uploadFile/images'
             ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
-            : `${process.env.REAL_HOST_SERVER_SIDE}/vedios/${payload.filename}`;
+            : payload.path === 'uploadFile/profile'
+                ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${payload.filename}`
+                : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
     const result = yield model_fileUploade_1.FileUploade.create(payload);
     return result;
 });

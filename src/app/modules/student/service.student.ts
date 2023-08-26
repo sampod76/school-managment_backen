@@ -2,7 +2,7 @@
 
 import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
-import { ENUM_USER_ROLE } from '../../../enums/usersEnums';
+import { ENUM_USER_ROLE, ENUM_YN } from '../../../enums/usersEnums';
 import { paginationHelper } from '../../../helper/paginationHelper';
 import ApiError from '../../errors/ApiError';
 import { IGenericResponse } from '../../interface/common';
@@ -73,6 +73,7 @@ const createSingleStudentFromDb = async (
   data: IStudent
 ): Promise<IStudent | null> => {
   const result = await Student.create(data);
+  let userResult = null;
   if (result._id) {
     const userdata: IUser = {
       userId: data.userId,
@@ -83,9 +84,14 @@ const createSingleStudentFromDb = async (
       },
       // role: "super-admin",
       role: ENUM_USER_ROLE.STUDENT,
+      // student: String(result._id),
+      student: result._id.toString(),
     };
-    const userResult =await UserService.createUser(userdata);
-    console.log(userResult)
+    userResult = await UserService.createUser(userdata);
+    console.log(userResult);
+  }
+  if (!userResult) {
+    await Student.findByIdAndDelete({ _id: result._id });
   }
   return result;
 };
@@ -122,14 +128,16 @@ const updateStudentFromDb = async (
   }
   if (current_address && Object.keys(current_address).length > 0) {
     Object.keys(current_address).forEach(key => {
-      const current_addressKey = `current_address.${key}` as keyof Partial<IStudent>; // `current_address.fisrtcurrent_address`
+      const current_addressKey =
+        `current_address.${key}` as keyof Partial<IStudent>; // `current_address.fisrtcurrent_address`
       (updatedStudentData as any)[current_addressKey] =
         current_address[key as keyof typeof current_address];
     });
   }
   if (permanent_address && Object.keys(permanent_address).length > 0) {
     Object.keys(permanent_address).forEach(key => {
-      const permanent_addressKey = `permanent_address.${key}` as keyof Partial<IStudent>; // `permanent_address.fisrtpermanent_address`
+      const permanent_addressKey =
+        `permanent_address.${key}` as keyof Partial<IStudent>; // `permanent_address.fisrtpermanent_address`
       (updatedStudentData as any)[permanent_addressKey] =
         permanent_address[key as keyof typeof permanent_address];
     });
@@ -158,9 +166,34 @@ const updateStudentFromDb = async (
     });
   }
 
-  const result = await Student.findOneAndUpdate({ id }, updatedStudentData, {
-    new: true,
-  });
+  const result = await Student.findOneAndUpdate(
+    { _id: id },
+    updatedStudentData,
+    {
+      new: true,
+    }
+  );
+  return result;
+};
+
+const approvedStudentAdminssionFromDb = async (
+  id: string,
+  data: Partial<IStudent>
+): Promise<Partial<IStudent> | null> => {
+  let result = null;
+  if (data?.admission_approved === ENUM_YN.NO) {
+    result = await Student.findByIdAndDelete(id);
+    if (!result) {
+      throw new ApiError(404, 'কোন কিছু ভুল হচ্ছে');
+    }
+  } else {
+    result = await Student.findOneAndUpdate({ _id: id }, data, {
+      new: true,
+    });
+  }
+  if (!result) {
+    throw new ApiError(400, 'কোন কিছু ভুল হচ্ছে');
+  }
   return result;
 };
 
@@ -175,4 +208,5 @@ export const StudentService = {
   getSingleStudentFromDb,
   updateStudentFromDb,
   deleteStudentFromDb,
+  approvedStudentAdminssionFromDb,
 };

@@ -23,23 +23,19 @@ const moduleRoutes = [
         route: route_student_1.StudentRoutes,
     },
     {
-        // only user login and refresh-token
         path: '/auth',
         route: auth_route_1.AuthRoutes,
     },
     {
-        // only user login and refresh-token
         path: '/section',
         route: section_route_1.SectionRoutes,
     },
     {
-        // only user login and refresh-token
-        path: '/class',
+        path: '/classes',
         route: class_route_1.ClassRoutes,
     },
     {
-        // only user login and refresh-token
-        path: '/book',
+        path: '/books',
         route: book_route_1.BookRoutes,
     },
     {

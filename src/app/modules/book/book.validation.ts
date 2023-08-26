@@ -10,7 +10,7 @@ const createBookZodSchema = z.object({
     }),
     bookCode: z.string({
       required_error: 'Book code is required',
-    }),
+    }).optional(),
     class: z
       .string({
         required_error: 'Class ID is required',

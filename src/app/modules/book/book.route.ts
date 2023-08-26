@@ -5,22 +5,21 @@ import { BookValidation } from './book.validation';
 
 const router = express.Router();
 
-router.get('/:id', bookController.getSingleBook);
-router.get('/', bookController.getAllBooks);
+router
+  .route('/')
+  .get(bookController.getAllBooks)
+  .post(
+    validateRequestZod(BookValidation.createBookZodSchema),
+    bookController.createBook
+  );
 
-router.post(
-  '/create-book',
-  validateRequestZod(BookValidation.createBookZodSchema),
-  bookController.createBook
-);
-
-router.patch(
-  '/:id',
-  validateRequestZod(BookValidation.updateBookZodSchema),
-
-  bookController.updateBook
-);
-
-router.delete('/:id', bookController.deleteBook);
+router
+  .route(':/id')
+  .get(bookController.getSingleBook)
+  .patch(
+    validateRequestZod(BookValidation.updateBookZodSchema),
+    bookController.updateBook
+  )
+  .delete(bookController.deleteBook);
 
 export const BookRoutes = router;

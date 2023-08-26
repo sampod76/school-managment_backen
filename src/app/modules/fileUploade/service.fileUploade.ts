@@ -12,9 +12,11 @@ const createFileUploadeByDb = async (
   payload: IFileUploade
 ): Promise<IFileUploade> => {
   payload.url =
-    payload.path === 'uploadFile/images'
-      ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
-      : `${process.env.REAL_HOST_SERVER_SIDE}/vedios/${payload.filename}`;
+  payload.path === 'uploadFile/images'
+    ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
+    : payload.path === 'uploadFile/profile'
+    ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${payload.filename}`
+    : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
 
   const result = await FileUploade.create(payload);
 

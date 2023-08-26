@@ -28,11 +28,11 @@ const moduleRoutes = [
     route: SectionRoutes,
   },
   {
-    path: '/class',
+    path: '/classes',
     route: ClassRoutes,
   },
   {
-    path: '/book',
+    path: '/books',
     route: BookRoutes,
   },
   {

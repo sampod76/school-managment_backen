@@ -2,41 +2,48 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Student = exports.studentSchema = void 0;
 const mongoose_1 = require("mongoose");
+const constant_student_1 = require("./constant.student");
 const usersEnums_1 = require("../../../enums/usersEnums");
 exports.studentSchema = new mongoose_1.Schema({
     userId: { type: String, trim: true },
+    admission_approved: {
+        type: String,
+        trim: true,
+        enum: constant_student_1.YN_VALUES,
+        default: usersEnums_1.ENUM_YN.NO,
+    },
     student: {
         name_bangla: { type: String, trim: true },
         name_english: { type: String, trim: true },
         birth_registration_number: { type: String, trim: true },
         date_of_birth: { type: String, trim: true },
         birth_district: { type: String, trim: true },
-        gender: { type: String, trim: true, enum: Object.values(usersEnums_1.ENUM_GENDER) },
+        gender: { type: String, trim: true, enum: constant_student_1.GENDER_VALUES },
         nationality: [{ type: String, trim: true }],
-        religion: { type: String, trim: true, enum: Object.values(usersEnums_1.ENUM_RELIGION) },
+        religion: { type: String, trim: true, enum: constant_student_1.RELIGION_VALUES },
         desired_class: {
             type: String,
             trim: true,
-            enum: Object.values(usersEnums_1.ENUM_CLASS),
+            enum: constant_student_1.CLASS_VALUES,
         },
         marital_status: {
             type: String,
             trim: true,
-            enum: Object.values(usersEnums_1.ENUM_MARITAL_STATUS),
+            enum: constant_student_1.MARITAL_STATUS_VALUES,
         },
         blood_group: { type: String, trim: true },
         minority_ethnicity: {
             type: String,
             trim: true,
-            enum: Object.values(usersEnums_1.ENUM_YN),
+            enum: constant_student_1.YN_VALUES,
         },
-        photo: { type: String, trim: true },
+        photo: { type: mongoose_1.Schema.Types.ObjectId, ref: "Profile" },
         previous_exam_info: [
             {
                 class_name: {
                     type: String,
                     trim: true,
-                    enum: Object.values(usersEnums_1.ENUM_CLASS),
+                    enum: constant_student_1.CLASS_VALUES,
                 },
                 exam_name: { type: String, trim: true },
                 result: { type: String, trim: true },
@@ -45,6 +52,7 @@ exports.studentSchema = new mongoose_1.Schema({
             },
         ],
         hobbies: [{ type: String, trim: true }],
+        books: [{ type: String, trim: true }],
         favorite_books: [{ type: String, trim: true }],
         financial_assistance_needed: { type: String, trim: true },
         opinion: { type: String, trim: true },
@@ -102,7 +110,7 @@ exports.studentSchema = new mongoose_1.Schema({
         relationship: { type: String, trim: true },
         number: { type: String, trim: true },
     },
-    password: { type: String, trim: true, min: 6 }
+    password: { type: String, trim: true, min: 6 },
 }, {
     timestamps: true,
     toJSON: {

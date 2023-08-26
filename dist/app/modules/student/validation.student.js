@@ -2,31 +2,40 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentValidation = void 0;
 const zod_1 = require("zod");
-const usersEnums_1 = require("../../../enums/usersEnums");
+const constant_student_1 = require("./constant.student");
 // 1A8ytGPemE2Ht4UnHtdo7N1dcME73A24G9
 // 16NBtzZScNjcKUP7M1Pf8ro8wqbr2tvzJe
 const createStudentZodSchema = zod_1.z.object({
     body: zod_1.z.object({
-        userId: zod_1.z.string(),
+        userId: zod_1.z.string({
+            required_error: 'ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন',
+        }),
+        admission_approved: zod_1.z
+            .enum([...constant_student_1.YN_VALUES])
+            .optional(),
         student: zod_1.z.object({
-            name_bangla: zod_1.z.string(),
-            name_english: zod_1.z.string(),
+            name_bangla: zod_1.z.string({
+                required_error: 'ছাত্রছাত্রীরা বাংলা অবশ্যই দিতে হবে',
+            }),
+            name_english: zod_1.z.string({
+                required_error: 'ছাত্র-ছাত্রী ইংরেজি নাম অবশ্যই দিতে হবে',
+            }),
             birth_registration_number: zod_1.z.string().optional(),
             date_of_birth: zod_1.z.string(),
             birth_district: zod_1.z.string().optional(),
-            gender: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_GENDER)]),
+            gender: zod_1.z.enum([...constant_student_1.GENDER_VALUES]),
             nationality: zod_1.z.string().optional(),
-            religion: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_RELIGION)]),
-            desired_class: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_CLASS)]),
-            marital_status: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_MARITAL_STATUS)]),
+            religion: zod_1.z.enum([...constant_student_1.RELIGION_VALUES]),
+            desired_class: zod_1.z.enum([...constant_student_1.CLASS_VALUES]),
+            marital_status: zod_1.z.enum([...constant_student_1.MARITAL_STATUS_VALUES]),
             blood_group: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_BLOOD_GROUP_TYPE)])
+                .enum([...constant_student_1.BLOOD_GROUP_TYPE_VALUES])
                 .optional(),
-            minority_ethnicity: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_YN)]),
+            minority_ethnicity: zod_1.z.enum([...constant_student_1.YN_VALUES]),
             photo: zod_1.z.string().optional(),
             previous_exam_info: zod_1.z
                 .array(zod_1.z.object({
-                class_name: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_CLASS)]),
+                class_name: zod_1.z.enum([...constant_student_1.CLASS_VALUES]),
                 exam_name: zod_1.z.string(),
                 result: zod_1.z.string(),
                 exam_time: zod_1.z.string().optional(),
@@ -35,7 +44,7 @@ const createStudentZodSchema = zod_1.z.object({
                 .optional(),
             hobbies: zod_1.z.array(zod_1.z.string()).optional(),
             favorite_books: zod_1.z.array(zod_1.z.string()).optional(),
-            financial_assistance_needed: zod_1.z.enum([...Object.values(usersEnums_1.ENUM_YN)]),
+            financial_assistance_needed: zod_1.z.enum([...constant_student_1.YN_VALUES]),
             opinion: zod_1.z.string().optional(),
         }),
         mother_info: zod_1.z.object({
@@ -105,30 +114,28 @@ const updateStudentZodSchema = zod_1.z.object({
             birth_registration_number: zod_1.z.string().optional(),
             date_of_birth: zod_1.z.string().optional(),
             birth_district: zod_1.z.string().optional(),
-            gender: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_GENDER)])
-                .optional(),
+            gender: zod_1.z.enum([...constant_student_1.GENDER_VALUES]).optional(),
             nationality: zod_1.z.string().optional(),
             religion: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_RELIGION)])
+                .enum([...constant_student_1.RELIGION_VALUES])
                 .optional(),
             desired_class: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_CLASS)])
+                .enum([...constant_student_1.CLASS_VALUES])
                 .optional(),
             marital_status: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_MARITAL_STATUS)])
+                .enum([...constant_student_1.MARITAL_STATUS_VALUES])
                 .optional(),
             blood_group: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_BLOOD_GROUP_TYPE)])
+                .enum([...constant_student_1.BLOOD_GROUP_TYPE_VALUES])
                 .optional(),
             minority_ethnicity: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_YN)])
+                .enum([...constant_student_1.YN_VALUES])
                 .optional(),
             photo: zod_1.z.string().optional().optional(),
             previous_exam_info: zod_1.z
                 .array(zod_1.z.object({
                 class_name: zod_1.z
-                    .enum([...Object.values(usersEnums_1.ENUM_CLASS)])
+                    .enum([...constant_student_1.CLASS_VALUES])
                     .optional(),
                 exam_name: zod_1.z.string().optional(),
                 result: zod_1.z.string().optional(),
@@ -137,9 +144,10 @@ const updateStudentZodSchema = zod_1.z.object({
             }))
                 .optional(),
             hobbies: zod_1.z.array(zod_1.z.string()).optional(),
+            books: zod_1.z.array(zod_1.z.string()),
             favorite_books: zod_1.z.array(zod_1.z.string()).optional(),
             financial_assistance_needed: zod_1.z
-                .enum([...Object.values(usersEnums_1.ENUM_YN)])
+                .enum([...constant_student_1.YN_VALUES])
                 .optional(),
             opinion: zod_1.z.string(),
         }),
@@ -200,7 +208,13 @@ const updateStudentZodSchema = zod_1.z.object({
             .optional(),
     }),
 });
+const updataAdmitionsData = zod_1.z.object({
+    body: zod_1.z.object({
+        admission_approved: zod_1.z.enum([...constant_student_1.YN_VALUES]),
+    }),
+});
 exports.StudentValidation = {
     createStudentZodSchema,
     updateStudentZodSchema,
+    updataAdmitionsData
 };

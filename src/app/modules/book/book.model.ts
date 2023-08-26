@@ -1,6 +1,8 @@
 import { Schema, model } from 'mongoose';
 import { IBook } from './book.interface';
 
+export const  STATUS =['active', 'inactive']
+
 const bookSchema = new Schema<IBook>(
   {
     bookName: {
@@ -9,12 +11,12 @@ const bookSchema = new Schema<IBook>(
     },
     status: {
       type: String,
-      enum: ['active', 'inactive'],
+      enum: STATUS,
       required: true,
     },
     bookCode: {
       type: String,
-      required: true,
+      // required: true,
     },
     class: {
       type: Schema.Types.ObjectId,

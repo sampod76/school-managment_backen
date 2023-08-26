@@ -22,6 +22,22 @@ exports.UserSchema = new mongoose_1.Schema({
         required: true,
         unique: true,
     },
+    student: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Student',
+    },
+    super_admin: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Super_admin',
+    },
+    admin: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Admin',
+    },
+    teacher: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Teacher',
+    },
     password: {
         type: String,
         required: true,

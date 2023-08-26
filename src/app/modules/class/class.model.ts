@@ -1,5 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { IClass } from './class.interface';
+import { STATUS } from '../book/book.model';
 
 const classSchema = new Schema<IClass>(
   {
@@ -9,9 +10,10 @@ const classSchema = new Schema<IClass>(
     },
     status: {
       type: String,
-      enum: ['active', 'inactive'],
+      enum: STATUS,// enum type
       required: true,
     },
+    
   },
   {
     timestamps: true,

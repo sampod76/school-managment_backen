@@ -50,6 +50,7 @@ export type IPreviousExamInfo = {
 
 export type IStudent = {
   userId: string;
+  admission_approved?: yesNoType;
   student: {
     name_bangla: string;
     name_english: string;
@@ -73,6 +74,7 @@ export type IStudent = {
     //   institution_name?: string;
     // }[];
     hobbies?: string[];
+    books?: string[];
     favorite_books?: string[];
     financial_assistance_needed?: yesNoType; //type of
     opinion?: string;

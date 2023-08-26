@@ -17,16 +17,34 @@ const createClass = (ClassData: IClass): Promise<IClass | null> => {
 };
 
 const getAllClasses = async (): Promise<IClass[] | null> => {
-  const allUsers = ClassModel.find();
+  const allClass = ClassModel.aggregate([
+    {$match:{}},
+    {
+      $lookup: {
+        from: 'books',
+        let: { id: '$_id' },
+        pipeline: [
+          {
+            $match: {
+              $expr: { $eq: ['$class', '$$id'] },
+            },
+          },
+          
+        ],
+        as: 'books',
+      },
+    },
 
-  if (!allUsers) {
+  ]);
+
+  if (!allClass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
       'failed to get all Classes'
     );
   }
 
-  return allUsers;
+  return allClass;
 };
 
 const getSingleClass = async (id: string): Promise<IClass | null> => {

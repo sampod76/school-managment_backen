@@ -12,10 +12,19 @@ import {
 // 16NBtzZScNjcKUP7M1Pf8ro8wqbr2tvzJe
 const createStudentZodSchema = z.object({
   body: z.object({
-    userId: z.string(),
+    userId: z.string({
+      required_error: 'ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন',
+    }),
+    admission_approved: z
+      .enum([...YN_VALUES] as [string, ...string[]])
+      .optional(),
     student: z.object({
-      name_bangla: z.string(),
-      name_english: z.string(),
+      name_bangla: z.string({
+        required_error: 'ছাত্রছাত্রীরা বাংলা অবশ্যই দিতে হবে',
+      }),
+      name_english: z.string({
+        required_error: 'ছাত্র-ছাত্রী ইংরেজি নাম অবশ্যই দিতে হবে',
+      }),
       birth_registration_number: z.string().optional(),
       date_of_birth: z.string(),
       birth_district: z.string().optional(),
@@ -150,6 +159,7 @@ const updateStudentZodSchema = z.object({
         )
         .optional(),
       hobbies: z.array(z.string()).optional(),
+      books: z.array(z.string()),
       favorite_books: z.array(z.string()).optional(),
       financial_assistance_needed: z
         .enum([...YN_VALUES] as [string, ...string[]])
@@ -214,7 +224,14 @@ const updateStudentZodSchema = z.object({
   }),
 });
 
+const updataAdmitionsData = z.object({
+  body: z.object({
+    admission_approved: z.enum([...YN_VALUES] as [string, ...string[]]),
+  }),
+});
+
 export const StudentValidation = {
   createStudentZodSchema,
   updateStudentZodSchema,
+  updataAdmitionsData
 };

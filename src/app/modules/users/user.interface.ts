@@ -8,6 +8,12 @@ export type UserName = {
 
 export type IUser = {
   userId: string;
+  //role
+  student?:string;
+  teacher?:string;
+  admin?:string;
+  super_admin?:string;
+  //
   password: string;
   phone_number?: string;
   role: "student" | 'teacher' | 'admin' | 'super-admin';

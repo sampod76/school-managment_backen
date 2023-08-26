@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -14,47 +23,59 @@ const createClass = (ClassData) => {
     }
     return createdCLass;
 };
-// const getAllUsers = async (): Promise<IUser[] | null> => {
-//   const allUsers = User.find();
-//   if (!allUsers) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Users'
-//     );
-//   }
-//   return allUsers;
-// };
-// const getSingleUser = async (id: string): Promise<IUser | null> => {
-//   const result = await User.findOne({ _id: id });
-//   return result;
-// };
-// const updateUser = async (
-//   id: string,
-//   payload: Partial<IUser>
-// ): Promise<IUser | null> => {
-//   const result = await User.findOneAndUpdate({ _id: id }, payload, {
-//     new: true,
-//   });
-//   if (!result) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
-//   return result;
-// };
-// const deleteUser = async (id: string): Promise<IUser | null> => {
-//   const isExist = await User.findOne({ _id: id });
-//   if (!isExist) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found!');
-//   }
-//   const user = await User.findOneAndDelete({ _id: id });
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete user');
-//   }
-//   return user;
-// };
+const getAllClasses = () => __awaiter(void 0, void 0, void 0, function* () {
+    const allClass = class_model_1.ClassModel.aggregate([
+        { $match: {} },
+        {
+            $lookup: {
+                from: 'books',
+                let: { id: '$_id' },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: { $eq: ['$class', '$$id'] },
+                        },
+                    },
+                ],
+                as: 'books',
+            },
+        },
+    ]);
+    if (!allClass) {
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Classes');
+    }
+    return allClass;
+});
+const getSingleClass = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield class_model_1.ClassModel.findOne({ _id: id });
+    return result;
+});
+const updateClass = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield class_model_1.ClassModel.findOneAndUpdate({ _id: id }, payload, {
+        new: true,
+    });
+    if (!result) {
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class not found!');
+    }
+    return result;
+});
+const deleteClass = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('before', id);
+    const isExist = yield class_model_1.ClassModel.findOne({ _id: id });
+    console.log('after', isExist);
+    if (!isExist) {
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class not found!');
+    }
+    const user = yield class_model_1.ClassModel.findOneAndDelete({ _id: id });
+    if (!user) {
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Class');
+    }
+    return user;
+});
 exports.ClassService = {
     createClass,
-    // getAllUsers,
-    // getSingleUser,
-    // updateUser,
-    // deleteUser,
+    getAllClasses,
+    getSingleClass,
+    updateClass,
+    deleteClass,
 };

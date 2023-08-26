@@ -26,6 +26,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
+const usersEnums_1 = require("../../../enums/usersEnums");
 const paginationHelper_1 = require("../../../helper/paginationHelper");
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const user_service_1 = require("../users/user.service");
@@ -77,6 +78,7 @@ const getSingleStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, functio
 });
 const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield model_student_1.Student.create(data);
+    let userResult = null;
     if (result._id) {
         const userdata = {
             userId: data.userId,
@@ -85,11 +87,16 @@ const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, fu
                 name_english: data.student.name_english,
                 name_bangla: data.student.name_bangla,
             },
-            role: "super-admin",
-            // role: ENUM_USER_ROLE.STUDENT,
+            // role: "super-admin",
+            role: usersEnums_1.ENUM_USER_ROLE.STUDENT,
+            // student: String(result._id),
+            student: result._id.toString(),
         };
-        const userResult = yield user_service_1.UserService.createUser(userdata);
+        userResult = yield user_service_1.UserService.createUser(userdata);
         console.log(userResult);
+    }
+    if (!userResult) {
+        yield model_student_1.Student.findByIdAndDelete({ _id: result._id });
     }
     return result;
 });
@@ -144,9 +151,27 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
                 guardianInfo[key];
         });
     }
-    const result = yield model_student_1.Student.findOneAndUpdate({ id }, updatedStudentData, {
+    const result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, updatedStudentData, {
         new: true,
     });
+    return result;
+});
+const approvedStudentAdminssionFromDb = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
+    let result = null;
+    if ((data === null || data === void 0 ? void 0 : data.admission_approved) === usersEnums_1.ENUM_YN.NO) {
+        result = yield model_student_1.Student.findByIdAndDelete(id);
+        if (!result) {
+            throw new ApiError_1.default(404, 'কোন কিছু ভুল হচ্ছে');
+        }
+    }
+    else {
+        result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, data, {
+            new: true,
+        });
+    }
+    if (!result) {
+        throw new ApiError_1.default(400, 'কোন কিছু ভুল হচ্ছে');
+    }
     return result;
 });
 const deleteStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -159,4 +184,5 @@ exports.StudentService = {
     getSingleStudentFromDb,
     updateStudentFromDb,
     deleteStudentFromDb,
+    approvedStudentAdminssionFromDb,
 };

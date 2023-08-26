@@ -23,56 +23,54 @@ const createClass = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'class created successfully!',
+        message: 'Class created successfully!',
         data: result,
     });
 }));
-// const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-//   // const  = req.headers.authorization;
-//   // console.log(, '');
-//   const result = await UserService.getAllUsers();
-//   sendResponse<IUser[]>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'Users retrieved successfully',
-//     data: result,
-//   });
-// });
-// const getSingleUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const result = await UserService.getSingleUser(id);
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User retrieved successfully',
-//     data: result,
-//   });
-// });
-// const updateUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const updatedData = req.body;
-//   const result = await UserService.updateUser(id, updatedData);
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User updated successfully',
-//     data: result,
-//   });
-// });
-// const deleteUser = catchAsync(async (req: Request, res: Response) => {
-//   const id = req.params.id;
-//   const result = await UserService.deleteUser(id);
-//   sendResponse<IUser>(res, {
-//     success: true,
-//     statusCode: httpStatus.OK,
-//     message: 'User deleted successfully',
-//     data: result,
-//   });
-// });
+const getAllClasses = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield class_service_1.ClassService.getAllClasses();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'Class retrieved successfully',
+        data: result,
+    });
+}));
+const getSingleClass = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield class_service_1.ClassService.getSingleClass(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'Class retrieved successfully',
+        data: result,
+    });
+}));
+const updateClass = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const updatedData = req.body;
+    const result = yield class_service_1.ClassService.updateClass(id, updatedData);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'Class updated successfully',
+        data: result,
+    });
+}));
+const deleteClass = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.params.id;
+    const result = yield class_service_1.ClassService.deleteClass(id);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'Class deleted successfully',
+        data: result,
+    });
+}));
 exports.classController = {
     createClass,
-    // getAllUsers,
-    // getSingleUser,
-    // updateUser,
-    // deleteUser,
+    getAllClasses,
+    getSingleClass,
+    updateClass,
+    deleteClass,
 };

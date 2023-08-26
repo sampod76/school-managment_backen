@@ -10,6 +10,22 @@ export const UserSchema = new Schema<IUser, UserModel>(
       required: true,
       unique: true,
     },
+    student: {
+      type: Schema.Types.ObjectId,
+      ref: 'Student',
+    },
+    super_admin: {
+      type: Schema.Types.ObjectId,
+      ref: 'Super_admin',
+    },
+    admin: {
+      type: Schema.Types.ObjectId,
+      ref: 'Admin',
+    },
+    teacher: {
+      type: Schema.Types.ObjectId,
+      ref: 'Teacher',
+    },
     password: {
       type: String,
       required: true,

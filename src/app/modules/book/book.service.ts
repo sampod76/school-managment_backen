@@ -3,36 +3,31 @@ import ApiError from '../../errors/ApiError';
 import { IBook } from './book.interface';
 import { BookModel } from './book.model';
 
-const createBook = (BookData: IBook): Promise<IBook | null> => {
+const createBookFromDb = async(BookData: IBook): Promise<IBook | null> => {
   const createdCLass = BookModel.create(BookData);
-
   if (!createdCLass) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'failed to create Book');
   }
-
   return createdCLass;
 };
 
-const getAllBooks = async (): Promise<IBook[] | null> => {
-  const allUsers = BookModel.find();
-
-  if (!allUsers) {
+const getAllBooksFromDb = async (): Promise<IBook[] | null> => {
+  const allBooks = BookModel.find({}).populate("class");
+  if (!allBooks) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
       'failed to get all books'
     );
   }
-
-  return allUsers;
+  return allBooks;
 };
 
-const getSingleBook = async (id: string): Promise<IBook | null> => {
+const getSingleBookFromDb = async (id: string): Promise<IBook | null> => {
   const result = await BookModel.findOne({ _id: id });
-
   return result;
 };
 
-const updateBook = async (
+const updateBookFromDb = async (
   id: string,
   payload: Partial<IBook>
 ): Promise<IBook | null> => {
@@ -45,26 +40,22 @@ const updateBook = async (
   return result;
 };
 
-const deleteBook = async (id: string): Promise<IBook | null> => {
+const deleteBookFromDb = async (id: string): Promise<IBook | null> => {
   const isExist = await BookModel.findOne({ _id: id });
-
   if (!isExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Book not found!');
   }
-
-  const user = await BookModel.findOneAndDelete({ _id: id });
-
-  if (!user) {
+  const books = await BookModel.findOneAndDelete({ _id: id });
+  if (!books) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete book');
   }
-
-  return user;
+  return books;
 };
 
 export const BookService = {
-  createBook,
-  getAllBooks,
-  getSingleBook,
-  updateBook,
-  deleteBook,
+  createBookFromDb,
+  getAllBooksFromDb,
+  getSingleBookFromDb,
+  updateBookFromDb,
+  deleteBookFromDb,
 };

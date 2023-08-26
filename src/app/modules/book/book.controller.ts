@@ -7,7 +7,7 @@ import { BookService } from './book.service';
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   const book = req.body;
-  const result = await BookService.createBook(book);
+  const result = await BookService.createBookFromDb(book);
 
   sendResponse<IBook>(res, {
     success: true,
@@ -18,7 +18,7 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllBooks = catchAsync(async (req: Request, res: Response) => {
-  const result = await BookService.getAllBooks();
+  const result = await BookService.getAllBooksFromDb();
 
   sendResponse<IBook[]>(res, {
     success: true,
@@ -31,7 +31,7 @@ const getAllBooks = catchAsync(async (req: Request, res: Response) => {
 const getSingleBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const result = await BookService.getSingleBook(id);
+  const result = await BookService.getSingleBookFromDb(id);
 
   sendResponse<IBook>(res, {
     success: true,
@@ -45,7 +45,7 @@ const updateBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
 
-  const result = await BookService.updateBook(id, updatedData);
+  const result = await BookService.updateBookFromDb(id, updatedData);
 
   sendResponse<IBook>(res, {
     success: true,
@@ -58,7 +58,7 @@ const updateBook = catchAsync(async (req: Request, res: Response) => {
 const deleteBook = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const result = await BookService.deleteBook(id);
+  const result = await BookService.deleteBookFromDb(id);
 
   sendResponse<IBook>(res, {
     success: true,
