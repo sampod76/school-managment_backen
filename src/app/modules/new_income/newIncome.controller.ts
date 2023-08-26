@@ -18,6 +18,49 @@ const createNewIncome = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getDailyIncome = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewIncomeService.getDailyIncomeFromDb();
+  //   console.log(result, 'control');
+
+  sendResponse<IIncome[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Income retrieved successfully',
+    data: result,
+  });
+});
+
+const getWeeklyIncome = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewIncomeService.getWeeklyIncomesFromDb();
+
+  sendResponse<IIncome[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Income retrieved successfully',
+    data: result,
+  });
+});
+const getMonthlyIncome = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewIncomeService.getMonthlyIncomesFromDb();
+
+  sendResponse<IIncome[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+const getYearlyIncome = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewIncomeService.getYearlyIncomesFromDb();
+
+  sendResponse<IIncome[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+
 const getAllNewIncome = catchAsync(async (req: Request, res: Response) => {
   const result = await NewIncomeService.getAllNewIncomesFromDb();
 
@@ -71,6 +114,10 @@ const deleteNewIncome = catchAsync(async (req: Request, res: Response) => {
 
 export const newIncomeController = {
   createNewIncome,
+  getDailyIncome,
+  getWeeklyIncome,
+  getMonthlyIncome,
+  getYearlyIncome,
   getAllNewIncome,
   getSingleNewIncome,
   updateNewIncome,

@@ -5,6 +5,10 @@ import { NewIncomeValidation } from './newIncome.validation';
 
 const router = express.Router();
 
+router.get('/daily', newIncomeController.getDailyIncome);
+router.get('/weekly', newIncomeController.getWeeklyIncome);
+router.get('/monthly', newIncomeController.getMonthlyIncome);
+router.get('/yearly', newIncomeController.getYearlyIncome);
 router.get('/:id', newIncomeController.getSingleNewIncome);
 router.get('/', newIncomeController.getAllNewIncome);
 router.post(

@@ -6,9 +6,8 @@ import IExpense from './newExpense.interface';
 import { NewExpenseService } from './newExpense.service';
 
 const createNewExpense = catchAsync(async (req: Request, res: Response) => {
-  const income = req.body;
-  console.log(income, 'test');
-  const result = await NewExpenseService.createNewExpenseFromDb(income);
+  const expense = req.body;
+  const result = await NewExpenseService.createNewExpenseFromDb(expense);
 
   sendResponse<IExpense>(res, {
     success: true,
@@ -20,6 +19,46 @@ const createNewExpense = catchAsync(async (req: Request, res: Response) => {
 
 const getAllNewExpense = catchAsync(async (req: Request, res: Response) => {
   const result = await NewExpenseService.getAllNewExpensesFromDb();
+
+  sendResponse<IExpense[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+const getDailyExpense = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewExpenseService.getDailyExpensesFromDb();
+
+  sendResponse<IExpense[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+const getWeeklyExpense = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewExpenseService.getWeeklyExpensesFromDb();
+
+  sendResponse<IExpense[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+const getMonthlyExpense = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewExpenseService.getMonthlyExpensesFromDb();
+
+  sendResponse<IExpense[]>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: 'Expense retrieved successfully',
+    data: result,
+  });
+});
+const getYearlyExpense = catchAsync(async (req: Request, res: Response) => {
+  const result = await NewExpenseService.getYearlyExpensesFromDb();
 
   sendResponse<IExpense[]>(res, {
     success: true,
@@ -74,6 +113,10 @@ const deleteNewExpense = catchAsync(async (req: Request, res: Response) => {
 
 export const newExpenseController = {
   createNewExpense,
+  getDailyExpense,
+  getWeeklyExpense,
+  getMonthlyExpense,
+  getYearlyExpense,
   getAllNewExpense,
   getSingleNewExpense,
   updateNewExpense,

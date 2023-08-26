@@ -6,7 +6,7 @@ const earnSchema = new Schema<IExpense>({
   expenseHeader: { type: String, required: true },
   date: { type: String, required: true },
   invoiceNumber: { type: String, required: true },
-  quantity: { type: Number, required: true },
+  amount: { type: String, required: true },
   document: { type: String, required: false },
   description: { type: String, required: true },
 });

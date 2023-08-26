@@ -14,8 +14,8 @@ const createNewExpenseZodSchema = z.object({
     invoiceNumber: z.string({
       required_error: 'invoice number is required',
     }),
-    quantity: z.number({
-      required_error: 'Quantity is required',
+    amount: z.string({
+      required_error: 'amount is required',
     }),
     document: z
       .string({
@@ -34,7 +34,7 @@ const updateNewExpenseZodSchema = z.object({
     expenseHeader: z.string().optional(),
     date: z.string().optional(),
     invoiceNumber: z.string().optional(),
-    quantity: z.number().optional(),
+    amount: z.string().optional(),
     document: z.string().optional(),
     description: z.string().optional(),
   }),
