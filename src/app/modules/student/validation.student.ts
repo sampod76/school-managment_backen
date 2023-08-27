@@ -7,7 +7,7 @@ import {
   MARITAL_STATUS_VALUES,
   RELIGION_VALUES,
   YN_VALUES,
-} from './constant.student';
+} from '../../../constant/userConstant';
 // 1A8ytGPemE2Ht4UnHtdo7N1dcME73A24G9
 // 16NBtzZScNjcKUP7M1Pf8ro8wqbr2tvzJe
 const createStudentZodSchema = z.object({

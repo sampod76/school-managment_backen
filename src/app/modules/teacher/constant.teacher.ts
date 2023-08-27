@@ -13,7 +13,7 @@ export const classType = [
 ];
 
 
-export const studentSearchableFields = [
+export const teacherSearchableFields = [
   'userId',
   'email',
   'contact_no',
@@ -22,7 +22,7 @@ export const studentSearchableFields = [
   'name.last_name',
 ];
 
-export const studentFilterableFields = [
+export const teacherFilterableFields = [
   'searchTerm',
   'id',
   'bloodGroup',
