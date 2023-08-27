@@ -27,13 +27,12 @@ router
     classController.createClass
   );
 
-router
-  .route(':/id')
-  .get(classController.getSingleClass)
-  .patch(
-    validateRequestZod(ClassValidation.updateClassZodSchema),
-    classController.updateClass
-  )
-  .delete(classController.deleteClass);
+router.route(':/id').get(classController.getSingleClass);
 
+router.delete('/:id', classController.deleteClass);
+router.patch(
+  '/:id',
+  validateRequestZod(ClassValidation.updateClassZodSchema),
+  classController.updateClass
+);
 export const ClassRoutes = router;

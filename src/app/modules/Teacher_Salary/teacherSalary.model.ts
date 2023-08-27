@@ -13,23 +13,30 @@ const teacherSalarySchema = new Schema<ITeacherSalary>(
     },
     teacher_salary_scale: {
       type: String,
-      enum:['A','B'],
+      enum: ['A', 'B'],
       required: true,
     },
     salary: {
       type: String,
       required: true,
     },
+    //Reeference of Teacher Id
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: 'Teacher',
+    },
     status: {
       type: String,
-      enum:STATUS,
+      enum: STATUS,
       required: true,
     },
-    
   },
   {
     timestamps: true,
   }
 );
 
-export const TeacherSalaryModel = model<ITeacherSalary>('Teacher_Salary', teacherSalarySchema);
+export const TeacherSalaryModel = model<ITeacherSalary>(
+  'Teacher_Salary',
+  teacherSalarySchema
+);
