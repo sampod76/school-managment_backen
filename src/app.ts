@@ -24,11 +24,7 @@ const app: Application = express();
 // );
 
 app.use(
-  cors({
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  })
+  cors()
 );
 
 //  app.use(function (req, res, next) {
