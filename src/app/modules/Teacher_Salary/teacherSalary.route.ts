@@ -12,7 +12,7 @@ router
     validateRequestZod(TeacherSalaryValidation.createTeacherSalaryZodSchema),
     teacherSalaryController.createTeacherSalary
   );
-
+router.get('/:id', teacherSalaryController.getSingleTeacherSalary);
 router.delete('/:id', teacherSalaryController.deleteTeacherSalaryController);
 router.patch('/:id', teacherSalaryController.updateTeacherSalary);
 

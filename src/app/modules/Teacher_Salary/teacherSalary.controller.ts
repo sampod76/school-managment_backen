@@ -28,6 +28,21 @@ const getAllTeacherSalary = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getSingleTeacherSalary = catchAsync(
+  async (req: Request, res: Response) => {
+    const id = req.params.id;
+
+    const result = await TeacherSalaryService.singleTeacherService(id);
+
+    sendResponse<ITeacherSalary>(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Teacher Salary retrieved successfully',
+      data: result,
+    });
+  }
+);
+
 const updateTeacherSalary = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
@@ -66,4 +81,5 @@ export const teacherSalaryController = {
   getAllTeacherSalary,
   deleteTeacherSalaryController,
   updateTeacherSalary,
+  getSingleTeacherSalary,
 };
