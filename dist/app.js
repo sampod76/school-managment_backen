@@ -28,11 +28,7 @@ const app = (0, express_1.default)();
 //     credentials: true,
 //   })
 // );
-app.use((0, cors_1.default)({
-    origin: '*',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-}));
+app.use((0, cors_1.default)());
 //  app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", 'https://example.app')
 //   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,Accept")

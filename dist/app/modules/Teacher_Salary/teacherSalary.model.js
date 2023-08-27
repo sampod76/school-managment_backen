@@ -21,6 +21,11 @@ const teacherSalarySchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
+    //Reeference of Teacher Id
+    user: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'Teacher',
+    },
     status: {
         type: String,
         enum: enumType_1.STATUS,

@@ -13,6 +13,7 @@ router
     .route('/')
     .get(teacherSalary_controller_1.teacherSalaryController.getAllTeacherSalary)
     .post((0, validateRequestZod_1.default)(teacherSalary_validation_1.TeacherSalaryValidation.createTeacherSalaryZodSchema), teacherSalary_controller_1.teacherSalaryController.createTeacherSalary);
+router.get('/:id', teacherSalary_controller_1.teacherSalaryController.getSingleTeacherSalary);
 router.delete('/:id', teacherSalary_controller_1.teacherSalaryController.deleteTeacherSalaryController);
 router.patch('/:id', teacherSalary_controller_1.teacherSalaryController.updateTeacherSalary);
 exports.TeacherSalaryRoute = router;

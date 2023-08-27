@@ -30,6 +30,10 @@ const getAllTeacherSalary = () => __awaiter(void 0, void 0, void 0, function* ()
     }
     return allTeacherSalary;
 });
+const singleTeacherService = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield teacherSalary_model_1.TeacherSalaryModel.findOne({ _id: id });
+    return result;
+});
 const updateTeacherSalary = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield teacherSalary_model_1.TeacherSalaryModel.findOneAndUpdate({ _id: id }, payload, {
         new: true,
@@ -55,5 +59,6 @@ exports.TeacherSalaryService = {
     CreateTeacherSalary,
     getAllTeacherSalary,
     deleteTeacherService,
-    updateTeacherSalary
+    updateTeacherSalary,
+    singleTeacherService,
 };

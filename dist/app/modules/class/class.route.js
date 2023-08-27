@@ -26,9 +26,7 @@ router
     .route('/')
     .get(class_controller_1.classController.getAllClasses)
     .post((0, validateRequestZod_1.default)(class_validation_1.ClassValidation.createClassZodSchema), class_controller_1.classController.createClass);
-router
-    .route(':/id')
-    .get(class_controller_1.classController.getSingleClass)
-    .patch((0, validateRequestZod_1.default)(class_validation_1.ClassValidation.updateClassZodSchema), class_controller_1.classController.updateClass)
-    .delete(class_controller_1.classController.deleteClass);
+router.route(':/id').get(class_controller_1.classController.getSingleClass);
+router.delete('/:id', class_controller_1.classController.deleteClass);
+router.patch('/:id', (0, validateRequestZod_1.default)(class_validation_1.ClassValidation.updateClassZodSchema), class_controller_1.classController.updateClass);
 exports.ClassRoutes = router;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.studentFilterableFields = exports.studentSearchableFields = exports.classType = void 0;
+exports.teacherFilterableFields = exports.teacherSearchableFields = exports.classType = void 0;
 exports.classType = [
     'প্রথম',
     'দ্বিতীয়',
@@ -13,7 +13,7 @@ exports.classType = [
     'নবম',
     'দশম',
 ];
-exports.studentSearchableFields = [
+exports.teacherSearchableFields = [
     'userId',
     'email',
     'contact_no',
@@ -21,7 +21,7 @@ exports.studentSearchableFields = [
     'name.middle_name',
     'name.last_name',
 ];
-exports.studentFilterableFields = [
+exports.teacherFilterableFields = [
     'searchTerm',
     'id',
     'bloodGroup',

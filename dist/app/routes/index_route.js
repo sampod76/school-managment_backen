@@ -15,6 +15,7 @@ const newExpense_route_1 = require("../modules/new_expense/newExpense.route");
 const newIncome_route_1 = require("../modules/new_income/newIncome.route");
 const section_route_1 = require("../modules/section/section.route");
 const route_student_1 = require("../modules/student/route.student");
+const route_teacher_1 = require("../modules/teacher/route.teacher");
 const user_route_1 = require("../modules/users/user.route");
 //https://docs.google.com/document/d/1gTsTpFvhfZB-2y0_BbZQVzmbG3YwsZwPrwAbsYqpOzM/edit
 const router = express_1.default.Router();
@@ -26,6 +27,10 @@ const moduleRoutes = [
     {
         path: '/students',
         route: route_student_1.StudentRoutes,
+    },
+    {
+        path: '/teachers',
+        route: route_teacher_1.TeacherRoutes,
     },
     {
         path: '/auth',

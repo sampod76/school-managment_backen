@@ -23,9 +23,7 @@ const app: Application = express();
 //   })
 // );
 
-app.use(
-  cors()
-);
+app.use(cors());
 
 //  app.use(function (req, res, next) {
 //   res.header("Access-Control-Allow-Origin", 'https://example.app')
@@ -128,14 +126,13 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 
 const test = async () => {
   try {
- 
     // const result = await FileUploade.deleteMany({});
     // const result = await RunContest.find({});
     // const result5 = await Purchased_courses.deleteMany();
     // const result2 = await PhotoContestUser.deleteMany({});
     // const result2 = await RunContest.deleteMany({});
     // console.log(result2);
-    console.log(ENUM_USER_ROLE.STUDENT)
+    console.log(ENUM_USER_ROLE.STUDENT);
   } catch (error) {
     console.log(error);
   }
