@@ -23,22 +23,21 @@ const getDailyIncomeFromDb = async (): Promise<IIncome[] | null> => {
   const day = today.getDate().toString().padStart(2, '0');
 
   const formattedDate = `${year}-${month}-${day}`;
+  // console.log(formattedDate, 'date');
 
   const AllIncomes = await IncomeModel.find({
     date: { $eq: formattedDate },
   }).exec();
 
-  //   const totalAmount = AllIncomes.reduce((total, el) => {
-  //     if (el.amount) {
-  //       const amount = parseFloat(el.amount);
-  //       if (!isNaN(amount)) {
-  //         return total + amount;
-  //       }
+  // const totalAmount = AllIncomes.reduce((total, el) => {
+  //   if (el.amount) {
+  //     const amount = parseFloat(el.amount);
+  //     if (!isNaN(amount)) {
+  //       return total + amount;
   //     }
-  //     return total;
-  //   }, 0);
-
-  //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+  //   }
+  //   return total;
+  // }, 0);
 
   if (!AllIncomes) {
     throw new ApiError(
