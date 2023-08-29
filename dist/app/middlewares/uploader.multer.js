@@ -120,7 +120,7 @@ exports.uploadMultipleImage = (0, multer_1.default)({
 //------------upload video file ---start-----------
 const videoStorage = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path_1.default.join(__dirname, '../uploadFile/vedio/'));
+        cb(null, path_1.default.join(__dirname, '../uploadFile/video/'));
     },
     filename: (req, file, cb) => {
         const fileExt = path_1.default.extname(file.originalname);
@@ -148,5 +148,5 @@ exports.uploadVideoFile = (0, multer_1.default)({
         fileSize: 200 * 1024 * 1024, // 200 MB
     },
     fileFilter: fileFilterVideo,
-}).single('vedio');
+}).single('video');
 //------------upload video file --end---------------

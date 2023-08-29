@@ -68,7 +68,7 @@ const run = (req, res, next) => {
 };
 app.use('/images', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/images/')));
 app.use('/profile', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/profile/')));
-app.use('/vedios', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/vedios/')));
+app.use('/videos', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/videos/')));
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.resolve('./views/success.ejs'));
 const http_status_1 = __importDefault(require("http-status"));

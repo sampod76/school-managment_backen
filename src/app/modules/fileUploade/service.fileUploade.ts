@@ -12,12 +12,34 @@ const createFileUploadeByDb = async (
   payload: IFileUploade
 ): Promise<IFileUploade> => {
   payload.url =
-  payload.path === 'uploadFile/images'
-    ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
-    : payload.path === 'uploadFile/profile'
-    ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${payload.filename}`
-    : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
+    payload.path === 'uploadFile/images'
+      ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
+      : payload.path === 'uploadFile/profile'
+      ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${payload.filename}`
+      : payload.path === 'uploadFile/pdfs'
+      ? `${process.env.REAL_HOST_SERVER_SIDE}/pdfs/${payload.filename}`
+      : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
 
+  const result = await FileUploade.create(payload);
+  return result;
+};
+
+const createMultipalFileUploadeByDb = async (
+  payload: IFileUploade[]
+): Promise<IFileUploade[]> => {
+  // console.log(payload)
+  payload.map(
+    file =>
+      (file.url =
+        file.path === 'uploadFile/images'
+          ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${file.filename}`
+          : file.path === 'uploadFile/profile'
+          ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${file.filename}`
+          : file.path === 'uploadFile/pdfs'
+          ? `${process.env.REAL_HOST_SERVER_SIDE}/pdfs/${file.filename}`
+          : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${file.filename}`)
+  );
+  // console.log(modifiPayload);
   const result = await FileUploade.create(payload);
   return result;
 };
@@ -115,6 +137,8 @@ const deleteFileUploadeByIdFromDb = async (
 
 export const FileUploadeService = {
   createFileUploadeByDb,
+  createMultipalFileUploadeByDb,
+  //
   getAllFileUploadeFromDb,
   getSingleFileUploadeFromDb,
   updateFileUploadeFromDb,

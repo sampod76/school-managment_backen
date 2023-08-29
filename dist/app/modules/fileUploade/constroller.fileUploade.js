@@ -76,7 +76,7 @@ const uploadeMultipalFileByServer = (0, catchAsync_1.default)((req, res) => __aw
         destination: value === null || value === void 0 ? void 0 : value.destination,
         path: (value === null || value === void 0 ? void 0 : value.fieldname) === 'images'
             ? `uploadFile/images`
-            : `uploadFile/vedios`,
+            : `uploadFile/videos`,
         size: value === null || value === void 0 ? void 0 : value.size,
     }));
     (0, sendResponse_1.default)(res, {

@@ -58,6 +58,7 @@ export type ITeacher = {
     marital_status: marital_status_type; //type of
     blood_group?: bloodGroupType;//type of
     photo: string;
+    phone_number:string;
     minority_ethnicity: string;
     opinion?: string;
   };
@@ -116,12 +117,12 @@ export type ITeacher = {
     institution: string;
     designation: string;
     subject: string[];
-    employment_period: string;
+    employment_period: string[];
   }[];
   training_courses?: {
     course_name: string;
     course_subject?: string;
-    course_duration: string;
+    course_duration: string[];
     course_details?: string;
     certificate_upload?: string;
   }[];

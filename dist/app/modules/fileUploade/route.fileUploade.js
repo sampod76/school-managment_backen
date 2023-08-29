@@ -27,11 +27,11 @@ router
 // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
 uploader_multer_1.uploadMultipleImage, constroller_fileUploade_1.FileUploadeController.uploadeMultipalFileByServer);
 router
-    .route('/uploade-vedio')
+    .route('/uploade-video')
     .post(
 // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
 uploader_multer_1.uploadVideoFile, constroller_fileUploade_1.FileUploadeController.uploadeSingleFileByServer);
-// router.route('/uploade-multipal-vedios').post(
+// router.route('/uploade-multipal-videos').post(
 //   uploadMultipleImage, FileUploadeController.uploadeSingleFileByServer);
 router
     .route('/')

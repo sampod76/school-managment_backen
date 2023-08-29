@@ -24,8 +24,9 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
       subject: [String],
       marital_status: { type: String, trim: true, enum: MARITAL_STATUS_VALUES }, // Assuming `marital_status_type` is a string-based type
       blood_group: { type: String, trim: true, enum: BLOOD_GROUP_TYPE_VALUES }, // Assuming `bloodGroupType` is a string-based type
-      photo: { type: String, trim: true },
+      photo: { type: Schema.Types.ObjectId, trim: true, ref: 'FileUploade' },
       minority_ethnicity: { type: String, trim: true, enum: YN_VALUES },
+      phone_number: { type: String, trim: true },
       opinion: { type: String, trim: true },
     },
 
@@ -90,7 +91,7 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
         institution: { type: String, trim: true },
         designation: { type: String, trim: true },
         subject: [{ type: String, trim: true }],
-        employment_period: { type: String, trim: true },
+        employment_period: [{ type: String, trim: true }],
       },
     ],
 
@@ -98,7 +99,7 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
       {
         course_name: { type: String, trim: true },
         course_subject: { type: String, trim: true },
-        course_duration: { type: String, trim: true },
+        course_duration: [{ type: String, trim: true }],
         course_details: { type: String, trim: true },
         certificate_upload: { type: String, trim: true },
       },

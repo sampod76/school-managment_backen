@@ -97,7 +97,7 @@ const createSingleStudentFromDb = async (
   return result;
 };
 
-// module 15 --> 14,15 vedio
+// module 15 --> 14,15 video
 const updateStudentFromDb = async (
   id: string,
   payload: Partial<IStudent>

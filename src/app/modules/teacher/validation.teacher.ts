@@ -36,6 +36,7 @@ const createTeacherZodSchema = z.object({
         .optional(),
       photo: z.string().min(1).max(255).trim(),
       minority_ethnicity: z.enum([...YN_VALUES] as [string, ...string[]]),
+      opinionphone_number: z.string().min(1).max(20).trim(),
       opinion: z.string().min(1).max(100).trim().optional(),
     }),
     mother_info: z.object({
@@ -103,14 +104,14 @@ const createTeacherZodSchema = z.object({
         institution: z.string().min(1).max(255).trim(),
         designation: z.string().min(1).max(255).trim(),
         subject: z.array(z.string().min(1).max(255).trim()),
-        employment_period: z.string().min(1).max(255).trim(),
+        employment_period: z.array(z.string().min(1).max(255).trim()),
       })
     ),
     training_courses: z.array(
       z.object({
         course_name: z.string().min(1).max(255).trim(),
         course_subject: z.string().min(1).max(255).trim().optional(),
-        course_duration: z.string().min(1).max(255).trim(),
+        course_duration: z.array(z.string().min(1).max(255).trim()),
         course_details: z.string().min(1).max(255).trim().optional(),
         certificate_upload: z.string().max(255).trim().optional(),
       })

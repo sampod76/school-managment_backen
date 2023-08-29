@@ -12,6 +12,7 @@ import { FILEUPLOADE_FILTERABLE_FIELDS } from './consent.fileUploade';
 import { IFileUploade } from './interface.fileUploade';
 import { FileUploadeService } from './service.fileUploade';
 
+// ! ********** file upload server **********
 // import { z } from 'zod'
 const uploadeSingleFileByServer = catchAsync(
   async (req: Request, res: Response) => {
@@ -41,7 +42,7 @@ const uploadeProfileFileByServer = catchAsync(
       mimetype: fileDetails?.mimetype,
       destination: fileDetails?.destination,
       path: 'uploadFile/profile',
-      size: Number(fileDetails?.size),
+      size: fileDetails?.size,
     };
 
     const result = await FileUploadeService.createFileUploadeByDb(file);
@@ -61,20 +62,44 @@ const uploadeMultipalFileByServer = catchAsync(
       filename: value?.filename,
       mimetype: value?.mimetype,
       destination: value?.destination,
-      path:
-        value?.fieldname === 'images'
-          ? `uploadFile/images`
-          : `uploadFile/vedios`,
+      path: 'uploadFile/images',
       size: value?.size,
     }));
+    console.log(68,filesDetailes)
+    const result = await FileUploadeService.createMultipalFileUploadeByDb(
+      filesDetailes
+    );
+    console.log(68,result)
+    sendResponse<any>(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'successfull uploade multipal file',
+      data: result,
+    });
+  }
+);
+const uploadePdfFileByServer = catchAsync(
+  async (req: Request, res: Response) => {
+    const fileDetails = req.file;
+    const file = {
+      filename: fileDetails?.filename as string,
+      mimetype: fileDetails?.mimetype,
+      destination: fileDetails?.destination,
+      path: 'uploadFile/pdfs',
+      size: fileDetails?.size,
+    };
+
+    const result = await FileUploadeService.createFileUploadeByDb(file);
     sendResponse<any>(res, {
       success: true,
       statusCode: httpStatus.OK,
       message: 'successfull uploade single file',
-      data: filesDetailes,
+      data: result,
     });
   }
 );
+
+// ! ********** file upload server --end ***************
 
 const createFileUploade = catchAsync(async (req: Request, res: Response) => {
   const { ...FileUploadeData } = req.body;
@@ -186,4 +211,5 @@ export const FileUploadeController = {
   uploadeSingleFileByServer,
   uploadeProfileFileByServer,
   uploadeMultipalFileByServer,
+  uploadePdfFileByServer
 };

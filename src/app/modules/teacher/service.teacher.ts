@@ -49,7 +49,7 @@ const getAllTeachersFromDb = async (
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await Teacher.find(whereConditions)
-
+.populate("teacher_info.photo")
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
@@ -67,7 +67,7 @@ const getAllTeachersFromDb = async (
 };
 
 const getSingleTeacherFromDb = async (id: string): Promise<ITeacher | null> => {
-  const result = await Teacher.findOne({ _id: id }).populate('Teacher.photo');
+  const result = await Teacher.findOne({ _id: id }).populate("teacher_info.photo")
   return result;
 };
 const createSingleTeacherFromDb = async (
@@ -97,7 +97,7 @@ const createSingleTeacherFromDb = async (
   return result;
 };
 
-// module 15 --> 14,15 vedio
+// module 15 --> 14,15 video
 const updateTeacherFromDb = async (
   id: string,
   payload: Partial<ITeacher>

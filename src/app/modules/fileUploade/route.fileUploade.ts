@@ -2,6 +2,7 @@ import express from 'express';
 // import authMiddleware from '../../middlewares/authMiddleware';
 import {
   uploadMultipleImage,
+  uploadPdfFile,
   uploadSingleImage,
   uploadSingleImageByProfile,
   uploadVideoFile,
@@ -37,13 +38,21 @@ router
   );
 
 router
-  .route('/uploade-vedio')
+  .route('/uploade-video')
   .post(
     // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
     uploadVideoFile,
     FileUploadeController.uploadeSingleFileByServer
   );
-// router.route('/uploade-multipal-vedios').post(
+
+router
+  .route('/uploade-pdf')
+  .post(
+    // authMiddleware(ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.GENERAL_USER),
+    uploadPdfFile,
+    FileUploadeController.uploadeSingleFileByServer
+  );
+// router.route('/uploade-multipal-videos').post(
 //   uploadMultipleImage, FileUploadeController.uploadeSingleFileByServer);
 
 router

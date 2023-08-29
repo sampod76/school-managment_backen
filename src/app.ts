@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
+import httpStatus from 'http-status';
 
 import express, {
-  Application,
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
+    Application,
+    NextFunction,
+    Request,
+    RequestHandler,
+    Response,
 } from 'express';
-import paypal from 'paypal-rest-sdk';
 // create xss-clean.d.ts file after work this xss
 import path from 'path';
 import xss from 'xss-clean';
@@ -40,7 +40,7 @@ app.use(cors());
 
 // app.use(
 //   cors({
-//     origin: 'https://salontrainingpro.app',
+//     origin: 'https://example.app',
 //     allowedHeaders: allowedHeaders,
 //   })
 // );
@@ -49,11 +49,7 @@ app.use(xss());
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-paypal.configure({
-  mode: 'sandbox',
-  client_id: process.env.PAYPLE_CLIENT_ID as string,
-  client_secret: process.env.PAYPLE_SECRET_KEY as string,
-});
+
 
 const run: RequestHandler = (req, res, next) => {
   try {
@@ -78,19 +74,23 @@ app.use(
 );
 
 app.use(
-  '/vedios',
+  '/videos',
   run,
-  express.static(path.join(__dirname, '../dist/uploadFile/vedios/'))
+  express.static(path.join(__dirname, '../dist/uploadFile/videos/'))
+);
+app.use(
+  '/pdfs',
+  run,
+  express.static(path.join(__dirname, '../dist/uploadFile/pdfs/'))
 );
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('./views/success.ejs'));
 
-import httpStatus from 'http-status';
+
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 // import { uploadSingleImage } from './app/middlewares/uploader.multer';
 import routes from './app/routes/index_route';
-import { ENUM_USER_ROLE } from './enums/usersEnums';
 
 app.get('/', async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -132,7 +132,7 @@ const test = async () => {
     // const result2 = await PhotoContestUser.deleteMany({});
     // const result2 = await RunContest.deleteMany({});
     // console.log(result2);
-    console.log(ENUM_USER_ROLE.STUDENT);
+    // console.log(ENUM_USER_ROLE.STUDENT);
   } catch (error) {
     console.log(error);
   }

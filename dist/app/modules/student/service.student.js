@@ -100,7 +100,7 @@ const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, fu
     }
     return result;
 });
-// module 15 --> 14,15 vedio
+// module 15 --> 14,15 video
 const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield model_student_1.Student.findOne({ id });
     if (!isExist) {

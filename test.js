@@ -1,7 +1,7 @@
 [
     {
-        "title": "vedio 1",
-        "vedio_link": "https://player.vimeo.com/video/822213540",
+        "title": "video 1",
+        "video_link": "https://player.vimeo.com/video/822213540",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
@@ -10,8 +10,8 @@
         "courseId": "005"
     },
     {
-        "title": "vedio 2",
-        "vedio_link": "https://player.vimeo.com/video/822213541",
+        "title": "video 2",
+        "video_link": "https://player.vimeo.com/video/822213541",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
@@ -20,8 +20,8 @@
         "courseId": "005"
     },
     {
-        "title": "vedio 3",
-        "vedio_link": "https://player.vimeo.com/video/822213544",
+        "title": "video 3",
+        "video_link": "https://player.vimeo.com/video/822213544",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
@@ -30,8 +30,8 @@
         "courseId": "005"
     },
     {
-        "title": "vedio 4",
-        "vedio_link": "https://player.vimeo.com/video/822213545",
+        "title": "video 4",
+        "video_link": "https://player.vimeo.com/video/822213545",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
@@ -40,8 +40,8 @@
         "courseId": "005"
     },
     {
-        "title": "vedio 5",
-        "vedio_link": "https://player.vimeo.com/video/822213546",
+        "title": "video 5",
+        "video_link": "https://player.vimeo.com/video/822213546",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
@@ -50,8 +50,8 @@
         "courseId": "005"
     },
     {
-        "title": "vedio 6",
-        "vedio_link": "https://player.vimeo.com/video/822213547",
+        "title": "video 6",
+        "video_link": "https://player.vimeo.com/video/822213547",
         "description": "Lesson description",
         "thimble": "https://media.istockphoto.com/id/1486039885/photo/young-son-giving-father-christmas-present-hug-and-kiss.jpg?s=1024x1024&w=is&k=20&c=eH0dymatcJd-7L9U2bkrH-y3imtMSbeqDjO6Xf516ik=",
         "status": "active",
