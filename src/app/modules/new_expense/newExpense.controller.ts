@@ -7,7 +7,7 @@ import { NewExpenseService } from './newExpense.service';
 
 const createNewExpense = catchAsync(async (req: Request, res: Response) => {
   const expense = req.body;
-  console.log(expense?.date);
+  console.log(expense, 'now');
   const result = await NewExpenseService.createNewExpenseFromDb(expense);
 
   sendResponse<IExpense>(res, {
