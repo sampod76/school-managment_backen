@@ -37,7 +37,10 @@ exports.studentSchema = new mongoose_1.Schema({
             trim: true,
             enum: userConstant_1.YN_VALUES,
         },
-        photo: { type: mongoose_1.Schema.Types.ObjectId, ref: "FileUploade" },
+        photo: {
+            type: mongoose_1.Schema.Types.ObjectId,
+            ref: 'FileUploade'
+        },
         previous_exam_info: [
             {
                 class_name: {

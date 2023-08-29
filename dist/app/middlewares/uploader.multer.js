@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadVideoFile = exports.uploadMultipleImage = exports.uploadSingleImageByProfile = exports.uploadSingleImage = void 0;
+exports.uploadPdfFile = exports.uploadVideoFile = exports.uploadMultipleImage = exports.uploadSingleImageByProfile = exports.uploadSingleImage = void 0;
 const multer_1 = __importDefault(require("multer"));
 const path_1 = __importDefault(require("path"));
 // import express from 'express';
@@ -46,7 +46,7 @@ exports.uploadSingleImage = (0, multer_1.default)({
     },
     fileFilter: fileFilter,
 }).single('image');
-//-------------single file upload----end------------
+//!-------------single file upload----end------------
 //-------------single file upload----start------------
 const storageByProfile = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
@@ -81,7 +81,7 @@ exports.uploadSingleImageByProfile = (0, multer_1.default)({
     },
     fileFilter: fileFilterByProfile,
 }).single('image');
-//-------------single file upload----end------------
+//!-------------single file upload----end------------
 //------------upload multiple images-----------------
 const storageMultiple = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
@@ -116,7 +116,7 @@ exports.uploadMultipleImage = (0, multer_1.default)({
     },
     fileFilter: fileFilterMultiple,
 }).array('images', 10);
-//------------upload multiple images--end---------------
+//!------------upload multiple images--end---------------
 //------------upload video file ---start-----------
 const videoStorage = multer_1.default.diskStorage({
     destination: (req, file, cb) => {
@@ -149,4 +149,36 @@ exports.uploadVideoFile = (0, multer_1.default)({
     },
     fileFilter: fileFilterVideo,
 }).single('video');
+//------------upload pdf file ---start-----------
+const pdfStorage = multer_1.default.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path_1.default.join(__dirname, '../uploadFile/pdfs/'));
+    },
+    filename: (req, file, cb) => {
+        const fileExt = path_1.default.extname(file.originalname);
+        const fileName = file.originalname
+            .replace(fileExt, '')
+            .toLowerCase()
+            .split(' ')
+            .join('-') +
+            '-' +
+            Date.now();
+        cb(null, fileName + fileExt);
+    },
+});
+const fileFilterPdf = (req, file, cb) => {
+    if (file.mimetype === 'file/pdf') {
+        cb(null, true);
+    }
+    else {
+        cb(new Error('Only pdf format is allowed!'));
+    }
+};
+exports.uploadPdfFile = (0, multer_1.default)({
+    storage: pdfStorage,
+    limits: {
+        fileSize: 10 * 1024 * 1024, // 10 MB
+    },
+    fileFilter: fileFilterPdf,
+}).single('pdf');
 //------------upload video file --end---------------

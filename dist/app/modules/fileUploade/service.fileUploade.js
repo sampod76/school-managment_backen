@@ -30,7 +30,23 @@ const createFileUploadeByDb = (payload) => __awaiter(void 0, void 0, void 0, fun
             ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${payload.filename}`
             : payload.path === 'uploadFile/profile'
                 ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${payload.filename}`
-                : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
+                : payload.path === 'uploadFile/pdfs'
+                    ? `${process.env.REAL_HOST_SERVER_SIDE}/pdfs/${payload.filename}`
+                    : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${payload.filename}`;
+    const result = yield model_fileUploade_1.FileUploade.create(payload);
+    return result;
+});
+const createMultipalFileUploadeByDb = (payload) => __awaiter(void 0, void 0, void 0, function* () {
+    // console.log(payload)
+    payload.map(file => (file.url =
+        file.path === 'uploadFile/images'
+            ? `${process.env.REAL_HOST_SERVER_SIDE}/images/${file.filename}`
+            : file.path === 'uploadFile/profile'
+                ? `${process.env.REAL_HOST_SERVER_SIDE}/profile/${file.filename}`
+                : file.path === 'uploadFile/pdfs'
+                    ? `${process.env.REAL_HOST_SERVER_SIDE}/pdfs/${file.filename}`
+                    : `${process.env.REAL_HOST_SERVER_SIDE}/videos/${file.filename}`));
+    // console.log(modifiPayload);
     const result = yield model_fileUploade_1.FileUploade.create(payload);
     return result;
 });
@@ -98,6 +114,8 @@ const deleteFileUploadeByIdFromDb = (id) => __awaiter(void 0, void 0, void 0, fu
 });
 exports.FileUploadeService = {
     createFileUploadeByDb,
+    createMultipalFileUploadeByDb,
+    //
     getAllFileUploadeFromDb,
     getSingleFileUploadeFromDb,
     updateFileUploadeFromDb,

@@ -59,6 +59,7 @@ const getAllTeachersFromDb = (filters, paginationOptions) => __awaiter(void 0, v
     }
     const whereConditions = andConditions.length > 0 ? { $and: andConditions } : {};
     const result = yield model_teacher_1.Teacher.find(whereConditions)
+        .populate("teacher_info.photo")
         .sort(sortConditions)
         .skip(skip)
         .limit(limit);
@@ -73,7 +74,7 @@ const getAllTeachersFromDb = (filters, paginationOptions) => __awaiter(void 0, v
     };
 });
 const getSingleTeacherFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield model_teacher_1.Teacher.findOne({ _id: id }).populate('Teacher.photo');
+    const result = yield model_teacher_1.Teacher.findOne({ _id: id }).populate("teacher_info.photo");
     return result;
 });
 const createSingleTeacherFromDb = (data) => __awaiter(void 0, void 0, void 0, function* () {

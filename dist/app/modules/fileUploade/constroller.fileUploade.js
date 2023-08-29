@@ -33,6 +33,7 @@ const pick_1 = __importDefault(require("../../share/pick"));
 const sendResponse_1 = __importDefault(require("../../share/sendResponse"));
 const consent_fileUploade_1 = require("./consent.fileUploade");
 const service_fileUploade_1 = require("./service.fileUploade");
+// ! ********** file upload server **********
 // import { z } from 'zod'
 const uploadeSingleFileByServer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const fileDetails = req.file;
@@ -58,7 +59,7 @@ const uploadeProfileFileByServer = (0, catchAsync_1.default)((req, res) => __awa
         mimetype: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.mimetype,
         destination: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.destination,
         path: 'uploadFile/profile',
-        size: Number(fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size),
+        size: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size,
     };
     const result = yield service_fileUploade_1.FileUploadeService.createFileUploadeByDb(file);
     (0, sendResponse_1.default)(res, {
@@ -74,18 +75,37 @@ const uploadeMultipalFileByServer = (0, catchAsync_1.default)((req, res) => __aw
         filename: value === null || value === void 0 ? void 0 : value.filename,
         mimetype: value === null || value === void 0 ? void 0 : value.mimetype,
         destination: value === null || value === void 0 ? void 0 : value.destination,
-        path: (value === null || value === void 0 ? void 0 : value.fieldname) === 'images'
-            ? `uploadFile/images`
-            : `uploadFile/videos`,
+        path: 'uploadFile/images',
         size: value === null || value === void 0 ? void 0 : value.size,
     }));
+    console.log(68, filesDetailes);
+    const result = yield service_fileUploade_1.FileUploadeService.createMultipalFileUploadeByDb(filesDetailes);
+    console.log(68, result);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'successfull uploade multipal file',
+        data: result,
+    });
+}));
+const uploadePdfFileByServer = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const fileDetails = req.file;
+    const file = {
+        filename: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.filename,
+        mimetype: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.mimetype,
+        destination: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.destination,
+        path: 'uploadFile/pdfs',
+        size: fileDetails === null || fileDetails === void 0 ? void 0 : fileDetails.size,
+    };
+    const result = yield service_fileUploade_1.FileUploadeService.createFileUploadeByDb(file);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
         message: 'successfull uploade single file',
-        data: filesDetailes,
+        data: result,
     });
 }));
+// ! ********** file upload server --end ***************
 const createFileUploade = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const FileUploadeData = __rest(req.body, []);
@@ -175,4 +195,5 @@ exports.FileUploadeController = {
     uploadeSingleFileByServer,
     uploadeProfileFileByServer,
     uploadeMultipalFileByServer,
+    uploadePdfFileByServer
 };

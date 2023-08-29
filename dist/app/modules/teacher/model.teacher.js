@@ -18,8 +18,9 @@ exports.teacherSchema = new mongoose_1.Schema({
         subject: [String],
         marital_status: { type: String, trim: true, enum: userConstant_1.MARITAL_STATUS_VALUES },
         blood_group: { type: String, trim: true, enum: userConstant_1.BLOOD_GROUP_TYPE_VALUES },
-        photo: { type: String, trim: true },
+        photo: { type: mongoose_1.Schema.Types.ObjectId, trim: true, ref: 'FileUploade' },
         minority_ethnicity: { type: String, trim: true, enum: userConstant_1.YN_VALUES },
+        phone_number: { type: String, trim: true },
         opinion: { type: String, trim: true },
     },
     mother_info: {
@@ -78,14 +79,14 @@ exports.teacherSchema = new mongoose_1.Schema({
             institution: { type: String, trim: true },
             designation: { type: String, trim: true },
             subject: [{ type: String, trim: true }],
-            employment_period: { type: String, trim: true },
+            employment_period: [{ type: String, trim: true }],
         },
     ],
     training_courses: [
         {
             course_name: { type: String, trim: true },
             course_subject: { type: String, trim: true },
-            course_duration: { type: String, trim: true },
+            course_duration: [{ type: String, trim: true }],
             course_details: { type: String, trim: true },
             certificate_upload: { type: String, trim: true },
         },

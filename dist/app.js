@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const cors_1 = __importDefault(require("cors"));
+const http_status_1 = __importDefault(require("http-status"));
 const express_1 = __importDefault(require("express"));
-const paypal_rest_sdk_1 = __importDefault(require("paypal-rest-sdk"));
 // create xss-clean.d.ts file after work this xss
 const path_1 = __importDefault(require("path"));
 const xss_clean_1 = __importDefault(require("xss-clean"));
@@ -43,7 +43,7 @@ app.use((0, cors_1.default)());
 // ];
 // app.use(
 //   cors({
-//     origin: 'https://salontrainingpro.app',
+//     origin: 'https://example.app',
 //     allowedHeaders: allowedHeaders,
 //   })
 // );
@@ -51,11 +51,6 @@ app.use((0, xss_clean_1.default)());
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.urlencoded({ extended: true }));
-paypal_rest_sdk_1.default.configure({
-    mode: 'sandbox',
-    client_id: process.env.PAYPLE_CLIENT_ID,
-    client_secret: process.env.PAYPLE_SECRET_KEY,
-});
 const run = (req, res, next) => {
     try {
         // jwtHelpers.verifyToken(`${req.headers.authorization}`, config.jwt.secret as string);
@@ -69,13 +64,12 @@ const run = (req, res, next) => {
 app.use('/images', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/images/')));
 app.use('/profile', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/profile/')));
 app.use('/videos', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/videos/')));
+app.use('/pdfs', run, express_1.default.static(path_1.default.join(__dirname, '../dist/uploadFile/pdfs/')));
 app.set('view engine', 'ejs');
 app.set('views', path_1.default.resolve('./views/success.ejs'));
-const http_status_1 = __importDefault(require("http-status"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
 // import { uploadSingleImage } from './app/middlewares/uploader.multer';
 const index_route_1 = __importDefault(require("./app/routes/index_route"));
-const usersEnums_1 = require("./enums/usersEnums");
 app.get('/', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         res.send({ message: 'server is running....' });
@@ -112,7 +106,7 @@ const test = () => __awaiter(void 0, void 0, void 0, function* () {
         // const result2 = await PhotoContestUser.deleteMany({});
         // const result2 = await RunContest.deleteMany({});
         // console.log(result2);
-        console.log(usersEnums_1.ENUM_USER_ROLE.STUDENT);
+        // console.log(ENUM_USER_ROLE.STUDENT);
     }
     catch (error) {
         console.log(error);
