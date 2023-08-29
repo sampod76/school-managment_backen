@@ -7,6 +7,7 @@ import { NewExpenseService } from './newExpense.service';
 
 const createNewExpense = catchAsync(async (req: Request, res: Response) => {
   const expense = req.body;
+  console.log(expense, 'now');
   const result = await NewExpenseService.createNewExpenseFromDb(expense);
 
   sendResponse<IExpense>(res, {
@@ -28,6 +29,7 @@ const getAllNewExpense = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const getDailyExpense = catchAsync(async (req: Request, res: Response) => {
+  console.log('h1');
   const result = await NewExpenseService.getDailyExpensesFromDb();
 
   sendResponse<IExpense[]>(res, {
@@ -84,6 +86,8 @@ const getSingleNewExpense = catchAsync(async (req: Request, res: Response) => {
 const updateNewExpense = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
+  console.log(id, 'I am checking anisa');
+  console.log(updatedData, 'I am checking anisa');
 
   const result = await NewExpenseService.updateNewExpenseFromDb(
     id,

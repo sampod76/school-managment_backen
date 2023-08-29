@@ -4,9 +4,18 @@ import IExpense from './newExpense.interface';
 import { ExpenseModel } from './newExpense.model';
 
 const createNewExpenseFromDb = async (
-  BookData: IExpense
+  ExpenseData: IExpense
 ): Promise<IExpense | null> => {
-  const createdCLass = ExpenseModel.create(BookData);
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  ExpenseData.date = formattedDate;
+
+  const createdCLass = ExpenseModel.create(ExpenseData);
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
@@ -145,7 +154,9 @@ const getYearlyExpensesFromDb = async (): Promise<IExpense[] | null> => {
   return allExpense;
 };
 const getAllNewExpensesFromDb = async (): Promise<IExpense[] | null> => {
-  const allBooks = ExpenseModel.find({});
+  // const allBooks = ExpenseModel.find({});
+  const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
+
   if (!allBooks) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
