@@ -154,16 +154,16 @@ const getYearlyExpensesFromDb = async (): Promise<IExpense[] | null> => {
   return allExpense;
 };
 const getAllNewExpensesFromDb = async (): Promise<IExpense[] | null> => {
-  // const allBooks = ExpenseModel.find({});
-  const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
+  // const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
+  const allExpense = await ExpenseModel.find({}).sort({ _id: -1 });
 
-  if (!allBooks) {
+  if (!allExpense) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
       'failed to get all Expenses'
     );
   }
-  return allBooks;
+  return allExpense;
 };
 
 const getSingleNewExpenseFromDb = async (
