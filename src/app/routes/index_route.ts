@@ -12,6 +12,7 @@ import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
 import { TeacherRoutes } from '../modules/teacher/route.teacher';
 import { UserRoutes } from '../modules/users/user.route';
+import { WorkPlanRoute } from '../modules/work-plan/workPlan.route';
 
 //https://docs.google.com/document/d/1gTsTpFvhfZB-2y0_BbZQVzmbG3YwsZwPrwAbsYqpOzM/edit
 const router = express.Router();
@@ -60,6 +61,10 @@ const moduleRoutes = [
   {
     path: '/work_schedule',
     route: WorkScheduleRoute,
+  },
+  {
+    path: '/work_plan',
+    route: WorkPlanRoute,
   },
   {
     path: '/events',
