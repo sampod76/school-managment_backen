@@ -16,8 +16,14 @@ exports.NewIncomeService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const newIncome_model_1 = require("./newIncome.model");
-const createNewIncomeFromDb = (BookData) => __awaiter(void 0, void 0, void 0, function* () {
-    const createdCLass = newIncome_model_1.IncomeModel.create(BookData);
+const createNewIncomeFromDb = (IncomeData) => __awaiter(void 0, void 0, void 0, function* () {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    IncomeData.date = formattedDate;
+    const createdCLass = newIncome_model_1.IncomeModel.create(IncomeData);
     if (!createdCLass) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Income');
     }
@@ -29,19 +35,19 @@ const getDailyIncomeFromDb = () => __awaiter(void 0, void 0, void 0, function* (
     const month = (today.getMonth() + 1).toString().padStart(2, '0');
     const day = today.getDate().toString().padStart(2, '0');
     const formattedDate = `${year}-${month}-${day}`;
+    // console.log(formattedDate, 'date');
     const AllIncomes = yield newIncome_model_1.IncomeModel.find({
         date: { $eq: formattedDate },
     }).exec();
-    //   const totalAmount = AllIncomes.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
+    // const totalAmount = AllIncomes.reduce((total, el) => {
+    //   if (el.amount) {
+    //     const amount = parseFloat(el.amount);
+    //     if (!isNaN(amount)) {
+    //       return total + amount;
     //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+    //   }
+    //   return total;
+    // }, 0);
     if (!AllIncomes) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Incomes');
     }
@@ -120,11 +126,12 @@ const getYearlyIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function*
     return allExpense;
 });
 const getAllNewIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const allBooks = newIncome_model_1.IncomeModel.find({});
-    if (!allBooks) {
+    // const allIncomes = await IncomeModel.find({}).sort({ createdAt: -1 });
+    const allIncomes = yield newIncome_model_1.IncomeModel.find({}).sort({ _id: -1 });
+    if (!allIncomes) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Incomes');
     }
-    return allBooks;
+    return allIncomes;
 });
 const getSingleNewIncomeFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield newIncome_model_1.IncomeModel.findOne({ _id: id });

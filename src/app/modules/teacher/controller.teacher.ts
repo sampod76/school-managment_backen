@@ -4,13 +4,13 @@ import { PAGINATION_FIELDS } from '../../../constant/pagination';
 import catchAsync from '../../share/catchAsync';
 import pick from '../../share/pick';
 import sendResponse from '../../share/sendResponse';
-import { teacherSearchableFields } from './constant.teacher';
+import { teacherFilterableFields } from './constant.teacher';
 
-import { TeacherService } from './service.teacher';
 import { ITeacher } from './interface.teacher';
+import { TeacherService } from './service.teacher';
 
 const getAllTeachers = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, teacherSearchableFields);
+  const filter = pick(req.query, teacherFilterableFields);
   const paginationOptions = pick(req.query, PAGINATION_FIELDS);
 
   const result = await TeacherService.getAllTeachersFromDb(

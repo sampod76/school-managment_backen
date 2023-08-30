@@ -14,7 +14,7 @@ router
   );
 
 router
-  .route(':/id')
+  .route('/:id')
   .get(bookController.getSingleBook)
   .patch(
     validateRequestZod(BookValidation.updateBookZodSchema),

@@ -21,7 +21,7 @@ const sendResponse_1 = __importDefault(require("../../share/sendResponse"));
 const constant_teacher_1 = require("./constant.teacher");
 const service_teacher_1 = require("./service.teacher");
 const getAllTeachers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const filter = (0, pick_1.default)(req.query, constant_teacher_1.teacherSearchableFields);
+    const filter = (0, pick_1.default)(req.query, constant_teacher_1.teacherFilterableFields);
     const paginationOptions = (0, pick_1.default)(req.query, pagination_1.PAGINATION_FIELDS);
     const result = yield service_teacher_1.TeacherService.getAllTeachersFromDb(filter, paginationOptions);
     (0, sendResponse_1.default)(res, {

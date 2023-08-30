@@ -13,10 +13,12 @@ const event_route_1 = require("../modules/event/event.route");
 const route_fileUploade_1 = require("../modules/fileUploade/route.fileUploade");
 const newExpense_route_1 = require("../modules/new_expense/newExpense.route");
 const newIncome_route_1 = require("../modules/new_income/newIncome.route");
+const route_notices_1 = require("../modules/notices/route.notices");
 const section_route_1 = require("../modules/section/section.route");
 const route_student_1 = require("../modules/student/route.student");
 const route_teacher_1 = require("../modules/teacher/route.teacher");
 const user_route_1 = require("../modules/users/user.route");
+const workPlan_route_1 = require("../modules/work-plan/workPlan.route");
 //https://docs.google.com/document/d/1gTsTpFvhfZB-2y0_BbZQVzmbG3YwsZwPrwAbsYqpOzM/edit
 const router = express_1.default.Router();
 const moduleRoutes = [
@@ -65,8 +67,16 @@ const moduleRoutes = [
         route: workSchedule_route_1.WorkScheduleRoute,
     },
     {
+        path: '/work_plan',
+        route: workPlan_route_1.WorkPlanRoute,
+    },
+    {
         path: '/events',
         route: event_route_1.EventsRoute,
+    },
+    {
+        path: '/notices',
+        route: route_notices_1.NoticeRoutes,
     },
     {
         path: '/upload',

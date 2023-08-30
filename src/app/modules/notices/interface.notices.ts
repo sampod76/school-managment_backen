@@ -1,16 +1,14 @@
-import { Model } from 'mongoose';
+import { Model, Schema } from 'mongoose';
 
-export type ITeacher = {
+export type INotice = {
   title: string;
   noticeDate: string;
   publishe_date: string;
-  document: string; // file link
-
+  document: string | typeof Schema.Types.ObjectId; // file link
 };
 
-export type TeacherModel = Model<ITeacher, Record<string, unknown>>;
+export type NoticeModel = Model<INotice, Record<string, unknown>>;
 
-export type ITeacherFilters = {
+export type INoticeFilters = {
   searchTerm?: string;
-  
 };

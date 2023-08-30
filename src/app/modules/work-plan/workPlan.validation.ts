@@ -9,11 +9,11 @@ const createWorkPlanZodSchema = z.object({
       required_error: 'Teacher designation is required',
     }),
 
-    duration: z.string({
+    duration_date: z.string({
       required_error: 'Teacher designation is required',
     }),
 
-    submission_date: z.string({
+    plan_date: z.string({
       required_error: 'Teacher designation is required',
     }),
 
@@ -27,8 +27,8 @@ const updateWorkPlanZodSchema = z.object({
   body: z.object({
     work_plan_name: z.string().optional(),
     details: z.string().optional(),
-    duration: z.string().optional(),
-    submission_date: z.string().optional(),
+    duration_date: z.string().optional(),
+    plan_date: z.string().optional(),
 
     status: z.enum(['active', 'inactive']).optional(),
   }),

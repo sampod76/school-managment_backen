@@ -4,97 +4,85 @@ import { PAGINATION_FIELDS } from '../../../constant/pagination';
 import catchAsync from '../../share/catchAsync';
 import pick from '../../share/pick';
 import sendResponse from '../../share/sendResponse';
-import { teacherSearchableFields } from './constant.notices';
+import { noticeFilterableFields } from './constant.notices';
 
-import { ITeacher } from './interface.notices';
-import { TeacherService } from './service.notices';
+import { INotice } from './interface.notices';
+import { NoticeService } from './service.notices';
 
-const getAllTeachers = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, teacherSearchableFields);
+const getAllNotices = catchAsync(async (req: Request, res: Response) => {
+  const filter = pick(req.query, noticeFilterableFields);
   const paginationOptions = pick(req.query, PAGINATION_FIELDS);
 
-  const result = await TeacherService.getAllTeachersFromDb(
+  const result = await NoticeService.getAllNoticesFromDb(
     filter,
     paginationOptions
   );
-  sendResponse<ITeacher[]>(res, {
+  sendResponse<INotice[]>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Teachers retrieved successfully!',
+    message: 'Notices retrieved successfully!',
     meta: result.meta,
     data: result.data,
   });
 });
 
-const createSingleTeacher = catchAsync(async (req: Request, res: Response) => {
+const createSingleNotice = catchAsync(async (req: Request, res: Response) => {
   console.log(req.body);
-  const result = await TeacherService.createSingleTeacherFromDb(req.body);
-  sendResponse<ITeacher>(res, {
+  const result = await NoticeService.createSingleNoticeFromDb(req.body);
+  sendResponse<INotice>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Teacher create successfully !',
+    message: 'Notice create successfully !',
     data: result,
   });
 });
-const getSingleTeacher = catchAsync(async (req: Request, res: Response) => {
+const getSingleNotice = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const result = await TeacherService.getSingleTeacherFromDb(id);
+  const result = await NoticeService.getSingleNoticeFromDb(id);
 
-  sendResponse<ITeacher>(res, {
+  sendResponse<INotice>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Teacher retrieved successfully !',
+    message: 'Notice retrieved successfully !',
     data: result,
   });
 });
 
-const updateTeacher = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const updatedData = req.body;
-
-  const result = await TeacherService.updateTeacherFromDb(id, updatedData);
-
-  sendResponse<ITeacher>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Teacher updated successfully !',
-    data: result,
-  });
-});
-
-const approvedTeacherAdminssion = catchAsync(async (req: Request, res: Response) => {
+const updateNotice = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
   const updatedData = req.body;
 
-  const result = await TeacherService.approvedTeacherAdminssionFromDb(id, updatedData);
+  const result = await NoticeService.updateNoticeFromDb(id, updatedData);
 
-  sendResponse<any>(res, {
+  sendResponse<INotice>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'অ্যাপ্লিকেশন আপডেট সফল হয়েছে',
+    message: 'Notice updated successfully !',
     data: result,
   });
 });
 
-const deleteTeacher = catchAsync(async (req: Request, res: Response) => {
+
+
+const deleteNotice = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
 
-  const result = await TeacherService.deleteTeacherFromDb(id);
+  const result = await NoticeService.deleteNoticeFromDb(id);
 
-  sendResponse<ITeacher>(res, {
+  sendResponse<INotice>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Teacher deleted successfully !',
+    message: 'Notice deleted successfully !',
     data: result,
   });
 });
 
-export const TeacherController = {
-  getAllTeachers,
-  getSingleTeacher,
-  updateTeacher,
-  deleteTeacher,
-  createSingleTeacher,
-  approvedTeacherAdminssion
+export const NoticeController = {
+  getAllNotices,
+  getSingleNotice,
+  updateNotice,
+  deleteNotice,
+  createSingleNotice,
+
 };

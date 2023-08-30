@@ -16,8 +16,14 @@ exports.NewExpenseService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const newExpense_model_1 = require("./newExpense.model");
-const createNewExpenseFromDb = (BookData) => __awaiter(void 0, void 0, void 0, function* () {
-    const createdCLass = newExpense_model_1.ExpenseModel.create(BookData);
+const createNewExpenseFromDb = (ExpenseData) => __awaiter(void 0, void 0, void 0, function* () {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const day = today.getDate().toString().padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    ExpenseData.date = formattedDate;
+    const createdCLass = newExpense_model_1.ExpenseModel.create(ExpenseData);
     if (!createdCLass) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Expense');
     }
@@ -120,11 +126,12 @@ const getYearlyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function
     return allExpense;
 });
 const getAllNewExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const allBooks = newExpense_model_1.ExpenseModel.find({});
-    if (!allBooks) {
+    // const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
+    const allExpense = yield newExpense_model_1.ExpenseModel.find({}).sort({ _id: -1 });
+    if (!allExpense) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
     }
-    return allBooks;
+    return allExpense;
 });
 const getSingleNewExpenseFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield newExpense_model_1.ExpenseModel.findOne({ _id: id });

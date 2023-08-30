@@ -1,31 +1,26 @@
 import express from 'express';
 import validateRequestZod from '../../middlewares/validateRequestZod';
-import { TeacherController } from './controller.notices';
-import { TeacherValidation } from './validation.notices';
+import { NoticeController } from './controller.notices';
+import { NoticeValidation } from './validation.notices';
 
 const router = express.Router();
 router
   .route('/')
-  .get(TeacherController.getAllTeachers)
+  .get(NoticeController.getAllNotices)
   .post(
-    validateRequestZod(TeacherValidation.createTeacherZodSchema),
-    TeacherController.createSingleTeacher
+    validateRequestZod(NoticeValidation.createNoticeZodSchema),
+    NoticeController.createSingleNotice
   );
 
 router
   .route('/:id')
-  .get(TeacherController.getSingleTeacher)
-  .delete(TeacherController.deleteTeacher)
+  .get(NoticeController.getSingleNotice)
+  .delete(NoticeController.deleteNotice)
   .patch(
-    validateRequestZod(TeacherValidation.updateTeacherZodSchema),
-    TeacherController.updateTeacher
+    validateRequestZod(NoticeValidation.updateNoticeZodSchema),
+    NoticeController.updateNotice
   );
 
-router
-  .route('/approved-Teacher-adminssion')
-  .patch(
-    validateRequestZod(TeacherValidation.updataAdmitionsData),
-    TeacherController.approvedTeacherAdminssion
-  );
 
-export const TeacherRoutes = router;
+
+export const NoticeRoutes = router;

@@ -19,6 +19,7 @@ const sendResponse_1 = __importDefault(require("../../share/sendResponse"));
 const newExpense_service_1 = require("./newExpense.service");
 const createNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const expense = req.body;
+    console.log(expense, 'now');
     const result = yield newExpense_service_1.NewExpenseService.createNewExpenseFromDb(expense);
     (0, sendResponse_1.default)(res, {
         success: true,
@@ -37,6 +38,7 @@ const getAllNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     });
 }));
 const getDailyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('h1');
     const result = yield newExpense_service_1.NewExpenseService.getDailyExpensesFromDb();
     (0, sendResponse_1.default)(res, {
         success: true,
@@ -85,6 +87,8 @@ const getSingleNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(vo
 const updateNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const updatedData = req.body;
+    console.log(id, 'I am checking anisa');
+    console.log(updatedData, 'I am checking anisa');
     const result = yield newExpense_service_1.NewExpenseService.updateNewExpenseFromDb(id, updatedData);
     (0, sendResponse_1.default)(res, {
         success: true,

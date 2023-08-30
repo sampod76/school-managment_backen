@@ -12,12 +12,12 @@ const workPlanSchema = new Schema<IWorkPlan>(
       type: String,
       required: true,
     },
-    duration: {
+    duration_date: {
       type: String,
 
       required: true,
     },
-    submission_date: {
+    plan_date: {
       type: String,
       required: true,
     },
