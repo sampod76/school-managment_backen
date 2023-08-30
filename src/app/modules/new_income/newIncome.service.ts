@@ -4,9 +4,18 @@ import IIncome from './newIncome.interface';
 import { IncomeModel } from './newIncome.model';
 
 const createNewIncomeFromDb = async (
-  BookData: IIncome
+  IncomeData: IIncome
 ): Promise<IIncome | null> => {
-  const createdCLass = IncomeModel.create(BookData);
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  IncomeData.date = formattedDate;
+
+  const createdCLass = IncomeModel.create(IncomeData);
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
@@ -146,14 +155,16 @@ const getYearlyIncomesFromDb = async (): Promise<IIncome[] | null> => {
 };
 
 const getAllNewIncomesFromDb = async (): Promise<IIncome[] | null> => {
-  const allBooks = IncomeModel.find({});
-  if (!allBooks) {
+  // const allIncomes = await IncomeModel.find({}).sort({ createdAt: -1 });
+  const allIncomes = await IncomeModel.find({}).sort({ _id: -1 });
+
+  if (!allIncomes) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
       'failed to get all Incomes'
     );
   }
-  return allBooks;
+  return allIncomes;
 };
 
 const getSingleNewIncomeFromDb = async (
