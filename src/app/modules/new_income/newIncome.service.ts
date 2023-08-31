@@ -2,6 +2,7 @@ import httpStatus from 'http-status';
 import ApiError from '../../errors/ApiError';
 import IIncome from './newIncome.interface';
 import { IncomeModel } from './newIncome.model';
+// import test from './test';
 
 const createNewIncomeFromDb = async (
   IncomeData: IIncome
@@ -25,37 +26,37 @@ const createNewIncomeFromDb = async (
   return createdCLass;
 };
 
-const getDailyIncomeFromDb = async (): Promise<IIncome[] | null> => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
+// const getDailyIncomeFromDb = async (): Promise<IIncome[] | null> => {
+//   const today = new Date();
+//   const year = today.getFullYear();
+//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
+//   const day = today.getDate().toString().padStart(2, '0');
 
-  const formattedDate = `${year}-${month}-${day}`;
-  // console.log(formattedDate, 'date');
+//   const formattedDate = `${year}-${month}-${day}`;
+//   // console.log(formattedDate, 'date');
 
-  const AllIncomes = await IncomeModel.find({
-    date: { $eq: formattedDate },
-  }).exec();
+//   const AllIncomes = await IncomeModel.find({
+//     date: { $eq: formattedDate },
+//   }).exec();
 
-  // const totalAmount = AllIncomes.reduce((total, el) => {
-  //   if (el.amount) {
-  //     const amount = parseFloat(el.amount);
-  //     if (!isNaN(amount)) {
-  //       return total + amount;
-  //     }
-  //   }
-  //   return total;
-  // }, 0);
+//   // const totalAmount = AllIncomes.reduce((total, el) => {
+//   //   if (el.amount) {
+//   //     const amount = parseFloat(el.amount);
+//   //     if (!isNaN(amount)) {
+//   //       return total + amount;
+//   //     }
+//   //   }
+//   //   return total;
+//   // }, 0);
 
-  if (!AllIncomes) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to get all Incomes'
-    );
-  }
-  return AllIncomes;
-};
+//   if (!AllIncomes) {
+//     throw new ApiError(
+//       httpStatus.EXPECTATION_FAILED,
+//       'failed to get all Incomes'
+//     );
+//   }
+//   return AllIncomes;
+// };
 
 const getWeeklyIncomesFromDb = async (): Promise<IIncome[] | null> => {
   const today = new Date();
@@ -155,9 +156,69 @@ const getYearlyIncomesFromDb = async (): Promise<IIncome[] | null> => {
 };
 
 const getAllNewIncomesFromDb = async (): Promise<IIncome[] | null> => {
-  // const allIncomes = await IncomeModel.find({}).sort({ createdAt: -1 });
   const allIncomes = await IncomeModel.find({}).sort({ _id: -1 });
 
+  console.log(allIncomes);
+
+  if (!allIncomes) {
+    throw new ApiError(
+      httpStatus.EXPECTATION_FAILED,
+      'failed to get all Incomes'
+    );
+  }
+  return allIncomes;
+};
+const getDailyIncomeFromDb = async (
+  timeRange: string
+): Promise<IIncome[] | null> => {
+  function addLeadingZero(number: number) {
+    if (number < 10) {
+      return number.toString().padStart(2, '0');
+    } else {
+      return number.toString();
+    }
+  }
+
+  let allIncomes;
+
+  const currentYear = new Date().getFullYear();
+  const presentMonth = new Date().getMonth() + 1;
+  const currentMonth = addLeadingZero(presentMonth);
+  const date = new Date().getDate();
+  const currentDate = addLeadingZero(date);
+  const currentDateWithMonthYear = `${currentYear}-${currentMonth}-${currentDate}`;
+  const currentDay = new Date().getDay() + 1;
+
+  if (timeRange === 'yearly') {
+    allIncomes = await IncomeModel.find({
+      date: { $lte: `${currentYear}-12-31`, $gte: `${currentYear}-01-01` },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'monthly') {
+    allIncomes = await IncomeModel.find({
+      date: {
+        $lte: `${currentYear}-${currentMonth}-31`,
+        $gte: `${currentYear}-${currentMonth}-01`,
+      },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'weekly') {
+    let subDate;
+    if (date > currentDay) {
+      subDate = date - currentDay;
+    } else {
+      subDate = date;
+    }
+
+    allIncomes = await IncomeModel.find({
+      date: {
+        $lte: `${currentYear}-${currentMonth}-${currentDate}`,
+        $gte: `${currentYear}-${currentMonth}-${subDate}`,
+      },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'daily') {
+    allIncomes = await IncomeModel.find({
+      date: currentDateWithMonthYear,
+    }).sort({ _id: -1 });
+  }
   if (!allIncomes) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
