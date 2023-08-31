@@ -5,7 +5,8 @@ import { NewIncomeValidation } from './newIncome.validation';
 
 const router = express.Router();
 
-router.get('/daily', newIncomeController.getDailyIncome);
+// router.get('/daily', newIncomeController.getDailyIncome);
+router.get('/:timeRange', newIncomeController.getDailyIncome);
 router.get('/weekly', newIncomeController.getWeeklyIncome);
 router.get('/monthly', newIncomeController.getMonthlyIncome);
 router.get('/yearly', newIncomeController.getYearlyIncome);

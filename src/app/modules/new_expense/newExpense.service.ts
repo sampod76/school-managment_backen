@@ -25,29 +25,57 @@ const createNewExpenseFromDb = async (
   return createdCLass;
 };
 
-const getDailyExpensesFromDb = async (): Promise<IExpense[] | null> => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
+const getDailyExpensesFromDb = async (
+  timeRange: string
+): Promise<IExpense[] | null> => {
+  function addLeadingZero(number: number) {
+    if (number < 10) {
+      return number.toString().padStart(2, '0');
+    } else {
+      return number.toString();
+    }
+  }
 
-  const formattedDate = `${year}-${month}-${day}`;
+  let allExpense;
 
-  const allExpense = await ExpenseModel.find({
-    date: { $eq: formattedDate },
-  }).exec();
+  const currentYear = new Date().getFullYear();
+  const presentMonth = new Date().getMonth() + 1;
+  const currentMonth = addLeadingZero(presentMonth);
+  const date = new Date().getDate();
+  const currentDate = addLeadingZero(date);
+  const currentDateWithMonthYear = `${currentYear}-${currentMonth}-${currentDate}`;
+  const currentDay = new Date().getDay() + 1;
 
-  //   const totalAmount = allExpense.reduce((total, el) => {
-  //     if (el.amount) {
-  //       const amount = parseFloat(el.amount);
-  //       if (!isNaN(amount)) {
-  //         return total + amount;
-  //       }
-  //     }
-  //     return total;
-  //   }, 0);
+  if (timeRange === 'yearly') {
+    allExpense = await ExpenseModel.find({
+      date: { $lte: `${currentYear}-12-31`, $gte: `${currentYear}-01-01` },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'monthly') {
+    allExpense = await ExpenseModel.find({
+      date: {
+        $lte: `${currentYear}-${currentMonth}-31`,
+        $gte: `${currentYear}-${currentMonth}-01`,
+      },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'weekly') {
+    let subDate;
+    if (date > currentDay) {
+      subDate = date - currentDay;
+    } else {
+      subDate = date;
+    }
 
-  //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+    allExpense = await ExpenseModel.find({
+      date: {
+        $lte: `${currentYear}-${currentMonth}-${currentDate}`,
+        $gte: `${currentYear}-${currentMonth}-${subDate}`,
+      },
+    }).sort({ _id: -1 });
+  } else if (timeRange === 'daily') {
+    allExpense = await ExpenseModel.find({
+      date: currentDateWithMonthYear,
+    }).sort({ _id: -1 });
+  }
 
   if (!allExpense) {
     throw new ApiError(
@@ -57,6 +85,40 @@ const getDailyExpensesFromDb = async (): Promise<IExpense[] | null> => {
   }
   return allExpense;
 };
+
+// const getDailyExpensesFromDb = async (): Promise<IExpense[] | null> => {
+//   const today = new Date();
+//   const year = today.getFullYear();
+//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
+//   const day = today.getDate().toString().padStart(2, '0');
+
+//   const formattedDate = `${year}-${month}-${day}`;
+
+//   const allExpense = await ExpenseModel.find({
+//     date: { $eq: formattedDate },
+//   }).exec();
+
+//   //   const totalAmount = allExpense.reduce((total, el) => {
+//   //     if (el.amount) {
+//   //       const amount = parseFloat(el.amount);
+//   //       if (!isNaN(amount)) {
+//   //         return total + amount;
+//   //       }
+//   //     }
+//   //     return total;
+//   //   }, 0);
+
+//   //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+
+//   if (!allExpense) {
+//     throw new ApiError(
+//       httpStatus.EXPECTATION_FAILED,
+//       'failed to get all Expenses'
+//     );
+//   }
+//   return allExpense;
+// };
+
 const getWeeklyExpensesFromDb = async (): Promise<IExpense[] | null> => {
   const today = new Date();
   const year = today.getFullYear();

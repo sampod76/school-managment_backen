@@ -29,8 +29,8 @@ const getAllNewExpense = catchAsync(async (req: Request, res: Response) => {
   });
 });
 const getDailyExpense = catchAsync(async (req: Request, res: Response) => {
-  console.log('h1');
-  const result = await NewExpenseService.getDailyExpensesFromDb();
+  const timeRange = req.params.timeRange;
+  const result = await NewExpenseService.getDailyExpensesFromDb(timeRange);
 
   sendResponse<IExpense[]>(res, {
     success: true,

@@ -19,9 +19,8 @@ const createNewIncome = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getDailyIncome = catchAsync(async (req: Request, res: Response) => {
- 
-  const result = await NewIncomeService.getDailyIncomeFromDb();
-  console.log(result, 'control');
+  const timeRange = req.params.timeRange;
+  const result = await NewIncomeService.getDailyIncomeFromDb(timeRange);
 
   sendResponse<IIncome[]>(res, {
     success: true,
