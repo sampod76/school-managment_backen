@@ -2,9 +2,10 @@ import { Model, Schema } from 'mongoose';
 
 export type INotice = {
   title: string;
-  noticeDate: string;
-  publishe_date: string;
-  document: string | typeof Schema.Types.ObjectId; // file link
+  notice_date: string;
+  publishe_date?: string;
+  document?: string | typeof Schema.Types.ObjectId; // file link
+  message?:string
 };
 
 export type NoticeModel = Model<INotice, Record<string, unknown>>;
