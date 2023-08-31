@@ -1,9 +1,7 @@
 
 
 import { SortOrder } from 'mongoose';
-
 import { paginationHelper } from '../../../helper/paginationHelper';
-
 import { IGenericResponse } from '../../interface/common';
 import { IPaginationOption } from '../../interface/pagination';
 
