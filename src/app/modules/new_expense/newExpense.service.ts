@@ -59,12 +59,17 @@ const getDailyExpensesFromDb = async (
     }).sort({ _id: -1 });
   } else if (timeRange === 'weekly') {
     let subDate;
+
     if (date > currentDay) {
       subDate = date - currentDay;
     } else {
-      subDate = date;
+      if (date > currentDay) {
+        subDate = date - currentDay;
+      } else {
+        subDate = date - date + 1;
+      }
     }
-
+    subDate = addLeadingZero(subDate);
     allExpense = await ExpenseModel.find({
       date: {
         $lte: `${currentYear}-${currentMonth}-${currentDate}`,
