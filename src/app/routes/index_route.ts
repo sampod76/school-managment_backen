@@ -23,10 +23,12 @@ const moduleRoutes = [
     path: '/users',
     route: UserRoutes,
   },
+  //sampod
   {
     path: '/students',
     route: StudentRoutes,
   },
+  //sampod
   {
     path: '/teachers',
     route: TeacherRoutes,
@@ -71,6 +73,7 @@ const moduleRoutes = [
     path: '/events',
     route: EventsRoute,
   },
+  //sampod
   {
     path: '/notices',
     route: NoticeRoutes,
