@@ -186,8 +186,8 @@ const getDailyIncomeFromDb = async (
   const currentMonth = addLeadingZero(presentMonth);
   const date = new Date().getDate();
   const currentDate = addLeadingZero(date);
+  const currentDay = new Date().getDay();
   const currentDateWithMonthYear = `${currentYear}-${currentMonth}-${currentDate}`;
-  const currentDay = new Date().getDay() + 1;
 
   if (timeRange === 'yearly') {
     allIncomes = await IncomeModel.find({
@@ -202,12 +202,17 @@ const getDailyIncomeFromDb = async (
     }).sort({ _id: -1 });
   } else if (timeRange === 'weekly') {
     let subDate;
+
     if (date > currentDay) {
       subDate = date - currentDay;
     } else {
-      subDate = date;
+      if (date > currentDay) {
+        subDate = date - currentDay;
+      } else {
+        subDate = date - date + 1;
+      }
     }
-
+    subDate = addLeadingZero(subDate);
     allIncomes = await IncomeModel.find({
       date: {
         $lte: `${currentYear}-${currentMonth}-${currentDate}`,
