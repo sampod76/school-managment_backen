@@ -220,18 +220,14 @@ const updateStudentZodSchema = z.object({
         .optional(),
       hobbies: z.array(z.string()).optional(),
       books: z.array(
-        z.string({
-          required_error: "পছন্দের বই বাধ্যতামূলক প্রয়োজন",
-        })
-      ),
+        z.string()
+      ).optional(),
       favorite_books: z.array(z.string()).optional(),
       financial_assistance_needed: z
         .enum([...YN_VALUES] as [string, ...string[]])
         .optional(),
-      opinion: z.string({
-        required_error: "মতামত বাধ্যতামূলক প্রয়োজন",
-      }),
-    }),
+      opinion: z.string().optional(),
+    }).optional(),
     mother_info: z.object({
       name_bangla: z.string().optional(),
       name_english: z.string().optional(),
@@ -241,7 +237,7 @@ const updateStudentZodSchema = z.object({
       phone_number: z.string().optional(),
       profession: z.string().optional(),
       year_of_death: z.string().optional(),
-    }),
+    }).optional(),
     father_info: z.object({
       name_bangla: z.string().optional(),
       name_english: z.string().optional(),
@@ -251,7 +247,7 @@ const updateStudentZodSchema = z.object({
       phone_number: z.string().optional(),
       profession: z.string().optional(),
       year_of_death: z.string().optional(),
-    }),
+    }).optional(),
     current_address: z.object({
       division: z.string().optional(),
       district: z.string().optional(),
@@ -264,7 +260,7 @@ const updateStudentZodSchema = z.object({
       house_house_holding_number: z.string().optional(),
       post_office: z.string().optional(),
       postal_code: z.string().optional(),
-    }),
+    }).optional(),
     permanent_address: z.object({
       division: z.string().optional(),
       district: z.string().optional(),
@@ -277,7 +273,7 @@ const updateStudentZodSchema = z.object({
       house_house_holding_number: z.string().optional(),
       post_office: z.string().optional(),
       postal_code: z.string().optional(),
-    }),
+    }).optional(),
     other_guardian_info: z
       .object({
         name: z.string().optional(),

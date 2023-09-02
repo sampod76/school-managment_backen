@@ -20,7 +20,8 @@ router
     validateRequestZod(StudentValidation.updateStudentZodSchema),
     StudentController.updateStudent
   );
-
+// router.route('/:id').patch( validateRequestZod(StudentValidation.updateStudentZodSchema),
+// StudentController.updateStudent);
 router
   .route('/approved-student-adminssion')
   .patch(

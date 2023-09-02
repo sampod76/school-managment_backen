@@ -26,7 +26,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
       date_of_birth: { type: String, trim: true },
       birth_district: { type: String, trim: true },
       gender: { type: String, trim: true, enum: GENDER_VALUES },
-      nationality: [{ type: String, trim: true }],
+      nationality: { type: String, trim: true },
       religion: { type: String, trim: true, enum: RELIGION_VALUES },
       desired_class: {
         type: String,
