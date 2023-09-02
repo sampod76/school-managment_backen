@@ -9,6 +9,7 @@ import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
 import { ExpenseRoutes } from '../modules/new_expense/newExpense.route';
 import { EarningRoutes } from '../modules/new_income/newIncome.route';
 import { NoticeRoutes } from '../modules/notices/route.notices';
+import { OnlineAssignmentRoutes } from '../modules/online_assingment/onlineAssignment.route';
 import { SectionRoutes } from '../modules/section/section.route';
 import { StudentRoutes } from '../modules/student/route.student';
 import { TeacherRoutes } from '../modules/teacher/route.teacher';
@@ -56,6 +57,10 @@ const moduleRoutes = [
   {
     path: '/books',
     route: BookRoutes,
+  },
+  {
+    path: '/online_assignments',
+    route: OnlineAssignmentRoutes,
   },
   {
     path: '/teacher_salary',
