@@ -29,8 +29,8 @@ const createNewIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
     });
 }));
 const getDailyIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newIncome_service_1.NewIncomeService.getDailyIncomeFromDb();
-    console.log(result, 'control');
+    const timeRange = req.params.timeRange;
+    const result = yield newIncome_service_1.NewIncomeService.getDailyIncomeFromDb(timeRange);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,

@@ -9,7 +9,8 @@ const validateRequestZod_1 = __importDefault(require("../../middlewares/validate
 const newIncome_controller_1 = require("./newIncome.controller");
 const newIncome_validation_1 = require("./newIncome.validation");
 const router = express_1.default.Router();
-router.get('/daily', newIncome_controller_1.newIncomeController.getDailyIncome);
+// router.get('/daily', newIncomeController.getDailyIncome);
+router.get('/:timeRange', newIncome_controller_1.newIncomeController.getDailyIncome);
 router.get('/weekly', newIncome_controller_1.newIncomeController.getWeeklyIncome);
 router.get('/monthly', newIncome_controller_1.newIncomeController.getMonthlyIncome);
 router.get('/yearly', newIncome_controller_1.newIncomeController.getYearlyIncome);

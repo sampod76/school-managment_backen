@@ -27,10 +27,12 @@ const moduleRoutes = [
         route: user_route_1.UserRoutes,
     },
     {
+        //sampod
         path: '/students',
         route: route_student_1.StudentRoutes,
     },
     {
+        //sampod
         path: '/teachers',
         route: route_teacher_1.TeacherRoutes,
     },
@@ -75,10 +77,12 @@ const moduleRoutes = [
         route: event_route_1.EventsRoute,
     },
     {
+        //sampod
         path: '/notices',
         route: route_notices_1.NoticeRoutes,
     },
     {
+        //sampod
         path: '/upload',
         route: route_fileUploade_1.FileUploadeRoute,
     },

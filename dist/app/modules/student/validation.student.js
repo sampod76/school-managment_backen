@@ -8,20 +8,22 @@ const userConstant_1 = require("../../../constant/userConstant");
 const createStudentZodSchema = zod_1.z.object({
     body: zod_1.z.object({
         userId: zod_1.z.string({
-            required_error: 'ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন',
+            required_error: "ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন",
         }),
         admission_approved: zod_1.z
             .enum([...userConstant_1.YN_VALUES])
             .optional(),
         student: zod_1.z.object({
             name_bangla: zod_1.z.string({
-                required_error: 'ছাত্রছাত্রীরা বাংলা অবশ্যই দিতে হবে',
+                required_error: "শিক্ষার্থীর বাংলা নাম অবশ্যই দিতে হবে",
             }),
             name_english: zod_1.z.string({
-                required_error: 'ছাত্র-ছাত্রী ইংরেজি নাম অবশ্যই দিতে হবে',
+                required_error: "শিক্ষার্থীর ইংরেজি নাম অবশ্যই দিতে হবে",
             }),
             birth_registration_number: zod_1.z.string().optional(),
-            date_of_birth: zod_1.z.string(),
+            date_of_birth: zod_1.z.string({
+                required_error: "শিক্ষার্থীর জন্ম তারিখ বাধ্যতামূলক প্রয়োজন",
+            }),
             birth_district: zod_1.z.string().optional(),
             gender: zod_1.z.enum([...userConstant_1.GENDER_VALUES]),
             nationality: zod_1.z.string().optional(),
@@ -36,8 +38,12 @@ const createStudentZodSchema = zod_1.z.object({
             previous_exam_info: zod_1.z
                 .array(zod_1.z.object({
                 class_name: zod_1.z.enum([...userConstant_1.CLASS_VALUES]),
-                exam_name: zod_1.z.string(),
-                result: zod_1.z.string(),
+                exam_name: zod_1.z.string({
+                    required_error: "পরীক্ষার নাম বাধ্যতামূলক প্রয়োজন",
+                }),
+                result: zod_1.z.string({
+                    required_error: "ফলাফল বাধ্যতামূলক প্রয়োজন",
+                }),
                 exam_time: zod_1.z.string().optional(),
                 institution_name: zod_1.z.string().optional(),
             }))
@@ -48,61 +54,115 @@ const createStudentZodSchema = zod_1.z.object({
             opinion: zod_1.z.string().optional(),
         }),
         mother_info: zod_1.z.object({
-            name_bangla: zod_1.z.string(),
-            name_english: zod_1.z.string(),
-            nid: zod_1.z.string(),
-            date_of_birth: zod_1.z.string(),
+            name_bangla: zod_1.z.string({
+                required_error: "মায়ের নাম বাংলায় বাধ্যতামূলক প্রয়োজন",
+            }),
+            name_english: zod_1.z.string({
+                required_error: "মায়ের নাম ইংরেজিতে বাধ্যতামূলক প্রয়োজন",
+            }),
+            nid: zod_1.z.string({
+                required_error: "মায়ের এন আইডি বাধ্যতামূলক প্রয়োজন",
+            }),
+            date_of_birth: zod_1.z.string({
+                required_error: "মায়ের জন্ম তারিখ বাধ্যতামূলক প্রয়োজন",
+            }),
             birth_registration: zod_1.z.string().optional(),
             phone_number: zod_1.z.string().optional(),
             profession: zod_1.z.string().optional(),
             year_of_death: zod_1.z.string().optional(),
         }),
         father_info: zod_1.z.object({
-            name_bangla: zod_1.z.string(),
-            name_english: zod_1.z.string(),
-            nid: zod_1.z.string(),
-            date_of_birth: zod_1.z.string(),
+            name_bangla: zod_1.z.string({
+                required_error: "বাবার নাম বাংলায় বাধ্যতামূলক প্রয়োজন",
+            }),
+            name_english: zod_1.z.string({
+                required_error: "বাবার নাম ইংরেজিতে বাধ্যতামূলক প্রয়োজন",
+            }),
+            nid: zod_1.z.string({
+                required_error: "বাবার এন আইডি বাধ্যতামূলক প্রয়োজন",
+            }),
+            date_of_birth: zod_1.z.string({
+                required_error: "বাবার জন্ম তারিখ বাধ্যতামূলক প্রয়োজন",
+            }),
             birth_registration: zod_1.z.string().optional(),
             phone_number: zod_1.z.string().optional(),
             profession: zod_1.z.string().optional(),
             year_of_death: zod_1.z.string().optional(),
         }),
         current_address: zod_1.z.object({
-            division: zod_1.z.string(),
-            district: zod_1.z.string(),
-            sub_district: zod_1.z.string(),
+            division: zod_1.z.string({
+                required_error: "বর্তমান ঠিকানা বাধ্যতামূলক প্রয়োজন",
+            }),
+            district: zod_1.z.string({
+                required_error: "জেলা বাধ্যতামূলক প্রয়োজন",
+            }),
+            sub_district: zod_1.z.string({
+                required_error: "উপজেলা বাধ্যতামূলক প্রয়োজন",
+            }),
             city_corporation: zod_1.z.string().optional(),
-            union: zod_1.z.string(),
-            ward_number: zod_1.z.string(),
+            union: zod_1.z.string({
+                required_error: "সিটি কর্পোরেশন বাধ্যতামূলক প্রয়োজন",
+            }),
+            ward_number: zod_1.z.string({
+                required_error: "ওয়ার্ড বাধ্যতামূলক প্রয়োজন",
+            }),
             mouza: zod_1.z.string().optional(),
-            village: zod_1.z.string(),
+            village: zod_1.z.string({
+                required_error: "গ্রাম বাধ্যতামূলক প্রয়োজন",
+            }),
             house_house_holding_number: zod_1.z.string().optional(),
-            post_office: zod_1.z.string(),
-            postal_code: zod_1.z.string(),
+            post_office: zod_1.z.string({
+                required_error: "পোস্ট অফিস বাধ্যতামূলক প্রয়োজন",
+            }),
+            postal_code: zod_1.z.string({
+                required_error: "পোস্টাল কোড বাধ্যতামূলক প্রয়োজন",
+            }),
         }),
         permanent_address: zod_1.z.object({
-            division: zod_1.z.string(),
-            district: zod_1.z.string(),
-            sub_district: zod_1.z.string(),
+            division: zod_1.z.string({
+                required_error: "বিভাগ বাধ্যতামূলক প্রয়োজন",
+            }),
+            district: zod_1.z.string({
+                required_error: "জেলা বাধ্যতামূলক প্রয়োজন",
+            }),
+            sub_district: zod_1.z.string({
+                required_error: "উপজেলা বাধ্যতামূলক প্রয়োজন",
+            }),
             city_corporation: zod_1.z.string().optional(),
-            union: zod_1.z.string(),
-            ward_number: zod_1.z.string(),
+            union: zod_1.z.string({
+                required_error: "ইউনিয়ন বাধ্যতামূলক প্রয়োজন",
+            }),
+            ward_number: zod_1.z.string({
+                required_error: "ওয়ার্ড বাধ্যতামূলক প্রয়োজন",
+            }),
             mouza: zod_1.z.string().optional(),
-            village: zod_1.z.string(),
+            village: zod_1.z.string({
+                required_error: "গ্রাম বাধ্যতামূলক প্রয়োজন",
+            }),
             house_house_holding_number: zod_1.z.string().optional(),
-            post_office: zod_1.z.string(),
-            postal_code: zod_1.z.string(),
+            post_office: zod_1.z.string({
+                required_error: "পোস্ট অফিস বাধ্যতামূলক প্রয়োজন",
+            }),
+            postal_code: zod_1.z.string({
+                required_error: "পোস্টাল কোড বাধ্যতামূলক প্রয়োজন",
+            }),
         }),
         other_guardian_info: zod_1.z
             .object({
-            name: zod_1.z.string(),
+            name: zod_1.z.string({
+                required_error: "অবিভাবকের নাম বাধ্যতামূলক প্রয়োজন",
+            }),
             nid: zod_1.z.string().optional(),
             profession: zod_1.z.string().optional(),
-            relationship: zod_1.z.string(),
+            relationship: zod_1.z.string({
+                required_error: "অবিভাবকের সাথে সম্পর্ক বাধ্যতামূলক প্রয়োজন",
+            }),
             number: zod_1.z.string().optional(),
         })
             .optional(),
-        password: zod_1.z.string(),
+        password: zod_1.z.string({
+            required_error: "পাসওয়ার্ড বাধ্যতামূলক প্রয়োজন",
+        }),
     }),
 });
 const updateStudentZodSchema = zod_1.z.object({
@@ -144,12 +204,16 @@ const updateStudentZodSchema = zod_1.z.object({
             }))
                 .optional(),
             hobbies: zod_1.z.array(zod_1.z.string()).optional(),
-            books: zod_1.z.array(zod_1.z.string()),
+            books: zod_1.z.array(zod_1.z.string({
+                required_error: "পছন্দের বই বাধ্যতামূলক প্রয়োজন",
+            })),
             favorite_books: zod_1.z.array(zod_1.z.string()).optional(),
             financial_assistance_needed: zod_1.z
                 .enum([...userConstant_1.YN_VALUES])
                 .optional(),
-            opinion: zod_1.z.string(),
+            opinion: zod_1.z.string({
+                required_error: "মতামত বাধ্যতামূলক প্রয়োজন",
+            }),
         }),
         mother_info: zod_1.z.object({
             name_bangla: zod_1.z.string().optional(),
@@ -216,5 +280,5 @@ const updataAdmitionsData = zod_1.z.object({
 exports.StudentValidation = {
     createStudentZodSchema,
     updateStudentZodSchema,
-    updataAdmitionsData
+    updataAdmitionsData,
 };

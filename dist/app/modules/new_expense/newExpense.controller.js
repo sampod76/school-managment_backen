@@ -38,8 +38,8 @@ const getAllNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 
     });
 }));
 const getDailyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log('h1');
-    const result = yield newExpense_service_1.NewExpenseService.getDailyExpensesFromDb();
+    const timeRange = req.params.timeRange;
+    const result = yield newExpense_service_1.NewExpenseService.getDailyExpensesFromDb(timeRange);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,

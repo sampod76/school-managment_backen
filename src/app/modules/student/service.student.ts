@@ -67,7 +67,7 @@ const getAllStudentsFromDb = async (
 };
 
 const getSingleStudentFromDb = async (id: string): Promise<IStudent | null> => {
-  const result = await Student.findOne({ _id: id }).populate('student.photo');
+  const result = await Student.findOne({ _id: id }).populate('student.photo').populate("student.books");
   return result;
 };
 const createSingleStudentFromDb = async (

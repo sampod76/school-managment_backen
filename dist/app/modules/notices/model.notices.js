@@ -4,12 +4,13 @@ exports.Notice = exports.noticeSchema = void 0;
 const mongoose_1 = require("mongoose");
 exports.noticeSchema = new mongoose_1.Schema({
     title: { type: String, trim: true },
-    noticeDate: Date,
+    notice_date: Date,
     publishe_date: Date,
     document: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: 'FileUploade',
-    }, // Fix the type here
+    },
+    message: { type: String }, // Typo: 'body' should be
 }, {
     timestamps: true,
     toJSON: {

@@ -29,30 +29,88 @@ const createNewExpenseFromDb = (ExpenseData) => __awaiter(void 0, void 0, void 0
     }
     return createdCLass;
 });
-const getDailyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newExpense_model_1.ExpenseModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+const getDailyExpensesFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, function* () {
+    function addLeadingZero(number) {
+        if (number < 10) {
+            return number.toString().padStart(2, '0');
+        }
+        else {
+            return number.toString();
+        }
+    }
+    let allExpense;
+    const currentYear = new Date().getFullYear();
+    const presentMonth = new Date().getMonth() + 1;
+    const currentMonth = addLeadingZero(presentMonth);
+    const date = new Date().getDate();
+    const currentDate = addLeadingZero(date);
+    const currentDateWithMonthYear = `${currentYear}-${currentMonth}-${currentDate}`;
+    const currentDay = new Date().getDay() + 1;
+    if (timeRange === 'yearly') {
+        allExpense = yield newExpense_model_1.ExpenseModel.find({
+            date: { $lte: `${currentYear}-12-31`, $gte: `${currentYear}-01-01` },
+        }).sort({ _id: -1 });
+    }
+    else if (timeRange === 'monthly') {
+        allExpense = yield newExpense_model_1.ExpenseModel.find({
+            date: {
+                $lte: `${currentYear}-${currentMonth}-31`,
+                $gte: `${currentYear}-${currentMonth}-01`,
+            },
+        }).sort({ _id: -1 });
+    }
+    else if (timeRange === 'weekly') {
+        let subDate;
+        if (date > currentDay) {
+            subDate = date - currentDay;
+        }
+        else {
+            subDate = date;
+        }
+        allExpense = yield newExpense_model_1.ExpenseModel.find({
+            date: {
+                $lte: `${currentYear}-${currentMonth}-${currentDate}`,
+                $gte: `${currentYear}-${currentMonth}-${subDate}`,
+            },
+        }).sort({ _id: -1 });
+    }
+    else if (timeRange === 'daily') {
+        allExpense = yield newExpense_model_1.ExpenseModel.find({
+            date: currentDateWithMonthYear,
+        }).sort({ _id: -1 });
+    }
     if (!allExpense) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
     }
     return allExpense;
 });
+// const getDailyExpensesFromDb = async (): Promise<IExpense[] | null> => {
+//   const today = new Date();
+//   const year = today.getFullYear();
+//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
+//   const day = today.getDate().toString().padStart(2, '0');
+//   const formattedDate = `${year}-${month}-${day}`;
+//   const allExpense = await ExpenseModel.find({
+//     date: { $eq: formattedDate },
+//   }).exec();
+//   //   const totalAmount = allExpense.reduce((total, el) => {
+//   //     if (el.amount) {
+//   //       const amount = parseFloat(el.amount);
+//   //       if (!isNaN(amount)) {
+//   //         return total + amount;
+//   //       }
+//   //     }
+//   //     return total;
+//   //   }, 0);
+//   //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
+//   if (!allExpense) {
+//     throw new ApiError(
+//       httpStatus.EXPECTATION_FAILED,
+//       'failed to get all Expenses'
+//     );
+//   }
+//   return allExpense;
+// };
 const getWeeklyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
     const today = new Date();
     const year = today.getFullYear();

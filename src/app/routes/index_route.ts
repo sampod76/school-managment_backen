@@ -23,13 +23,13 @@ const moduleRoutes = [
     path: '/users',
     route: UserRoutes,
   },
-  //sampod
   {
+    //sampod
     path: '/students',
     route: StudentRoutes,
   },
-  //sampod
   {
+    //sampod
     path: '/teachers',
     route: TeacherRoutes,
   },
@@ -73,12 +73,13 @@ const moduleRoutes = [
     path: '/events',
     route: EventsRoute,
   },
-  //sampod
   {
+    //sampod
     path: '/notices',
     route: NoticeRoutes,
   },
   {
+    //sampod
     path: '/upload',
     route: FileUploadeRoute,
   },

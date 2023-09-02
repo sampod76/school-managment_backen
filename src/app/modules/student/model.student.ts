@@ -1,6 +1,5 @@
 import { Schema, model } from 'mongoose';
 
-import { ENUM_YN } from '../../../enums/usersEnums';
 import {
   CLASS_VALUES,
   GENDER_VALUES,
@@ -8,6 +7,7 @@ import {
   RELIGION_VALUES,
   YN_VALUES,
 } from '../../../constant/userConstant';
+import { ENUM_YN } from '../../../enums/usersEnums';
 import { IStudent, StudentModel } from './interface.student';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
@@ -44,9 +44,10 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
         trim: true,
         enum: YN_VALUES,
       },
-      photo: { 
+      photo: {
         type: Schema.Types.ObjectId,
-         ref: 'FileUploade' },
+        ref: 'FileUploade',
+      },
       previous_exam_info: [
         {
           class_name: {
@@ -61,7 +62,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
         },
       ],
       hobbies: [{ type: String, trim: true }],
-      books: [{ type: String, trim: true }],
+      books: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
       favorite_books: [{ type: String, trim: true }],
       financial_assistance_needed: { type: String, trim: true },
       opinion: { type: String, trim: true },

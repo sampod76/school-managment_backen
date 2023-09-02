@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Student = exports.studentSchema = void 0;
 const mongoose_1 = require("mongoose");
-const usersEnums_1 = require("../../../enums/usersEnums");
 const userConstant_1 = require("../../../constant/userConstant");
+const usersEnums_1 = require("../../../enums/usersEnums");
 exports.studentSchema = new mongoose_1.Schema({
     userId: { type: String, trim: true },
     admission_approved: {
@@ -39,7 +39,7 @@ exports.studentSchema = new mongoose_1.Schema({
         },
         photo: {
             type: mongoose_1.Schema.Types.ObjectId,
-            ref: 'FileUploade'
+            ref: 'FileUploade',
         },
         previous_exam_info: [
             {
@@ -55,7 +55,7 @@ exports.studentSchema = new mongoose_1.Schema({
             },
         ],
         hobbies: [{ type: String, trim: true }],
-        books: [{ type: String, trim: true }],
+        books: [{ type: mongoose_1.Schema.Types.ObjectId, ref: 'Book' }],
         favorite_books: [{ type: String, trim: true }],
         financial_assistance_needed: { type: String, trim: true },
         opinion: { type: String, trim: true },
