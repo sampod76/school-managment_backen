@@ -102,7 +102,7 @@ const updateStudentFromDb = async (
   id: string,
   payload: Partial<IStudent>
 ): Promise<IStudent | null> => {
-  const isExist = await Student.findOne({ id });
+  const isExist = await Student.findOne({ _id:id });
 
   if (!isExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Student not found !');
