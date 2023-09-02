@@ -14,6 +14,7 @@ const route_fileUploade_1 = require("../modules/fileUploade/route.fileUploade");
 const newExpense_route_1 = require("../modules/new_expense/newExpense.route");
 const newIncome_route_1 = require("../modules/new_income/newIncome.route");
 const route_notices_1 = require("../modules/notices/route.notices");
+const onlineAssignment_route_1 = require("../modules/online_assingment/onlineAssignment.route");
 const section_route_1 = require("../modules/section/section.route");
 const route_student_1 = require("../modules/student/route.student");
 const route_teacher_1 = require("../modules/teacher/route.teacher");
@@ -59,6 +60,10 @@ const moduleRoutes = [
     {
         path: '/books',
         route: book_route_1.BookRoutes,
+    },
+    {
+        path: '/online_assignments',
+        route: onlineAssignment_route_1.OnlineAssignmentRoutes,
     },
     {
         path: '/teacher_salary',

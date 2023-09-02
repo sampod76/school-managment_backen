@@ -152,8 +152,8 @@ const getDailyIncomeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, fu
     const currentMonth = addLeadingZero(presentMonth);
     const date = new Date().getDate();
     const currentDate = addLeadingZero(date);
+    const currentDay = new Date().getDay();
     const currentDateWithMonthYear = `${currentYear}-${currentMonth}-${currentDate}`;
-    const currentDay = new Date().getDay() + 1;
     if (timeRange === 'yearly') {
         allIncomes = yield newIncome_model_1.IncomeModel.find({
             date: { $lte: `${currentYear}-12-31`, $gte: `${currentYear}-01-01` },
@@ -173,8 +173,14 @@ const getDailyIncomeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, fu
             subDate = date - currentDay;
         }
         else {
-            subDate = date;
+            if (date > currentDay) {
+                subDate = date - currentDay;
+            }
+            else {
+                subDate = date - date + 1;
+            }
         }
+        subDate = addLeadingZero(subDate);
         allIncomes = yield newIncome_model_1.IncomeModel.find({
             date: {
                 $lte: `${currentYear}-${currentMonth}-${currentDate}`,

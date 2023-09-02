@@ -102,7 +102,7 @@ const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, fu
 });
 // module 15 --> 14,15 video
 const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
-    const isExist = yield model_student_1.Student.findOne({ id });
+    const isExist = yield model_student_1.Student.findOne({ _id: id });
     if (!isExist) {
         throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Student not found !');
     }

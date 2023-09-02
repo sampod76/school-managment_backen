@@ -19,7 +19,7 @@ exports.studentSchema = new mongoose_1.Schema({
         date_of_birth: { type: String, trim: true },
         birth_district: { type: String, trim: true },
         gender: { type: String, trim: true, enum: userConstant_1.GENDER_VALUES },
-        nationality: [{ type: String, trim: true }],
+        nationality: { type: String, trim: true },
         religion: { type: String, trim: true, enum: userConstant_1.RELIGION_VALUES },
         desired_class: {
             type: String,

@@ -65,8 +65,14 @@ const getDailyExpensesFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, 
             subDate = date - currentDay;
         }
         else {
-            subDate = date;
+            if (date > currentDay) {
+                subDate = date - currentDay;
+            }
+            else {
+                subDate = date - date + 1;
+            }
         }
+        subDate = addLeadingZero(subDate);
         allExpense = yield newExpense_model_1.ExpenseModel.find({
             date: {
                 $lte: `${currentYear}-${currentMonth}-${currentDate}`,

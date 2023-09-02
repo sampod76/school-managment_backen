@@ -204,17 +204,13 @@ const updateStudentZodSchema = zod_1.z.object({
             }))
                 .optional(),
             hobbies: zod_1.z.array(zod_1.z.string()).optional(),
-            books: zod_1.z.array(zod_1.z.string({
-                required_error: "পছন্দের বই বাধ্যতামূলক প্রয়োজন",
-            })),
+            books: zod_1.z.array(zod_1.z.string()).optional(),
             favorite_books: zod_1.z.array(zod_1.z.string()).optional(),
             financial_assistance_needed: zod_1.z
                 .enum([...userConstant_1.YN_VALUES])
                 .optional(),
-            opinion: zod_1.z.string({
-                required_error: "মতামত বাধ্যতামূলক প্রয়োজন",
-            }),
-        }),
+            opinion: zod_1.z.string().optional(),
+        }).optional(),
         mother_info: zod_1.z.object({
             name_bangla: zod_1.z.string().optional(),
             name_english: zod_1.z.string().optional(),
@@ -224,7 +220,7 @@ const updateStudentZodSchema = zod_1.z.object({
             phone_number: zod_1.z.string().optional(),
             profession: zod_1.z.string().optional(),
             year_of_death: zod_1.z.string().optional(),
-        }),
+        }).optional(),
         father_info: zod_1.z.object({
             name_bangla: zod_1.z.string().optional(),
             name_english: zod_1.z.string().optional(),
@@ -234,7 +230,7 @@ const updateStudentZodSchema = zod_1.z.object({
             phone_number: zod_1.z.string().optional(),
             profession: zod_1.z.string().optional(),
             year_of_death: zod_1.z.string().optional(),
-        }),
+        }).optional(),
         current_address: zod_1.z.object({
             division: zod_1.z.string().optional(),
             district: zod_1.z.string().optional(),
@@ -247,7 +243,7 @@ const updateStudentZodSchema = zod_1.z.object({
             house_house_holding_number: zod_1.z.string().optional(),
             post_office: zod_1.z.string().optional(),
             postal_code: zod_1.z.string().optional(),
-        }),
+        }).optional(),
         permanent_address: zod_1.z.object({
             division: zod_1.z.string().optional(),
             district: zod_1.z.string().optional(),
@@ -260,7 +256,7 @@ const updateStudentZodSchema = zod_1.z.object({
             house_house_holding_number: zod_1.z.string().optional(),
             post_office: zod_1.z.string().optional(),
             postal_code: zod_1.z.string().optional(),
-        }),
+        }).optional(),
         other_guardian_info: zod_1.z
             .object({
             name: zod_1.z.string().optional(),
