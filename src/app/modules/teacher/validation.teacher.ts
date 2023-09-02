@@ -73,9 +73,7 @@ const createTeacherZodSchema = z.object({
         .enum([...BLOOD_GROUP_TYPE_VALUES] as [string, ...string[]])
         .optional(),
       photo: z
-        .string({
-          required_error: 'শিক্ষকের ছবি বাধ্যতামূলক প্রয়োজন',
-        })
+        .string()
         .min(1)
         .max(50)
         .trim(),
@@ -357,7 +355,7 @@ const createTeacherZodSchema = z.object({
             .max(50)
             .trim()
         ),
-        employment_period: z.array(z.string().min(1).max(50).trim()),
+        employment_period: z.array(z.string().min(1).max(50).trim()).optional(),
       })
     ),
     training_courses: z.array(
@@ -370,7 +368,7 @@ const createTeacherZodSchema = z.object({
           .max(50)
           .trim(),
         course_subject: z.string().min(1).max(50).trim().optional(),
-        course_duration: z.array(z.string().min(1).max(50).trim()),
+        course_duration: z.array(z.string().min(1).max(50).trim()).optional(),
         course_details: z.string().min(1).max(50).trim().optional(),
         certificate_upload: z.string().max(50).trim().optional(),
       })
