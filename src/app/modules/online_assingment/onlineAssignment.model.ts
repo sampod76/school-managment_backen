@@ -53,11 +53,9 @@ const onlineAssignmentScheema = new Schema<IOnlineAssignment>({
   },
   examPublished: {
     type: Boolean,
-    required: true,
   },
   resultPublished: {
     type: Boolean,
-    required: true,
   },
   status: {
     type: String,
