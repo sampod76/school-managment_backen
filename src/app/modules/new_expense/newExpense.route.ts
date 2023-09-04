@@ -5,10 +5,7 @@ import { NewExpenseValidation } from './newExpense.validation';
 
 const router = express.Router();
 
-router.get('/:timeRange', newExpenseController.getDailyExpense);
-router.get('/weekly', newExpenseController.getWeeklyExpense);
-router.get('/monthly', newExpenseController.getMonthlyExpense);
-router.get('/yearly', newExpenseController.getYearlyExpense);
+router.get('/:timeRange', newExpenseController.getExpenseTimeRange);
 router.get('/:id', newExpenseController.getSingleNewExpense);
 router.get('/', newExpenseController.getAllNewExpense);
 router.post(

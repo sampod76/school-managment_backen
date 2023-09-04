@@ -28,39 +28,9 @@ const getAllNewExpense = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
-const getDailyExpense = catchAsync(async (req: Request, res: Response) => {
+const getExpenseTimeRange = catchAsync(async (req: Request, res: Response) => {
   const timeRange = req.params.timeRange;
-  const result = await NewExpenseService.getDailyExpensesFromDb(timeRange);
-
-  sendResponse<IExpense[]>(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Expense retrieved successfully',
-    data: result,
-  });
-});
-const getWeeklyExpense = catchAsync(async (req: Request, res: Response) => {
-  const result = await NewExpenseService.getWeeklyExpensesFromDb();
-
-  sendResponse<IExpense[]>(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Expense retrieved successfully',
-    data: result,
-  });
-});
-const getMonthlyExpense = catchAsync(async (req: Request, res: Response) => {
-  const result = await NewExpenseService.getMonthlyExpensesFromDb();
-
-  sendResponse<IExpense[]>(res, {
-    success: true,
-    statusCode: httpStatus.OK,
-    message: 'Expense retrieved successfully',
-    data: result,
-  });
-});
-const getYearlyExpense = catchAsync(async (req: Request, res: Response) => {
-  const result = await NewExpenseService.getYearlyExpensesFromDb();
+  const result = await NewExpenseService.getExpensesTimeRangeFromDb(timeRange);
 
   sendResponse<IExpense[]>(res, {
     success: true,
@@ -117,10 +87,7 @@ const deleteNewExpense = catchAsync(async (req: Request, res: Response) => {
 
 export const newExpenseController = {
   createNewExpense,
-  getDailyExpense,
-  getWeeklyExpense,
-  getMonthlyExpense,
-  getYearlyExpense,
+  getExpenseTimeRange,
   getAllNewExpense,
   getSingleNewExpense,
   updateNewExpense,
