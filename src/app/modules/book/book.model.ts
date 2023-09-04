@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 import { IBook } from './book.interface';
 
-export const  STATUS =['active', 'inactive']
+export const STATUS = ['active', 'inactive'];
 
 const bookSchema = new Schema<IBook>(
   {
@@ -16,7 +16,7 @@ const bookSchema = new Schema<IBook>(
     },
     bookCode: {
       type: String,
-      // required: true,
+      required: true,
     },
     class: {
       type: Schema.Types.ObjectId,

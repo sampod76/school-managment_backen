@@ -13,13 +13,16 @@ router
     bookController.createBook
   );
 
+router.patch(
+  '/:id',
+  validateRequestZod(BookValidation.updateBookZodSchema),
+  bookController.updateBook
+);
+
 router
   .route('/:id')
   .get(bookController.getSingleBook)
-  .patch(
-    validateRequestZod(BookValidation.updateBookZodSchema),
-    bookController.updateBook
-  )
+
   .delete(bookController.deleteBook);
 
 export const BookRoutes = router;
