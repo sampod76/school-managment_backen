@@ -8,9 +8,11 @@ const createBookZodSchema = z.object({
     status: z.enum(['active', 'inactive'], {
       required_error: 'Status is required',
     }),
-    bookCode: z.string({
-      required_error: 'Book code is required',
-    }).optional(),
+    bookCode: z
+      .string({
+        required_error: 'Book code is required',
+      })
+      .optional(),
     class: z
       .string({
         required_error: 'Class ID is required',

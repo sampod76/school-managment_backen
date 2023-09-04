@@ -3,7 +3,7 @@ import ApiError from '../../errors/ApiError';
 import { IBook } from './book.interface';
 import { BookModel } from './book.model';
 
-const createBookFromDb = async(BookData: IBook): Promise<IBook | null> => {
+const createBookFromDb = async (BookData: IBook): Promise<IBook | null> => {
   const createdCLass = BookModel.create(BookData);
   if (!createdCLass) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'failed to create Book');
@@ -12,7 +12,7 @@ const createBookFromDb = async(BookData: IBook): Promise<IBook | null> => {
 };
 
 const getAllBooksFromDb = async (): Promise<IBook[] | null> => {
-  const allBooks = BookModel.find({}).populate("class");
+  const allBooks = BookModel.find({}).populate('class');
   if (!allBooks) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
