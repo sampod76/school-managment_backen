@@ -6,6 +6,7 @@ import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
 import { EventsRoute } from '../modules/event/event.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
+import { MeetingRoutes } from '../modules/meeting/meeting.route';
 import { ExpenseRoutes } from '../modules/new_expense/newExpense.route';
 import { EarningRoutes } from '../modules/new_income/newIncome.route';
 import { NoticeRoutes } from '../modules/notices/route.notices';
@@ -82,6 +83,10 @@ const moduleRoutes = [
     //sampod
     path: '/notices',
     route: NoticeRoutes,
+  },
+  {
+    path: '/meetings',
+    route: MeetingRoutes,
   },
   {
     //sampod

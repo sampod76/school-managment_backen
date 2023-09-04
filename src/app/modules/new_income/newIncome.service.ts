@@ -2,7 +2,6 @@ import httpStatus from 'http-status';
 import ApiError from '../../errors/ApiError';
 import IIncome from './newIncome.interface';
 import { IncomeModel } from './newIncome.model';
-// import test from './test';
 
 const createNewIncomeFromDb = async (
   IncomeData: IIncome
@@ -26,135 +25,6 @@ const createNewIncomeFromDb = async (
   return createdCLass;
 };
 
-// const getDailyIncomeFromDb = async (): Promise<IIncome[] | null> => {
-//   const today = new Date();
-//   const year = today.getFullYear();
-//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
-//   const day = today.getDate().toString().padStart(2, '0');
-
-//   const formattedDate = `${year}-${month}-${day}`;
-//   // console.log(formattedDate, 'date');
-
-//   const AllIncomes = await IncomeModel.find({
-//     date: { $eq: formattedDate },
-//   }).exec();
-
-//   // const totalAmount = AllIncomes.reduce((total, el) => {
-//   //   if (el.amount) {
-//   //     const amount = parseFloat(el.amount);
-//   //     if (!isNaN(amount)) {
-//   //       return total + amount;
-//   //     }
-//   //   }
-//   //   return total;
-//   // }, 0);
-
-//   if (!AllIncomes) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Incomes'
-//     );
-//   }
-//   return AllIncomes;
-// };
-
-const getWeeklyIncomesFromDb = async (): Promise<IIncome[] | null> => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-
-  const allExpense = await IncomeModel.find({
-    date: { $eq: formattedDate },
-  }).exec();
-
-  //   const totalAmount = allExpense.reduce((total, el) => {
-  //     if (el.amount) {
-  //       const amount = parseFloat(el.amount);
-  //       if (!isNaN(amount)) {
-  //         return total + amount;
-  //       }
-  //     }
-  //     return total;
-  //   }, 0);
-
-  //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-
-  if (!allExpense) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to get all Expenses'
-    );
-  }
-  return allExpense;
-};
-const getMonthlyIncomesFromDb = async (): Promise<IIncome[] | null> => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-
-  const allExpense = await IncomeModel.find({
-    date: { $eq: formattedDate },
-  }).exec();
-
-  //   const totalAmount = allExpense.reduce((total, el) => {
-  //     if (el.amount) {
-  //       const amount = parseFloat(el.amount);
-  //       if (!isNaN(amount)) {
-  //         return total + amount;
-  //       }
-  //     }
-  //     return total;
-  //   }, 0);
-
-  //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-
-  if (!allExpense) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to get all Expenses'
-    );
-  }
-  return allExpense;
-};
-const getYearlyIncomesFromDb = async (): Promise<IIncome[] | null> => {
-  const today = new Date();
-  const year = today.getFullYear();
-  const month = (today.getMonth() + 1).toString().padStart(2, '0');
-  const day = today.getDate().toString().padStart(2, '0');
-
-  const formattedDate = `${year}-${month}-${day}`;
-
-  const allExpense = await IncomeModel.find({
-    date: { $eq: formattedDate },
-  }).exec();
-
-  //   const totalAmount = allExpense.reduce((total, el) => {
-  //     if (el.amount) {
-  //       const amount = parseFloat(el.amount);
-  //       if (!isNaN(amount)) {
-  //         return total + amount;
-  //       }
-  //     }
-  //     return total;
-  //   }, 0);
-
-  //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-
-  if (!allExpense) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to get all Expenses'
-    );
-  }
-  return allExpense;
-};
-
 const getAllNewIncomesFromDb = async (): Promise<IIncome[] | null> => {
   const allIncomes = await IncomeModel.find({}).sort({ _id: -1 });
 
@@ -168,7 +38,7 @@ const getAllNewIncomesFromDb = async (): Promise<IIncome[] | null> => {
   }
   return allIncomes;
 };
-const getDailyIncomeFromDb = async (
+const getIncomeTimeRangeFromDb = async (
   timeRange: string
 ): Promise<IIncome[] | null> => {
   function addLeadingZero(number: number) {
@@ -267,10 +137,7 @@ const deleteNewIncomeFromDb = async (id: string): Promise<IIncome | null> => {
 
 export const NewIncomeService = {
   createNewIncomeFromDb,
-  getDailyIncomeFromDb,
-  getWeeklyIncomesFromDb,
-  getMonthlyIncomesFromDb,
-  getYearlyIncomesFromDb,
+  getIncomeTimeRangeFromDb,
   getAllNewIncomesFromDb,
   getSingleNewIncomeFromDb,
   updateNewIncomeFromDb,
