@@ -5,6 +5,7 @@ import { AuthRoutes } from '../modules/auth/auth.route';
 import { BookRoutes } from '../modules/book/book.route';
 import { ClassRoutes } from '../modules/class/class.route';
 import { EventsRoute } from '../modules/event/event.route';
+import { ExamRoutes } from '../modules/exam/exam.route';
 import { FileUploadeRoute } from '../modules/fileUploade/route.fileUploade';
 import { MeetingRoutes } from '../modules/meeting/meeting.route';
 import { ExpenseRoutes } from '../modules/new_expense/newExpense.route';
@@ -78,6 +79,10 @@ const moduleRoutes = [
   {
     path: '/events',
     route: EventsRoute,
+  },
+  {
+    path: '/exam',
+    route: ExamRoutes,
   },
   {
     //sampod
