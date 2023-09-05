@@ -5,20 +5,6 @@ import { ClassValidation } from './class.validation';
 
 const router = express.Router();
 
-// router.get('/:id', classController.getSingleClass);
-// router.get('/', classController.getAllClasses);
-// router.post(
-//   '/create-class',
-//   validateRequestZod(ClassValidation.createClassZodSchema),
-//   classController.createClass
-// );
-// router.patch(
-//   '/:id',
-//   validateRequestZod(ClassValidation.updateClassZodSchema),
-//   classController.updateClass
-// );
-// router.delete('/:id', classController.deleteClass);
-
 router
   .route('/')
   .get(classController.getAllClasses)
