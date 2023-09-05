@@ -85,7 +85,7 @@ const moduleRoutes = [
     route: NoticeRoutes,
   },
   {
-    path: '/meetings',
+    path: '/meeting',
     route: MeetingRoutes,
   },
   {

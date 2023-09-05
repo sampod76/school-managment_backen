@@ -6,7 +6,14 @@ import { MeetingModel } from './meeting.model';
 const createMeetingFromDb = async (
   MeetingData: IMeeting
 ): Promise<IMeeting | null> => {
-  console.log(MeetingData);
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = (today.getMonth() + 1).toString().padStart(2, '0');
+  const day = today.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day}`;
+
+  MeetingData.date = formattedDate;
 
   const createdCLass = MeetingModel.create(MeetingData);
   if (!createdCLass) {
