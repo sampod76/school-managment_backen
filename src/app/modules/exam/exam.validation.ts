@@ -17,11 +17,11 @@ const createExamInformationZodSchema = z.object({
     status: z.enum(['active', 'inactive']).optional(),
     subject: z.string({
       required_error: 'Subject is required',
-    }), // You might need to adjust the validation for subject based on your actual schema
+    }),
     teacher: z.string({
       required_error: 'Teacher is required',
     }),
-  }), // You might need to adjust the validation for teacher based on your actual schema
+  }),
 });
 
 const updateExamInformationZodSchema = z.object({

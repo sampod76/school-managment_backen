@@ -4,5 +4,5 @@ export type IWorkPlan = {
   duration_date: string;
   plan_date: string;
 
-  status: 'active' | 'inactive';
+  // status: 'active' | 'inactive';
 };

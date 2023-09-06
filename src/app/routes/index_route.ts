@@ -14,6 +14,7 @@ import { NoticeRoutes } from '../modules/notices/route.notices';
 import { OnlineAssignmentRoutes } from '../modules/online_assingment/onlineAssignment.route';
 import { SectionRoutes } from '../modules/section/section.route';
 
+import { ClassRoutineRoutes } from '../modules/class-routine/classRoutine.route';
 import { PendingStudentRoutes } from '../modules/student/pendingStudent/route.student';
 import { StudentRoutes } from '../modules/student/route.student';
 import { TeacherRoutes } from '../modules/teacher/route.teacher';
@@ -90,6 +91,10 @@ const moduleRoutes = [
   {
     path: '/exam',
     route: ExamRoutes,
+  },
+  {
+    path: '/class_routine',
+    route: ClassRoutineRoutes,
   },
   {
     //sampod
