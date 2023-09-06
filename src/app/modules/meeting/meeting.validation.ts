@@ -2,16 +2,19 @@ import { z } from 'zod';
 
 const createMeetingZodSchema = z.object({
   body: z.object({
-    name: z.string({
-      required_error: 'Meeting Name is required',
+    meeting_subject: z.string({
+      required_error: 'Meeting subject is required',
     }),
-    date: z.string({
-      required_error: 'Date is required',
+    meeting_place: z.string({
+      required_error: 'Meeting place is required',
     }),
-    subject: z.string({
-      required_error: 'Meeting number is required',
+    meeting_date: z.string({
+      required_error: 'Meeting date is required',
     }),
-    participant: z.array(
+    details: z.string({
+      required_error: 'Meeting text is required',
+    }),
+    participants: z.array(
       z.string().refine(value => value.length > 0, {
         message: 'At least one participant is required', // Custom error message for participants
       })
