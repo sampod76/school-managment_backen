@@ -15,9 +15,9 @@ const createStudentZodSchema = z.object({
     userId: z.string({
       required_error: "ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন",
     }),
-    admission_approved: z
-      .enum([...YN_VALUES] as [string, ...string[]])
-      .optional(),
+    // admission_approved: z
+    //   .enum([...YN_VALUES] as [string, ...string[]])
+    //   .optional(),
     student: z.object({
       name_bangla: z.string({
         required_error: "শিক্ষার্থীর বাংলা নাম অবশ্যই দিতে হবে",
@@ -286,14 +286,15 @@ const updateStudentZodSchema = z.object({
   }),
 });
 
-const updataAdmitionsData = z.object({
+const updateApprovedAdmition = z.object({
   body: z.object({
-    admission_approved: z.enum([...YN_VALUES] as [string, ...string[]]),
+    // admission_approved: z.enum([...YN_VALUES] as [string, ...string[]]),
+    userId: z.string({required_error:"ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন"}),
   }),
 });
 
 export const StudentValidation = {
   createStudentZodSchema,
   updateStudentZodSchema,
-  updataAdmitionsData,
+  updateApprovedAdmition,
 };

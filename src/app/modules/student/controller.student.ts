@@ -62,19 +62,7 @@ const updateStudent = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
-const approvedStudentAdminssion = catchAsync(async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const updatedData = req.body;
 
-  const result = await StudentService.approvedStudentAdminssionFromDb(id, updatedData);
-
-  sendResponse<any>(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'অ্যাপ্লিকেশন আপডেট সফল হয়েছে',
-    data: result,
-  });
-});
 
 const deleteStudent = catchAsync(async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -95,5 +83,5 @@ export const StudentController = {
   updateStudent,
   deleteStudent,
   createSingleStudent,
-  approvedStudentAdminssion
+ 
 };

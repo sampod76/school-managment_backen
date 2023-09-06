@@ -25,6 +25,8 @@ export const studentSearchableFields = [
 export const studentFilterableFields = [
   'searchTerm',
   'id',
+  "count", //"true","false"
+  "status",
   'bloodGroup',
   'email',
   'contactNo',

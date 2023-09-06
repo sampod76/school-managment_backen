@@ -2,7 +2,7 @@
 
 import httpStatus from 'http-status';
 import { SortOrder } from 'mongoose';
-import { ENUM_USER_ROLE, ENUM_YN } from '../../../enums/usersEnums';
+import { ENUM_USER_ROLE } from '../../../enums/usersEnums';
 import { paginationHelper } from '../../../helper/paginationHelper';
 import ApiError from '../../errors/ApiError';
 import { IGenericResponse } from '../../interface/common';
@@ -178,26 +178,7 @@ const updateStudentFromDb = async (
   return result;
 };
 
-const approvedStudentAdminssionFromDb = async (
-  id: string,
-  data: Partial<IStudent>
-): Promise<Partial<IStudent> | null> => {
-  let result = null;
-  if (data?.admission_approved === ENUM_YN.NO) {
-    result = await Student.findByIdAndDelete(id);
-    if (!result) {
-      throw new ApiError(404, 'কোন কিছু ভুল হচ্ছে');
-    }
-  } else {
-    result = await Student.findOneAndUpdate({ _id: id }, data, {
-      new: true,
-    });
-  }
-  if (!result) {
-    throw new ApiError(400, 'কোন কিছু ভুল হচ্ছে');
-  }
-  return result;
-};
+
 
 const deleteStudentFromDb = async (id: string): Promise<IStudent | null> => {
   const result = await Student.findByIdAndDelete(id);
@@ -210,5 +191,5 @@ export const StudentService = {
   getSingleStudentFromDb,
   updateStudentFromDb,
   deleteStudentFromDb,
-  approvedStudentAdminssionFromDb,
+ 
 };

@@ -7,18 +7,17 @@ import {
   RELIGION_VALUES,
   YN_VALUES,
 } from '../../../constant/userConstant';
-import { ENUM_YN } from '../../../enums/usersEnums';
 import { IStudent, StudentModel } from './interface.student';
 
 export const studentSchema = new Schema<IStudent, StudentModel>(
   {
-    userId: { type: String, trim: true },
-    admission_approved: {
-      type: String,
-      trim: true,
-      enum: YN_VALUES,
-      default: ENUM_YN.NO,
-    },
+    userId: { type: String, trim: true, unique: true },
+    // admission_approved: {
+    //   type: String,
+    //   trim: true,
+    //   enum: YN_VALUES,
+    //   default: ENUM_YN.NO,
+    // },
     student: {
       name_bangla: { type: String, trim: true },
       name_english: { type: String, trim: true },
@@ -131,3 +130,7 @@ export const studentSchema = new Schema<IStudent, StudentModel>(
 );
 
 export const Student = model<IStudent>('Student', studentSchema);
+export const Pending_student = model<IStudent>(
+  'Pending_student',
+  studentSchema
+);

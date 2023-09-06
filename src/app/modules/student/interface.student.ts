@@ -50,7 +50,7 @@ export type IPreviousExamInfo = {
 
 export type IStudent = {
   userId: string;
-  admission_approved?: yesNoType;
+  // admission_approved?: yesNoType;
   student: {
     name_bangla: string;
     name_english: string;

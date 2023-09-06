@@ -7,11 +7,13 @@ import {
   YN_VALUES,
 } from '../../../constant/userConstant';
 import { ITeacher, TeacherModel } from './interface.teacher';
+import { ENUM_YN } from '../../../enums/usersEnums';
 
 export const teacherSchema = new Schema<ITeacher, TeacherModel>(
   {
+    userId: { type: String, trim: true, unique: true },
     password: { type: String, trim: true },
-    admission_approved: { type: String, trim: true }, // Assuming `yesNoType` is a string-based type
+    admission_approved: { type: String, trim: true, default: ENUM_YN.YES }, // Assuming `yesNoType` is a string-based type
     teacher_info: {
       name_bangla: { type: String, trim: true },
       name_english: { type: String, trim: true },

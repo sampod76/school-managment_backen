@@ -24,7 +24,7 @@ router
 router
   .route('/approved-Teacher-adminssion')
   .patch(
-    validateRequestZod(TeacherValidation.updataAdmitionsData),
+    validateRequestZod(TeacherValidation.updateApprovedAdmition),
     TeacherController.approvedTeacherAdminssion
   );
 

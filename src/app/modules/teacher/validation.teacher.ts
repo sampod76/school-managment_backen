@@ -74,7 +74,7 @@ const createTeacherZodSchema = z.object({
         .optional(),
       photo: z
         .string()
-        .min(1)
+      
         .max(50)
         .trim(),
       minority_ethnicity: z.enum([...YN_VALUES] as [string, ...string[]]),
@@ -85,7 +85,7 @@ const createTeacherZodSchema = z.object({
         .min(1)
         .max(20)
         .trim(),
-      opinion: z.string().min(1).max(3000).trim().optional(),
+      opinion: z.string().max(3000).trim().optional(),
     }),
 
     mother_info: z.object({
@@ -387,31 +387,31 @@ const updateTeacherZodSchema = z.object({
       name_bangla: z.string().max(50).trim().optional(),
       name_english: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       birth_registration_number: z.string().max(50).trim().optional(),
       date_of_birth: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       birth_district: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       gender: z.enum([...GENDER_VALUES] as [string, ...string[]]),
       nationality: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       religion: z.enum([...RELIGION_VALUES] as [string, ...string[]]),
       subject: z.array(
         z
           .string()
-          .min(1)
+         
           .max(255)
           .trim() .optional()
       ),
@@ -424,7 +424,7 @@ const updateTeacherZodSchema = z.object({
         .optional(),
       photo: z
         .string()
-        .min(1)
+       
         .max(255)
         .trim() .optional(),
       minority_ethnicity: z.enum([...YN_VALUES] as [string, ...string[]]),
@@ -433,29 +433,29 @@ const updateTeacherZodSchema = z.object({
     mother_info: z.object({
       name_bangla: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       name_english: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       nid: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       date_of_birth: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       birth_registration: z.string().max(50).trim().optional(),
       phone_number: z.string().max(50).trim().optional(),
       profession: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       year_of_death: z.string().min(1).max(50).trim(),
@@ -464,33 +464,33 @@ const updateTeacherZodSchema = z.object({
     father_info: z.object({
       name_bangla: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       name_english: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       nid: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       date_of_birth: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       birth_registration: z.string().max(50).trim().optional(),
       phone_number: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       profession: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       year_of_death: z.string().min(1).max(50).trim(),
@@ -499,38 +499,38 @@ const updateTeacherZodSchema = z.object({
     current_address: z.object({
       division: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       district: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       sub_district: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       union: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       ward_number: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       village: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       house_house_holding_number: z.string().max(50).trim().optional(),
       post_office: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       postal_code: z.string().max(50).trim().optional(),
@@ -539,38 +539,38 @@ const updateTeacherZodSchema = z.object({
     permanent_address: z.object({
       division: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       district: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       sub_district: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       union: z
         .string()
-        .min(1)
+       
         .max(50)
         .trim() .optional(),
       ward_number: z
         .string()
-        .min(1)
+        
         .max(50)
         .trim() .optional(),
       village: z
         .string()
-        .min(1)
+        
         .max(50)
         .trim() .optional(),
       house_house_holding_number: z.string().max(255).trim().optional(),
       post_office: z
         .string()
-        .min(1)
+        
         .max(50)
         .trim() .optional(),
       postal_code: z.string().max(255).trim().optional(),
@@ -589,22 +589,22 @@ const updateTeacherZodSchema = z.object({
       z.object({
         exam_name: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         board: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         institution: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         result: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         certificate_upload: z.string().max(255).trim().optional(),
@@ -614,24 +614,24 @@ const updateTeacherZodSchema = z.object({
       z.object({
         institution: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         designation: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
         subject: z.array(
           z
             .string()
-            .min(1)
+            
             .max(50)
             .trim() .optional()
         ),
         employment_period: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
       })
@@ -640,16 +640,16 @@ const updateTeacherZodSchema = z.object({
       z.object({
         course_name: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
-        course_subject: z.string().min(1).max(255).trim().optional(),
+        course_subject: z.string().max(255).trim().optional(),
         course_duration: z
           .string()
-          .min(1)
+          
           .max(50)
           .trim() .optional(),
-        course_details: z.string().min(1).max(255).trim().optional(),
+        course_details: z.string().max(255).trim().optional(),
         certificate_upload: z.string().max(255).trim().optional(),
       })
     ),
@@ -657,7 +657,7 @@ const updateTeacherZodSchema = z.object({
   }),
 });
 
-const updataAdmitionsData = z.object({
+const updateApprovedAdmition = z.object({
   body: z.object({
     admission_approved: z.enum([...YN_VALUES] as [string, ...string[]]),
   }),
@@ -666,5 +666,5 @@ const updataAdmitionsData = z.object({
 export const TeacherValidation = {
   createTeacherZodSchema,
   updateTeacherZodSchema,
-  updataAdmitionsData,
+  updateApprovedAdmition,
 };
