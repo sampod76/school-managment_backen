@@ -17,9 +17,9 @@ const createWorkPlanZodSchema = z.object({
       required_error: 'Teacher designation is required',
     }),
 
-    status: z.enum(['active', 'inactive'], {
-      required_error: 'Status is required',
-    }),
+    // status: z.enum(['active', 'inactive'], {
+    //   required_error: 'Status is required',
+    // }),
   }),
 });
 
@@ -30,7 +30,7 @@ const updateWorkPlanZodSchema = z.object({
     duration_date: z.string().optional(),
     plan_date: z.string().optional(),
 
-    status: z.enum(['active', 'inactive']).optional(),
+    // status: z.enum(['active', 'inactive']).optional(),
   }),
 });
 

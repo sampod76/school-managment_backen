@@ -1,5 +1,4 @@
 import { Schema, model } from 'mongoose';
-import { STATUS } from '../../interface/enumType';
 import { IWorkPlan } from './workPlan.interface';
 
 const workPlanSchema = new Schema<IWorkPlan>(
@@ -21,11 +20,11 @@ const workPlanSchema = new Schema<IWorkPlan>(
       type: String,
       required: true,
     },
-    status: {
-      type: String,
-      enum: STATUS,
-      required: true,
-    },
+    // status: {
+    //   type: String,
+    //   // enum: STATUS,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
