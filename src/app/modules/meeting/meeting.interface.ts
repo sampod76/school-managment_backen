@@ -1,8 +1,9 @@
 export type IMeeting = {
-  name: string;
-  date: string; // You can use a specific date format here
-  subject: string;
-  participant: string[];
+  meeting_subject: string;
+  meeting_place: string;
+  meeting_date: string; // You can use a specific date format here
+  details: string;
+  participants: string[];
 };
 
 export default IMeeting;

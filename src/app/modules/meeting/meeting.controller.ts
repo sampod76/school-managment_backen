@@ -18,7 +18,6 @@ const createMeeting = catchAsync(async (req: Request, res: Response) => {
 });
 
 const getAllMeeting = catchAsync(async (req: Request, res: Response) => {
-  console.log('get call');
   const result = await MeetingService.getAllMeetingFromDb();
 
   sendResponse<IMeeting[]>(res, {

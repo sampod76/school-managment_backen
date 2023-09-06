@@ -13,7 +13,7 @@ const createMeetingFromDb = async (
 
   const formattedDate = `${year}-${month}-${day}`;
 
-  MeetingData.date = formattedDate;
+  MeetingData.meeting_date = formattedDate;
 
   const createdCLass = MeetingModel.create(MeetingData);
   if (!createdCLass) {
