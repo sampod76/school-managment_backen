@@ -13,6 +13,8 @@ import { EarningRoutes } from '../modules/new_income/newIncome.route';
 import { NoticeRoutes } from '../modules/notices/route.notices';
 import { OnlineAssignmentRoutes } from '../modules/online_assingment/onlineAssignment.route';
 import { SectionRoutes } from '../modules/section/section.route';
+
+import { PendingStudentRoutes } from '../modules/student/pendingStudent/route.student';
 import { StudentRoutes } from '../modules/student/route.student';
 import { TeacherRoutes } from '../modules/teacher/route.teacher';
 import { UserRoutes } from '../modules/users/user.route';
@@ -30,6 +32,11 @@ const moduleRoutes = [
     //sampod
     path: '/students',
     route: StudentRoutes,
+  },
+  {
+    //sampod
+    path: '/pending-students',
+    route: PendingStudentRoutes,
   },
   {
     //sampod
