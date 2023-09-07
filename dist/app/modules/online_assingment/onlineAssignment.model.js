@@ -54,11 +54,9 @@ const onlineAssignmentScheema = new mongoose_1.Schema({
     },
     examPublished: {
         type: Boolean,
-        required: true,
     },
     resultPublished: {
         type: Boolean,
-        required: true,
     },
     status: {
         type: String,

@@ -29,7 +29,7 @@ const createNewExpenseFromDb = (ExpenseData) => __awaiter(void 0, void 0, void 0
     }
     return createdCLass;
 });
-const getDailyExpensesFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, function* () {
+const getExpensesTimeRangeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, function* () {
     function addLeadingZero(number) {
         if (number < 10) {
             return number.toString().padStart(2, '0');
@@ -90,105 +90,6 @@ const getDailyExpensesFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, 
     }
     return allExpense;
 });
-// const getDailyExpensesFromDb = async (): Promise<IExpense[] | null> => {
-//   const today = new Date();
-//   const year = today.getFullYear();
-//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
-//   const day = today.getDate().toString().padStart(2, '0');
-//   const formattedDate = `${year}-${month}-${day}`;
-//   const allExpense = await ExpenseModel.find({
-//     date: { $eq: formattedDate },
-//   }).exec();
-//   //   const totalAmount = allExpense.reduce((total, el) => {
-//   //     if (el.amount) {
-//   //       const amount = parseFloat(el.amount);
-//   //       if (!isNaN(amount)) {
-//   //         return total + amount;
-//   //       }
-//   //     }
-//   //     return total;
-//   //   }, 0);
-//   //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-//   if (!allExpense) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Expenses'
-//     );
-//   }
-//   return allExpense;
-// };
-const getWeeklyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newExpense_model_1.ExpenseModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
-const getMonthlyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newExpense_model_1.ExpenseModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
-const getYearlyExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newExpense_model_1.ExpenseModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
 const getAllNewExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
     // const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
     const allExpense = yield newExpense_model_1.ExpenseModel.find({}).sort({ _id: -1 });
@@ -223,10 +124,7 @@ const deleteNewExpenseFromDb = (id) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.NewExpenseService = {
     createNewExpenseFromDb,
-    getDailyExpensesFromDb,
-    getWeeklyExpensesFromDb,
-    getMonthlyExpensesFromDb,
-    getYearlyExpensesFromDb,
+    getExpensesTimeRangeFromDb,
     getAllNewExpensesFromDb,
     getSingleNewExpenseFromDb,
     updateNewExpenseFromDb,

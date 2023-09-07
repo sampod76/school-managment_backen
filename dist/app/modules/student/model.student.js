@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Student = exports.studentSchema = void 0;
+exports.Pending_student = exports.Student = exports.studentSchema = void 0;
 const mongoose_1 = require("mongoose");
 const userConstant_1 = require("../../../constant/userConstant");
-const usersEnums_1 = require("../../../enums/usersEnums");
 exports.studentSchema = new mongoose_1.Schema({
-    userId: { type: String, trim: true },
-    admission_approved: {
-        type: String,
-        trim: true,
-        enum: userConstant_1.YN_VALUES,
-        default: usersEnums_1.ENUM_YN.NO,
-    },
+    userId: { type: String, trim: true, unique: true },
+    // admission_approved: {
+    //   type: String,
+    //   trim: true,
+    //   enum: YN_VALUES,
+    //   default: ENUM_YN.NO,
+    // },
     student: {
         name_bangla: { type: String, trim: true },
         name_english: { type: String, trim: true },
@@ -121,3 +120,4 @@ exports.studentSchema = new mongoose_1.Schema({
     },
 });
 exports.Student = (0, mongoose_1.model)('Student', exports.studentSchema);
+exports.Pending_student = (0, mongoose_1.model)('Pending_student', exports.studentSchema);

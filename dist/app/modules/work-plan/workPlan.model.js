@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.WorkPlanModel = void 0;
 const mongoose_1 = require("mongoose");
-const enumType_1 = require("../../interface/enumType");
 const workPlanSchema = new mongoose_1.Schema({
     work_plan_name: {
         type: String,
@@ -20,11 +19,11 @@ const workPlanSchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    status: {
-        type: String,
-        enum: enumType_1.STATUS,
-        required: true,
-    },
+    // status: {
+    //   type: String,
+    //   // enum: STATUS,
+    //   required: true,
+    // },
 }, {
     timestamps: true,
 });

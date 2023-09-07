@@ -63,17 +63,6 @@ const updateStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
         data: result,
     });
 }));
-const approvedStudentAdminssion = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const updatedData = req.body;
-    const result = yield service_student_1.StudentService.approvedStudentAdminssionFromDb(id, updatedData);
-    (0, sendResponse_1.default)(res, {
-        statusCode: http_status_1.default.OK,
-        success: true,
-        message: 'অ্যাপ্লিকেশন আপডেট সফল হয়েছে',
-        data: result,
-    });
-}));
 const deleteStudent = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     const result = yield service_student_1.StudentService.deleteStudentFromDb(id);
@@ -90,5 +79,4 @@ exports.StudentController = {
     updateStudent,
     deleteStudent,
     createSingleStudent,
-    approvedStudentAdminssion
 };

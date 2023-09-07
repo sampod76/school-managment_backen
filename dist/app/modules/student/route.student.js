@@ -20,7 +20,4 @@ router
     .patch((0, validateRequestZod_1.default)(validation_student_1.StudentValidation.updateStudentZodSchema), controller_student_1.StudentController.updateStudent);
 // router.route('/:id').patch( validateRequestZod(StudentValidation.updateStudentZodSchema),
 // StudentController.updateStudent);
-router
-    .route('/approved-student-adminssion')
-    .patch((0, validateRequestZod_1.default)(validation_student_1.StudentValidation.updataAdmitionsData), controller_student_1.StudentController.approvedStudentAdminssion);
 exports.StudentRoutes = router;

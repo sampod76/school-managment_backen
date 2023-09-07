@@ -20,5 +20,5 @@ router
     .patch((0, validateRequestZod_1.default)(validation_teacher_1.TeacherValidation.updateTeacherZodSchema), controller_teacher_1.TeacherController.updateTeacher);
 router
     .route('/approved-Teacher-adminssion')
-    .patch((0, validateRequestZod_1.default)(validation_teacher_1.TeacherValidation.updataAdmitionsData), controller_teacher_1.TeacherController.approvedTeacherAdminssion);
+    .patch((0, validateRequestZod_1.default)(validation_teacher_1.TeacherValidation.updateApprovedAdmition), controller_teacher_1.TeacherController.approvedTeacherAdminssion);
 exports.TeacherRoutes = router;

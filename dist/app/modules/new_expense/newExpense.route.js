@@ -9,10 +9,7 @@ const validateRequestZod_1 = __importDefault(require("../../middlewares/validate
 const newExpense_controller_1 = require("./newExpense.controller");
 const newExpense_validation_1 = require("./newExpense.validation");
 const router = express_1.default.Router();
-router.get('/:timeRange', newExpense_controller_1.newExpenseController.getDailyExpense);
-router.get('/weekly', newExpense_controller_1.newExpenseController.getWeeklyExpense);
-router.get('/monthly', newExpense_controller_1.newExpenseController.getMonthlyExpense);
-router.get('/yearly', newExpense_controller_1.newExpenseController.getYearlyExpense);
+router.get('/:timeRange', newExpense_controller_1.newExpenseController.getExpenseTimeRange);
 router.get('/:id', newExpense_controller_1.newExpenseController.getSingleNewExpense);
 router.get('/', newExpense_controller_1.newExpenseController.getAllNewExpense);
 router.post('/create-expense', (0, validateRequestZod_1.default)(newExpense_validation_1.NewExpenseValidation.createNewExpenseZodSchema), newExpense_controller_1.newExpenseController.createNewExpense);

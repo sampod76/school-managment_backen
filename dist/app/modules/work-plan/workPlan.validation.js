@@ -16,9 +16,9 @@ const createWorkPlanZodSchema = zod_1.z.object({
         plan_date: zod_1.z.string({
             required_error: 'Teacher designation is required',
         }),
-        status: zod_1.z.enum(['active', 'inactive'], {
-            required_error: 'Status is required',
-        }),
+        // status: z.enum(['active', 'inactive'], {
+        //   required_error: 'Status is required',
+        // }),
     }),
 });
 const updateWorkPlanZodSchema = zod_1.z.object({
@@ -27,7 +27,7 @@ const updateWorkPlanZodSchema = zod_1.z.object({
         details: zod_1.z.string().optional(),
         duration_date: zod_1.z.string().optional(),
         plan_date: zod_1.z.string().optional(),
-        status: zod_1.z.enum(['active', 'inactive']).optional(),
+        // status: z.enum(['active', 'inactive']).optional(),
     }),
 });
 exports.WorkPlanValidation = {

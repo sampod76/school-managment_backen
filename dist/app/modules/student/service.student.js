@@ -156,24 +156,6 @@ const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
     });
     return result;
 });
-const approvedStudentAdminssionFromDb = (id, data) => __awaiter(void 0, void 0, void 0, function* () {
-    let result = null;
-    if ((data === null || data === void 0 ? void 0 : data.admission_approved) === usersEnums_1.ENUM_YN.NO) {
-        result = yield model_student_1.Student.findByIdAndDelete(id);
-        if (!result) {
-            throw new ApiError_1.default(404, 'কোন কিছু ভুল হচ্ছে');
-        }
-    }
-    else {
-        result = yield model_student_1.Student.findOneAndUpdate({ _id: id }, data, {
-            new: true,
-        });
-    }
-    if (!result) {
-        throw new ApiError_1.default(400, 'কোন কিছু ভুল হচ্ছে');
-    }
-    return result;
-});
 const deleteStudentFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield model_student_1.Student.findByIdAndDelete(id);
     return result;
@@ -184,5 +166,4 @@ exports.StudentService = {
     getSingleStudentFromDb,
     updateStudentFromDb,
     deleteStudentFromDb,
-    approvedStudentAdminssionFromDb,
 };

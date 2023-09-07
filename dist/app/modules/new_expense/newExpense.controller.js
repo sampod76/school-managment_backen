@@ -37,36 +37,9 @@ const getAllNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 
         data: result,
     });
 }));
-const getDailyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getExpenseTimeRange = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const timeRange = req.params.timeRange;
-    const result = yield newExpense_service_1.NewExpenseService.getDailyExpensesFromDb(timeRange);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Expense retrieved successfully',
-        data: result,
-    });
-}));
-const getWeeklyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newExpense_service_1.NewExpenseService.getWeeklyExpensesFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Expense retrieved successfully',
-        data: result,
-    });
-}));
-const getMonthlyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newExpense_service_1.NewExpenseService.getMonthlyExpensesFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Expense retrieved successfully',
-        data: result,
-    });
-}));
-const getYearlyExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newExpense_service_1.NewExpenseService.getYearlyExpensesFromDb();
+    const result = yield newExpense_service_1.NewExpenseService.getExpensesTimeRangeFromDb(timeRange);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
@@ -109,10 +82,7 @@ const deleteNewExpense = (0, catchAsync_1.default)((req, res) => __awaiter(void 
 }));
 exports.newExpenseController = {
     createNewExpense,
-    getDailyExpense,
-    getWeeklyExpense,
-    getMonthlyExpense,
-    getYearlyExpense,
+    getExpenseTimeRange,
     getAllNewExpense,
     getSingleNewExpense,
     updateNewExpense,

@@ -9,19 +9,6 @@ const validateRequestZod_1 = __importDefault(require("../../middlewares/validate
 const class_controller_1 = require("./class.controller");
 const class_validation_1 = require("./class.validation");
 const router = express_1.default.Router();
-// router.get('/:id', classController.getSingleClass);
-// router.get('/', classController.getAllClasses);
-// router.post(
-//   '/create-class',
-//   validateRequestZod(ClassValidation.createClassZodSchema),
-//   classController.createClass
-// );
-// router.patch(
-//   '/:id',
-//   validateRequestZod(ClassValidation.updateClassZodSchema),
-//   classController.updateClass
-// );
-// router.delete('/:id', classController.deleteClass);
 router
     .route('/')
     .get(class_controller_1.classController.getAllClasses)

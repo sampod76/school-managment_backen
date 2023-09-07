@@ -24,7 +24,7 @@ const createBookFromDb = (BookData) => __awaiter(void 0, void 0, void 0, functio
     return createdCLass;
 });
 const getAllBooksFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const allBooks = book_model_1.BookModel.find({}).populate("class");
+    const allBooks = book_model_1.BookModel.find({}).populate('class');
     if (!allBooks) {
         throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all books');
     }

@@ -10,9 +10,9 @@ const createStudentZodSchema = zod_1.z.object({
         userId: zod_1.z.string({
             required_error: "ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন",
         }),
-        admission_approved: zod_1.z
-            .enum([...userConstant_1.YN_VALUES])
-            .optional(),
+        // admission_approved: z
+        //   .enum([...YN_VALUES] as [string, ...string[]])
+        //   .optional(),
         student: zod_1.z.object({
             name_bangla: zod_1.z.string({
                 required_error: "শিক্ষার্থীর বাংলা নাম অবশ্যই দিতে হবে",
@@ -268,13 +268,14 @@ const updateStudentZodSchema = zod_1.z.object({
             .optional(),
     }),
 });
-const updataAdmitionsData = zod_1.z.object({
+const updateApprovedAdmition = zod_1.z.object({
     body: zod_1.z.object({
-        admission_approved: zod_1.z.enum([...userConstant_1.YN_VALUES]),
+        // admission_approved: z.enum([...YN_VALUES] as [string, ...string[]]),
+        userId: zod_1.z.string({ required_error: "ব্যবহারকারী আইডি বাধ্যতামূলক প্রয়োজন" }),
     }),
 });
 exports.StudentValidation = {
     createStudentZodSchema,
     updateStudentZodSchema,
-    updataAdmitionsData,
+    updateApprovedAdmition,
 };

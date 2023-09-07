@@ -28,41 +28,14 @@ const createNewIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
         data: result,
     });
 }));
-const getDailyIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getIncomeTimeRange = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const timeRange = req.params.timeRange;
     console.log(timeRange);
-    const result = yield newIncome_service_1.NewIncomeService.getDailyIncomeFromDb(timeRange);
+    const result = yield newIncome_service_1.NewIncomeService.getIncomeTimeRangeFromDb(timeRange);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
         message: 'Income retrieved successfully',
-        data: result,
-    });
-}));
-const getWeeklyIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newIncome_service_1.NewIncomeService.getWeeklyIncomesFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Income retrieved successfully',
-        data: result,
-    });
-}));
-const getMonthlyIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newIncome_service_1.NewIncomeService.getMonthlyIncomesFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Expense retrieved successfully',
-        data: result,
-    });
-}));
-const getYearlyIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield newIncome_service_1.NewIncomeService.getYearlyIncomesFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Expense retrieved successfully',
         data: result,
     });
 }));
@@ -108,10 +81,7 @@ const deleteNewIncome = (0, catchAsync_1.default)((req, res) => __awaiter(void 0
 }));
 exports.newIncomeController = {
     createNewIncome,
-    getDailyIncome,
-    getWeeklyIncome,
-    getMonthlyIncome,
-    getYearlyIncome,
+    getIncomeTimeRange,
     getAllNewIncome,
     getSingleNewIncome,
     updateNewIncome,

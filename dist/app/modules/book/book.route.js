@@ -13,9 +13,9 @@ router
     .route('/')
     .get(book_controller_1.bookController.getAllBooks)
     .post((0, validateRequestZod_1.default)(book_validation_1.BookValidation.createBookZodSchema), book_controller_1.bookController.createBook);
+router.patch('/:id', (0, validateRequestZod_1.default)(book_validation_1.BookValidation.updateBookZodSchema), book_controller_1.bookController.updateBook);
 router
     .route('/:id')
     .get(book_controller_1.bookController.getSingleBook)
-    .patch((0, validateRequestZod_1.default)(book_validation_1.BookValidation.updateBookZodSchema), book_controller_1.bookController.updateBook)
     .delete(book_controller_1.bookController.deleteBook);
 exports.BookRoutes = router;

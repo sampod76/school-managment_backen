@@ -3,9 +3,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Teacher = exports.teacherSchema = void 0;
 const mongoose_1 = require("mongoose");
 const userConstant_1 = require("../../../constant/userConstant");
+const usersEnums_1 = require("../../../enums/usersEnums");
 exports.teacherSchema = new mongoose_1.Schema({
+    userId: { type: String, trim: true, unique: true },
     password: { type: String, trim: true },
-    admission_approved: { type: String, trim: true },
+    admission_approved: { type: String, trim: true, default: usersEnums_1.ENUM_YN.YES },
     teacher_info: {
         name_bangla: { type: String, trim: true },
         name_english: { type: String, trim: true },

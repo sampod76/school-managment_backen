@@ -16,7 +16,6 @@ exports.NewIncomeService = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const newIncome_model_1 = require("./newIncome.model");
-// import test from './test';
 const createNewIncomeFromDb = (IncomeData) => __awaiter(void 0, void 0, void 0, function* () {
     const today = new Date();
     const year = today.getFullYear();
@@ -30,105 +29,6 @@ const createNewIncomeFromDb = (IncomeData) => __awaiter(void 0, void 0, void 0, 
     }
     return createdCLass;
 });
-// const getDailyIncomeFromDb = async (): Promise<IIncome[] | null> => {
-//   const today = new Date();
-//   const year = today.getFullYear();
-//   const month = (today.getMonth() + 1).toString().padStart(2, '0');
-//   const day = today.getDate().toString().padStart(2, '0');
-//   const formattedDate = `${year}-${month}-${day}`;
-//   // console.log(formattedDate, 'date');
-//   const AllIncomes = await IncomeModel.find({
-//     date: { $eq: formattedDate },
-//   }).exec();
-//   // const totalAmount = AllIncomes.reduce((total, el) => {
-//   //   if (el.amount) {
-//   //     const amount = parseFloat(el.amount);
-//   //     if (!isNaN(amount)) {
-//   //       return total + amount;
-//   //     }
-//   //   }
-//   //   return total;
-//   // }, 0);
-//   if (!AllIncomes) {
-//     throw new ApiError(
-//       httpStatus.EXPECTATION_FAILED,
-//       'failed to get all Incomes'
-//     );
-//   }
-//   return AllIncomes;
-// };
-const getWeeklyIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newIncome_model_1.IncomeModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
-const getMonthlyIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newIncome_model_1.IncomeModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
-const getYearlyIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = (today.getMonth() + 1).toString().padStart(2, '0');
-    const day = today.getDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
-    const allExpense = yield newIncome_model_1.IncomeModel.find({
-        date: { $eq: formattedDate },
-    }).exec();
-    //   const totalAmount = allExpense.reduce((total, el) => {
-    //     if (el.amount) {
-    //       const amount = parseFloat(el.amount);
-    //       if (!isNaN(amount)) {
-    //         return total + amount;
-    //       }
-    //     }
-    //     return total;
-    //   }, 0);
-    //   console.log('Total Amount:', totalAmount); // This will give you the sum of amounts
-    if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
-    }
-    return allExpense;
-});
 const getAllNewIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
     const allIncomes = yield newIncome_model_1.IncomeModel.find({}).sort({ _id: -1 });
     console.log(allIncomes);
@@ -137,7 +37,7 @@ const getAllNewIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function*
     }
     return allIncomes;
 });
-const getDailyIncomeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, function* () {
+const getIncomeTimeRangeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0, function* () {
     function addLeadingZero(number) {
         if (number < 10) {
             return number.toString().padStart(2, '0');
@@ -224,10 +124,7 @@ const deleteNewIncomeFromDb = (id) => __awaiter(void 0, void 0, void 0, function
 });
 exports.NewIncomeService = {
     createNewIncomeFromDb,
-    getDailyIncomeFromDb,
-    getWeeklyIncomesFromDb,
-    getMonthlyIncomesFromDb,
-    getYearlyIncomesFromDb,
+    getIncomeTimeRangeFromDb,
     getAllNewIncomesFromDb,
     getSingleNewIncomeFromDb,
     updateNewIncomeFromDb,
