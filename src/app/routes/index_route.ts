@@ -97,7 +97,7 @@ const moduleRoutes = [
     route: ClassRoutineRoutes,
   },
   {
-    //sampod
+    //sampod nath
     path: '/notices',
     route: NoticeRoutes,
   },
