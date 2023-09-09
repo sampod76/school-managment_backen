@@ -17,6 +17,7 @@ import { SectionRoutes } from '../modules/section/section.route';
 import { ClassRoutineRoutes } from '../modules/class-routine/classRoutine.route';
 import { PendingStudentRoutes } from '../modules/student/pendingStudent/route.student';
 import { StudentRoutes } from '../modules/student/route.student';
+import { StudentsAttendanceRoutes } from '../modules/students_attendance/route.students_attendance';
 import { TeacherRoutes } from '../modules/teacher/route.teacher';
 import { UserRoutes } from '../modules/users/user.route';
 import { WorkPlanRoute } from '../modules/work-plan/workPlan.route';
@@ -100,6 +101,11 @@ const moduleRoutes = [
     //sampod nath
     path: '/notices',
     route: NoticeRoutes,
+  },
+  {
+    //sampod nath
+    path: '/student-attendance',
+    route: StudentsAttendanceRoutes,
   },
   {
     path: '/meeting',

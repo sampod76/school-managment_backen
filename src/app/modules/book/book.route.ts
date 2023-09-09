@@ -13,6 +13,9 @@ router
     bookController.createBook
   );
 
+//create by --> sampod
+router.route('/unique').get(bookController.getAllUniqueBooks);
+
 router.patch(
   '/:id',
   validateRequestZod(BookValidation.updateBookZodSchema),

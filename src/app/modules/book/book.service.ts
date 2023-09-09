@@ -4,7 +4,7 @@ import { IBook } from './book.interface';
 import { BookModel } from './book.model';
 
 const createBookFromDb = async (BookData: IBook): Promise<IBook | null> => {
-  const createdCLass = BookModel.create(BookData);
+  const createdCLass = await BookModel.create(BookData);
   if (!createdCLass) {
     throw new ApiError(httpStatus.EXPECTATION_FAILED, 'failed to create Book');
   }
@@ -12,14 +12,31 @@ const createBookFromDb = async (BookData: IBook): Promise<IBook | null> => {
 };
 
 const getAllBooksFromDb = async (): Promise<IBook[] | null> => {
-  const allBooks = BookModel.find({}).populate('class');
+  const allBooks = await BookModel.find({}).populate('class');
   if (!allBooks) {
-    throw new ApiError(
-      httpStatus.EXPECTATION_FAILED,
-      'failed to get all books'
-    );
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'কোন বই পাওয়া যায়নি');
   }
   return allBooks;
+};
+const getAllUniqueBooksFromDb = async (): Promise<IBook[] | null> => {
+  const allUniqueBooks = await BookModel.aggregate([
+    { $match: {} },
+    {
+      $group: {
+        _id: null,
+        uniqueBook: { $addToSet: '$bookName' },
+      },
+    },
+    {
+      $unwind:"$uniqueBook"
+    },
+    { $project: { _id: 0 }},
+  ]);
+
+  if (!allUniqueBooks) {
+    throw new ApiError(httpStatus.EXPECTATION_FAILED, 'কোন বই পাওয়া যায়নি');
+  }
+  return allUniqueBooks;
 };
 
 const getSingleBookFromDb = async (id: string): Promise<IBook | null> => {
@@ -58,4 +75,5 @@ export const BookService = {
   getSingleBookFromDb,
   updateBookFromDb,
   deleteBookFromDb,
+  getAllUniqueBooksFromDb,
 };

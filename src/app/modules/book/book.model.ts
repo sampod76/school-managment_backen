@@ -7,15 +7,18 @@ const bookSchema = new Schema<IBook>(
   {
     bookName: {
       type: String,
+      trim: true,
       required: true,
     },
     status: {
       type: String,
+      trim: true,
       enum: STATUS,
       required: true,
     },
     bookCode: {
       type: String,
+      trim: true,
       required: true,
     },
     class: {

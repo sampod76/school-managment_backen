@@ -48,7 +48,7 @@ export type ITeacher = {
   teacher_info: {
     name_bangla: string;
     name_english: string;
-    birth_registration_number?: string;
+    nid?: string;
     date_of_birth: string;
     birth_district: string;
     gender: genderType; //type of

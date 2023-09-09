@@ -17,7 +17,7 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
     teacher_info: {
       name_bangla: { type: String, trim: true },
       name_english: { type: String, trim: true },
-      birth_registration_number: { type: String, trim: true },
+      nid: { type: String, trim: true },
       date_of_birth: { type: String, trim: true },
       birth_district: { type: String, trim: true },
       gender: { type: String, trim: true, enum: GENDER_VALUES }, // Assuming `genderType` is a string-based type
@@ -37,7 +37,7 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
       name_english: { type: String, trim: true },
       nid: { type: String, trim: true },
       date_of_birth: { type: String, trim: true },
-      birth_registration: { type: String, trim: true },
+      // birth_registration: { type: String, trim: true },
       phone_number: { type: String, trim: true },
       profession: { type: String, trim: true },
       year_of_death: { type: String, trim: true },
@@ -48,7 +48,7 @@ export const teacherSchema = new Schema<ITeacher, TeacherModel>(
       name_english: { type: String, trim: true },
       nid: { type: String, trim: true },
       date_of_birth: { type: String, trim: true },
-      birth_registration: { type: String, trim: true },
+      // birth_registration: { type: String, trim: true },
       phone_number: { type: String, trim: true },
       profession: { type: String, trim: true },
       year_of_death: { type: String, trim: true },

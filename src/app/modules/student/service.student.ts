@@ -49,7 +49,7 @@ const getAllStudentsFromDb = async (
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await Student.find(whereConditions)
-   
+   .populate("student.photo")
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);

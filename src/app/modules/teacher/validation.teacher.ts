@@ -32,7 +32,7 @@ const createTeacherZodSchema = z.object({
 
         .max(50)
         .trim(),
-      birth_registration_number: z.string().max(50).trim().optional(),
+        nid: z.string().max(50).trim().optional(),
       date_of_birth: z
         .string({
           required_error: 'শিক্ষকের জন্ম তারিখ বাধ্যতামূলক প্রয়োজন',
@@ -117,7 +117,7 @@ const createTeacherZodSchema = z.object({
 
         .max(50)
         .trim(),
-      birth_registration: z.string().max(50).trim().optional(),
+      // birth_registration: z.string().max(50).trim().optional(),
       phone_number: z.string().max(50).trim().optional(),
       profession: z
         .string({
@@ -158,7 +158,7 @@ const createTeacherZodSchema = z.object({
 
         .max(50)
         .trim(),
-      birth_registration: z.string().max(50).trim().optional(),
+      // birth_registration: z.string().max(50).trim().optional(),
       phone_number: z
         .string({
           required_error: 'বাবার ফোন নাম্বার বাধ্যতামূলক প্রয়োজন',
@@ -391,7 +391,7 @@ const updateTeacherZodSchema = z.object({
         .max(50)
         .trim()
         .optional(),
-      birth_registration_number: z.string().max(50).trim().optional(),
+        nid: z.string().max(50).trim().optional(),
       date_of_birth: z
         .string()
 
@@ -461,7 +461,7 @@ const updateTeacherZodSchema = z.object({
         .max(50)
         .trim()
         .optional(),
-      birth_registration: z.string().max(50).trim().optional(),
+      // birth_registration: z.string().max(50).trim().optional(),
       phone_number: z.string().max(50).trim().optional(),
       profession: z
         .string()
@@ -497,7 +497,7 @@ const updateTeacherZodSchema = z.object({
         .max(50)
         .trim()
         .optional(),
-      birth_registration: z.string().max(50).trim().optional(),
+      // birth_registration: z.string().max(50).trim().optional(),
       phone_number: z
         .string()
 
