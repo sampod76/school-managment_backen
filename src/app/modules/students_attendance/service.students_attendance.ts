@@ -45,7 +45,7 @@ const getAllStudentsAttendancesFromDb = async (
     andConditions.length > 0 ? { $and: andConditions } : {};
 
   const result = await StudentAttendance.find(whereConditions)
-    .populate('document')
+    .populate('students.student')
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
