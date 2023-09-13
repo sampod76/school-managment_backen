@@ -11,7 +11,7 @@ const CreateTeacherSalary = (
   if (!createdTeacherSalary) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Teachers Salary first'
+      'শিক্ষকের বেতন তালিকা তৈরি ব্যর্থ হয়েছে '
     );
   }
 
@@ -22,7 +22,7 @@ const getAllTeacherSalary = async (): Promise<ITeacherSalary[] | null> => {
   if (!allTeacherSalary) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get Teachers Salary'
+      'শিক্ষকের বেতনের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allTeacherSalary;
@@ -48,7 +48,7 @@ const updateTeacherSalary = async (
     }
   );
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher Salary not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শিক্ষকের বেতনের তালিকা খুঁজে পাওয়া যায়নি !');
   }
   return result;
 };
@@ -60,13 +60,13 @@ const deleteTeacherService = async (
   console.log('after', isExist);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Teacher not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শিক্ষকের বেতনের তালিকা খুঁজে পাওয়া যায়নি!');
   }
 
   const teacherSalary = await TeacherSalaryModel.findOneAndDelete({ _id: id });
 
   if (!teacherSalary) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Teacher salary');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শিক্ষকের বেতন মুছে ফেলা ব্যর্থ হয়েছে ');
   }
 
   return teacherSalary;

@@ -9,7 +9,7 @@ const createUser = (userData: IUser): Promise<IUser | null> => {
   if (!createdUser) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create User first'
+      'ব্যবহারকারী একাউন্ট তৈরি ব্যর্থ হয়েছে '
     );
   }
 
@@ -22,7 +22,7 @@ const getAllUsers = async (): Promise<IUser[] | null> => {
   if (!allUsers) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Users'
+      'সকল ব্যবহারকারীর তথ্য পেতে ব্যর্থ হয়েছে'
     );
   }
 

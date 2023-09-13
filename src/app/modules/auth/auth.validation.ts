@@ -3,10 +3,10 @@ import { z } from 'zod';
 const loginZodSchema = z.object({
   body: z.object({
     userId: z.string({
-      required_error: 'User id is required',
+      required_error: 'ব্যবহারকারী আইডি বাধ্যতামূলক দিতে হবে',
     }),
     password: z.string({
-      required_error: 'Password is required',
+      required_error: 'পাসওয়ার্ড বাধ্যতামূলক দিতে হবে',
     }),
   }),
 });

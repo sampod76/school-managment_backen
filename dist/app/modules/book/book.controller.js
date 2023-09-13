@@ -23,7 +23,7 @@ const createBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'book created successfully!',
+        message: 'বই তৈরি সফল হয়েছে!',
         data: result,
     });
 }));
@@ -32,7 +32,16 @@ const getAllBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Books retrieved successfully',
+        message: 'বইগুলো খুঁজে পাওয়া গেছে',
+        data: result,
+    });
+}));
+const getAllUniqueBooks = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield book_service_1.BookService.getAllUniqueBooksFromDb();
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: 'বইগুলো খুঁজে পাওয়া গেছে',
         data: result,
     });
 }));
@@ -42,7 +51,7 @@ const getSingleBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Book retrieved successfully',
+        message: 'বই খুঁজে পাওয়া গেছে',
         data: result,
     });
 }));
@@ -53,7 +62,7 @@ const updateBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Book updated successfully',
+        message: 'বই এর তথ্য আপডেট হয়েছে',
         data: result,
     });
 }));
@@ -63,13 +72,14 @@ const deleteBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Book deleted successfully',
+        message: 'বইটি ডিলিট হয়েছে',
         data: result,
     });
 }));
 exports.bookController = {
     createBook,
     getAllBooks,
+    getAllUniqueBooks,
     getSingleBook,
     updateBook,
     deleteBook,

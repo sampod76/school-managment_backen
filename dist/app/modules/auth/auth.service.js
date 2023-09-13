@@ -64,11 +64,11 @@ const loginUser = (payload) => __awaiter(void 0, void 0, void 0, function* () {
     const { userId, password } = payload;
     const isUserExist = yield user_model_1.User.isUserExist(userId);
     if (!isUserExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'User does not exist');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ইউজার খুঁজে পাওয়া যায়নি');
     }
     if (isUserExist.password &&
         !(yield user_model_1.User.isPasswordMatched(password, isUserExist.password))) {
-        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Password is incorrect');
+        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'পাসওয়ার্ডটি ভুল হয়েছে পুনরায় চেষ্টা করুন');
     }
     const { name, role } = isUserExist;
     const accessToken = jwtHelpers_1.jwtHelpers.createToken({ userId, role }, config_1.default.jwt.secret, config_1.default.jwt.expires_in);
@@ -98,7 +98,7 @@ const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
     // const isUserExist = await User.isUserExist(role);
     const isUserExist = yield user_model_1.User.findById(userId);
     if (!isUserExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'User does not exist');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ইউজার খুঁজে পাওয়া যায়নি');
     }
     //generate new token
     const newAccessToken = jwtHelpers_1.jwtHelpers.createToken({

@@ -25,7 +25,7 @@ const createNewExpenseFromDb = (ExpenseData) => __awaiter(void 0, void 0, void 0
     ExpenseData.date = formattedDate;
     const createdCLass = newExpense_model_1.ExpenseModel.create(ExpenseData);
     if (!createdCLass) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Expense');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'নতুন ব্যায় তৈরি করা ব্যর্থ হয়েছে');
     }
     return createdCLass;
 });
@@ -86,7 +86,7 @@ const getExpensesTimeRangeFromDb = (timeRange) => __awaiter(void 0, void 0, void
         }).sort({ _id: -1 });
     }
     if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allExpense;
 });
@@ -94,7 +94,7 @@ const getAllNewExpensesFromDb = () => __awaiter(void 0, void 0, void 0, function
     // const allBooks = await ExpenseModel.find({}).sort({ createdAt: -1 });
     const allExpense = yield newExpense_model_1.ExpenseModel.find({}).sort({ _id: -1 });
     if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Expenses');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allExpense;
 });
@@ -107,18 +107,18 @@ const updateNewExpenseFromDb = (id, payload) => __awaiter(void 0, void 0, void 0
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Expense not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ব্যয়ের তালিকা আপডেট করা ব্যর্থ হয়েছে!');
     }
     return result;
 });
 const deleteNewExpenseFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield newExpense_model_1.ExpenseModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Expense not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     const books = yield newExpense_model_1.ExpenseModel.findOneAndDelete({ _id: id });
     if (!books) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Expense');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ব্যয় রিমুভ করা ব্যর্থ হয়েছে');
     }
     return books;
 });

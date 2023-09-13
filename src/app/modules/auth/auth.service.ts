@@ -67,14 +67,14 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const isUserExist = await User.isUserExist(userId);
 
   if (!isUserExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ইউজার খুঁজে পাওয়া যায়নি');
   }
 
   if (
     isUserExist.password &&
     !(await User.isPasswordMatched(password, isUserExist.password))
   ) {
-    throw new ApiError(httpStatus.UNAUTHORIZED, 'Password is incorrect');
+    throw new ApiError(httpStatus.UNAUTHORIZED, 'পাসওয়ার্ডটি ভুল হয়েছে পুনরায় চেষ্টা করুন');
   }
 
   const {name, role } = isUserExist;
@@ -124,7 +124,7 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
   const isUserExist = await User.findById(userId);
 
   if (!isUserExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'User does not exist');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ইউজার খুঁজে পাওয়া যায়নি');
   }
   //generate new token
 

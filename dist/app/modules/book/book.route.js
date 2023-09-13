@@ -13,6 +13,8 @@ router
     .route('/')
     .get(book_controller_1.bookController.getAllBooks)
     .post((0, validateRequestZod_1.default)(book_validation_1.BookValidation.createBookZodSchema), book_controller_1.bookController.createBook);
+//create by --> sampod
+router.route('/unique').get(book_controller_1.bookController.getAllUniqueBooks);
 router.patch('/:id', (0, validateRequestZod_1.default)(book_validation_1.BookValidation.updateBookZodSchema), book_controller_1.bookController.updateBook);
 router
     .route('/:id')

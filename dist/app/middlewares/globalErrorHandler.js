@@ -21,7 +21,7 @@ const globalErrorHandler = (error, req, res, next) => {
     //   : errorLogger.error(`globalErrorHandler:`, error);
     console.log(`globalErrorHandler:`, error);
     let statusCode = 500;
-    let message = 'Something went wrong';
+    let message = "অভ্যন্তরীণ সার্ভার জনিত ত্রুটি" /* 'Something went wrong' */;
     // let errorMessage:Array<IGenericErrorMessage>= []
     let errorMessage = [];
     if ((error === null || error === void 0 ? void 0 : error.name) === 'ValidationError') {

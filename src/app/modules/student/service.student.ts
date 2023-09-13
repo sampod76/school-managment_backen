@@ -105,7 +105,7 @@ const updateStudentFromDb = async (
   const isExist = await Student.findOne({ _id:id });
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Student not found !');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শিক্ষার্থী খুঁজে পেতে ব্যর্থ হয়েছে !');
   }
 
   const {

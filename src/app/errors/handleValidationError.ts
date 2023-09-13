@@ -16,7 +16,8 @@ export const handleValidationError = (
   const statusCode = 400;
   return {
     statusCode,
-    message: 'Validation Error',
+    message: 'বাধ্যতামূলক দিতে হবে এমন কিছু ফিল্ড বাদ পড়ে গেছে!',
+    devMessage: 'Validation Error',
     errorMessages: errors,
   };
 };

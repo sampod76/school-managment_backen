@@ -5,10 +5,10 @@ const zod_1 = require("zod");
 const loginZodSchema = zod_1.z.object({
     body: zod_1.z.object({
         userId: zod_1.z.string({
-            required_error: 'User id is required',
+            required_error: 'ব্যবহারকারী আইডি বাধ্যতামূলক দিতে হবে',
         }),
         password: zod_1.z.string({
-            required_error: 'Password is required',
+            required_error: 'পাসওয়ার্ড বাধ্যতামূলক দিতে হবে',
         }),
     }),
 });

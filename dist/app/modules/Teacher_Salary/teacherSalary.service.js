@@ -19,14 +19,14 @@ const teacherSalary_model_1 = require("./teacherSalary.model");
 const CreateTeacherSalary = (TeacherSalaryData) => {
     const createdTeacherSalary = teacherSalary_model_1.TeacherSalaryModel.create(TeacherSalaryData);
     if (!createdTeacherSalary) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Teachers Salary first');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শিক্ষকের বেতন তালিকা তৈরি ব্যর্থ হয়েছে ');
     }
     return createdTeacherSalary;
 };
 const getAllTeacherSalary = () => __awaiter(void 0, void 0, void 0, function* () {
     const allTeacherSalary = teacherSalary_model_1.TeacherSalaryModel.find({});
     if (!allTeacherSalary) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get Teachers Salary');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শিক্ষকের বেতনের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allTeacherSalary;
 });
@@ -39,7 +39,7 @@ const updateTeacherSalary = (id, payload) => __awaiter(void 0, void 0, void 0, f
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Teacher Salary not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শিক্ষকের বেতনের তালিকা খুঁজে পাওয়া যায়নি !');
     }
     return result;
 });
@@ -47,11 +47,11 @@ const deleteTeacherService = (id) => __awaiter(void 0, void 0, void 0, function*
     const isExist = yield teacherSalary_model_1.TeacherSalaryModel.findOne({ _id: id });
     console.log('after', isExist);
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Teacher not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শিক্ষকের বেতনের তালিকা খুঁজে পাওয়া যায়নি!');
     }
     const teacherSalary = yield teacherSalary_model_1.TeacherSalaryModel.findOneAndDelete({ _id: id });
     if (!teacherSalary) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Teacher salary');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শিক্ষকের বেতন মুছে ফেলা ব্যর্থ হয়েছে ');
     }
     return teacherSalary;
 });

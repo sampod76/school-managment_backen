@@ -10,7 +10,7 @@ const createWorkPlan = (WorkPlanData: IWorkPlan): Promise<IWorkPlan | null> => {
   if (!createdWorkPlan) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Work Plan first'
+      'নতুন কর্মপরিকল্পনা তৈরি ব্যর্থ হয়েছে '
     );
   }
 
@@ -21,7 +21,7 @@ const getAllWorkPlan = async (): Promise<IWorkPlan[] | null> => {
   if (!allWorkPlanService) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get All Work Plan'
+      'সফল কর্ম পরিকল্পনা খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allWorkPlanService;
@@ -40,7 +40,7 @@ const updateWorkPlanService = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Work Plan not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'কর্মপরিকল্পনা আপডেট করতে ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -50,13 +50,13 @@ const deleteWorkPlanService = async (id: string): Promise<IWorkPlan | null> => {
   console.log('after', isExist);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Work not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'সফল কর্ম পরিকল্পনা খুঁজে পেতে ব্যর্থ হয়েছে!');
   }
 
   const work = await WorkPlanModel.findOneAndDelete({ _id: id });
 
   if (!work) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete WorkPlan');
+    throw new ApiError(httpStatus.NOT_FOUND, 'কর্মপরিকল্পনা মুছে ফেলতে ব্যর্থ হয়েছে ');
   }
 
   return work;
@@ -83,7 +83,7 @@ const getTodaysWorkPlan = async (): Promise<IWorkPlan[] | null> => {
   if (!todaysWork) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      "Failed to get today's Work Plan"
+      "আজকের কর্ম করে কল্পনা খুঁজে পেতে ব্যর্থ হয়েছে "
     );
   }
 

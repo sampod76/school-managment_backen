@@ -25,7 +25,7 @@ const createNewIncomeFromDb = (IncomeData) => __awaiter(void 0, void 0, void 0, 
     IncomeData.date = formattedDate;
     const createdCLass = newIncome_model_1.IncomeModel.create(IncomeData);
     if (!createdCLass) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Income');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'নতুন আয় তৈরি করা ব্যর্থ হয়েছে');
     }
     return createdCLass;
 });
@@ -33,7 +33,7 @@ const getAllNewIncomesFromDb = () => __awaiter(void 0, void 0, void 0, function*
     const allIncomes = yield newIncome_model_1.IncomeModel.find({}).sort({ _id: -1 });
     console.log(allIncomes);
     if (!allIncomes) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Incomes');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'সকল আয় খুজে পাওয়া ব্যর্থ হয়েছে');
     }
     return allIncomes;
 });
@@ -94,7 +94,7 @@ const getIncomeTimeRangeFromDb = (timeRange) => __awaiter(void 0, void 0, void 0
         }).sort({ _id: -1 });
     }
     if (!allIncomes) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Incomes');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'সকল আয় খুজে পাওয়া ব্যর্থ হয়েছে');
     }
     return allIncomes;
 });
@@ -107,18 +107,18 @@ const updateNewIncomeFromDb = (id, payload) => __awaiter(void 0, void 0, void 0,
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Income not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'আয়ের তালিকা আপডেট করা ব্যর্থ হয়েছে!');
     }
     return result;
 });
 const deleteNewIncomeFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield newIncome_model_1.IncomeModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Income not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'আয় তৈরি করা ব্যর্থ হয়েছে!');
     }
     const books = yield newIncome_model_1.IncomeModel.findOneAndDelete({ _id: id });
     if (!books) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Income');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'আয়ের তালিকা মুছে ফেলা ব্যর্থ হয়েছে');
     }
     return books;
 });

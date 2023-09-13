@@ -19,14 +19,14 @@ const onlineAssignment_model_1 = require("./onlineAssignment.model");
 const createOnlineAssignmentToDB = (OnlineAssignmentData) => __awaiter(void 0, void 0, void 0, function* () {
     const createdOnlineAssignment = onlineAssignment_model_1.OnlineAssignmentModel.create(OnlineAssignmentData);
     if (!createdOnlineAssignment) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Online Assignment');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'নতুন অনলাইন এসাইনমেন্ট তৈরি ব্যর্থ হয়েছে ');
     }
     return createdOnlineAssignment;
 });
 const getOnlineAssignmentToDB = () => __awaiter(void 0, void 0, void 0, function* () {
     const allBooks = onlineAssignment_model_1.OnlineAssignmentModel.find({}).populate('subject');
     if (!allBooks) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Online Assignment');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'অনলাইন এসাইনমেন্ট এর তালিকা পেতে ব্যর্থ হয়েছে');
     }
     return allBooks;
 });
@@ -39,20 +39,20 @@ const updateOnlineAssignmentFromDb = (id, payload) => __awaiter(void 0, void 0, 
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Online Assignment not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'অনলাইন এসাইনমেন্ট এর তালিকা আপডেট করতে ব্যর্থ হয়েছে!');
     }
     return result;
 });
 const deleteOnlineAssignmentFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield onlineAssignment_model_1.OnlineAssignmentModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Online Assignment not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'অনলাইন এসাইনমেন্ট এর তালিকা পেতে ব্যর্থ হয়েছে!');
     }
     const onlineAssignment = yield onlineAssignment_model_1.OnlineAssignmentModel.findOneAndDelete({
         _id: id,
     });
     if (!onlineAssignment) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete OnlineAssignment');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'অনলাইন এসাইনমেন্ট মুছে ফেলা ব্যর্থ হয়েছে ');
     }
     return onlineAssignment;
 });

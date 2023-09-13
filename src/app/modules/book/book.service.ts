@@ -52,7 +52,7 @@ const updateBookFromDb = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Book not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'কোন বই পাওয়া যায়নি!');
   }
   return result;
 };
@@ -60,11 +60,11 @@ const updateBookFromDb = async (
 const deleteBookFromDb = async (id: string): Promise<IBook | null> => {
   const isExist = await BookModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Book not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'কোন বই পাওয়া যায়নি!');
   }
   const books = await BookModel.findOneAndDelete({ _id: id });
   if (!books) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete book');
+    throw new ApiError(httpStatus.NOT_FOUND, 'বইটি মুছে ফেলতে ব্যর্থ হয়েছে');
   }
   return books;
 };

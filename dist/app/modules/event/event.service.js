@@ -19,14 +19,14 @@ const event_model_1 = require("./event.model");
 const createEvents = (eventsData) => {
     const createdEvent = event_model_1.EventModel.create(eventsData);
     if (!createdEvent) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Events first');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'ইভেন্ট তৈরিতে ব্যর্থ হয়েছে');
     }
     return createdEvent;
 };
 const getAllEvents = () => __awaiter(void 0, void 0, void 0, function* () {
     const eventService = event_model_1.EventModel.find({});
     if (!eventService) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get All events from EventService');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'ইভেন্ট গুলো খুজে পেতে ব্যর্থ হয়েছে');
     }
     return eventService;
 });
@@ -39,7 +39,7 @@ const updateEventService = (id, payload) => __awaiter(void 0, void 0, void 0, fu
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Event not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ইভেন্ট খুঁজে পাওয়া যায়নি!');
     }
     return result;
 });
@@ -47,11 +47,11 @@ const deleteEventService = (id) => __awaiter(void 0, void 0, void 0, function* (
     const isExist = yield event_model_1.EventModel.findOne({ _id: id });
     console.log('after', isExist);
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Event not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ইভেন্ট খুঁজে পাওয়া যায়নি!');
     }
     const event = yield event_model_1.EventModel.findOneAndDelete({ _id: id });
     if (!event) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Event');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'ইভেন মুছে ফেলতে ব্যর্থ হয়েছে');
     }
     return event;
 });
@@ -65,7 +65,7 @@ const getUpcomingEvents = () => __awaiter(void 0, void 0, void 0, function* () {
         event_date: { $gte: formattedDate },
     });
     if (!events) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'Failed to get upcoming events');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'আসন্ন ইভেন্ট খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return events;
 });

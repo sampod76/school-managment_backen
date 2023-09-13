@@ -19,7 +19,7 @@ const createMeetingFromDb = async (
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Meeting'
+      'নতুন মিটিং তৈরি ব্যর্থ হয়েছে'
     );
   }
   return createdCLass;
@@ -31,7 +31,7 @@ const getAllMeetingFromDb = async (): Promise<IMeeting[] | null> => {
   if (!allExpense) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Meeting'
+      'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allExpense;
@@ -50,7 +50,7 @@ const updateMeetingFromDb = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Meeting not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -58,11 +58,11 @@ const updateMeetingFromDb = async (
 const deleteMeetingFromDb = async (id: string): Promise<IMeeting | null> => {
   const isExist = await MeetingModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Meeting not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
   }
   const books = await MeetingModel.findOneAndDelete({ _id: id });
   if (!books) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Meeting');
+    throw new ApiError(httpStatus.NOT_FOUND, 'মিটিং এর তালিকা আপডেট করতে ব্যর্থ হয়েছে');
   }
   return books;
 };

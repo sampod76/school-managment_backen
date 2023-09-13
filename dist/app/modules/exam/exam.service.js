@@ -19,7 +19,7 @@ const exam_model_1 = require("./exam.model");
 const createExamToDb = (ExamData) => __awaiter(void 0, void 0, void 0, function* () {
     const createdExam = exam_model_1.ExamModel.create(ExamData);
     if (!createdExam) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Exam');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'পরীক্ষা কর্মকান্ড তৈরিতে ব্যর্থ হয়েছে');
     }
     return createdExam;
 });
@@ -38,7 +38,7 @@ const getAllExamFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
         select: 'teacher_info.name_bangla',
     });
     if (!allExams) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Exam');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'পরীক্ষা তালিকা পেতে ব্যর্থ হয়েছে');
     }
     return allExams;
 });
@@ -63,18 +63,18 @@ const updateExamFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, func
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Exam not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'পরীক্ষা তালিকা আপডেট ব্যর্থ হয়েছে!');
     }
     return result;
 });
 const deleteExamFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield exam_model_1.ExamModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Exam not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'পরীক্ষা তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     const exam = yield exam_model_1.ExamModel.findOneAndDelete({ _id: id });
     if (!exam) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Exam');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'পরীক্ষার তালিকা মুছে ফেলতে ব্যর্থ হয়েছে');
     }
     return exam;
 });

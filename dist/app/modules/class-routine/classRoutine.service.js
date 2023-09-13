@@ -19,7 +19,7 @@ const classRoutine_model_1 = require("./classRoutine.model");
 const createClassRoutineToDb = (classRoutineData) => __awaiter(void 0, void 0, void 0, function* () {
     const createdClassRoutine = classRoutine_model_1.ClassRoutineModel.create(classRoutineData);
     if (!createdClassRoutine) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Class Routine');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শ্রেণীর রুটিন তৈরি করতে ব্যর্থ হয়েছে');
     }
     return createdClassRoutine;
 });
@@ -38,7 +38,7 @@ const getAllClassRoutineFromDb = () => __awaiter(void 0, void 0, void 0, functio
         select: 'teacher_info.name_bangla',
     });
     if (!allClassRoutine) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Class Routine');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allClassRoutine;
 });
@@ -63,18 +63,18 @@ const updateClassRoutineFromDb = (id, payload) => __awaiter(void 0, void 0, void
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class Routine not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে।');
     }
     return result;
 });
 const deleteClassRoutineFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield classRoutine_model_1.ClassRoutineModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class Routine not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে।');
     }
     const classRoutine = yield classRoutine_model_1.ClassRoutineModel.findOneAndDelete({ _id: id });
     if (!classRoutine) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Class Routine!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণীর রুটিন আপডেট করতে ব্যর্থ হয়েছে!');
     }
     return classRoutine;
 });

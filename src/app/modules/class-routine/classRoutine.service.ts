@@ -11,7 +11,7 @@ const createClassRoutineToDb = async (
   if (!createdClassRoutine) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Class Routine'
+      'শ্রেণীর রুটিন তৈরি করতে ব্যর্থ হয়েছে'
     );
   }
   return createdClassRoutine;
@@ -34,7 +34,7 @@ const getAllClassRoutineFromDb = async (): Promise<IClassRoutine[] | null> => {
   if (!allClassRoutine) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Class Routine'
+      'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allClassRoutine;
@@ -71,7 +71,7 @@ const updateClassRoutineFromDb = async (
     }
   );
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Class Routine not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে।');
   }
   return result;
 };
@@ -81,11 +81,11 @@ const deleteClassRoutineFromDb = async (
 ): Promise<IClassRoutine | null> => {
   const isExist = await ClassRoutineModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Class Routine not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণীর রুটিন খুঁজে পেতে ব্যর্থ হয়েছে।');
   }
   const classRoutine = await ClassRoutineModel.findOneAndDelete({ _id: id });
   if (!classRoutine) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Class Routine!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণীর রুটিন আপডেট করতে ব্যর্থ হয়েছে!');
   }
   return classRoutine;
 };

@@ -21,6 +21,7 @@ const section_route_1 = require("../modules/section/section.route");
 const classRoutine_route_1 = require("../modules/class-routine/classRoutine.route");
 const route_student_1 = require("../modules/student/pendingStudent/route.student");
 const route_student_2 = require("../modules/student/route.student");
+const route_students_attendance_1 = require("../modules/students_attendance/route.students_attendance");
 const route_teacher_1 = require("../modules/teacher/route.teacher");
 const user_route_1 = require("../modules/users/user.route");
 const workPlan_route_1 = require("../modules/work-plan/workPlan.route");
@@ -102,6 +103,11 @@ const moduleRoutes = [
         //sampod nath
         path: '/notices',
         route: route_notices_1.NoticeRoutes,
+    },
+    {
+        //sampod nath
+        path: '/student-attendance',
+        route: route_students_attendance_1.StudentsAttendanceRoutes,
     },
     {
         path: '/meeting',

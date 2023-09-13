@@ -12,7 +12,7 @@ const createBook = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'book created successfully!',
+    message: 'বই তৈরি সফল হয়েছে!',
     data: result,
   });
 });
@@ -23,7 +23,7 @@ const getAllBooks = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook[]>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Books retrieved successfully',
+    message: 'বইগুলো খুঁজে পাওয়া গেছে',
     data: result,
   });
 });
@@ -33,7 +33,7 @@ const getAllUniqueBooks = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook[]>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Books retrieved successfully',
+    message: 'বইগুলো খুঁজে পাওয়া গেছে',
     data: result,
   });
 });
@@ -46,7 +46,7 @@ const getSingleBook = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Book retrieved successfully',
+    message: 'বই খুঁজে পাওয়া গেছে',
     data: result,
   });
 });
@@ -61,7 +61,7 @@ const updateBook = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Book updated successfully',
+    message: 'বই এর তথ্য আপডেট হয়েছে',
     data: result,
   });
 });
@@ -74,7 +74,7 @@ const deleteBook = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IBook>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Book deleted successfully',
+    message: 'বইটি ডিলিট হয়েছে',
     data: result,
   });
 });

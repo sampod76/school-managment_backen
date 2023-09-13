@@ -10,7 +10,7 @@ const createEvents = (eventsData: IEvents): Promise<IEvents | null> => {
   if (!createdEvent) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Events first'
+      'ইভেন্ট তৈরিতে ব্যর্থ হয়েছে'
     );
   }
 
@@ -21,7 +21,7 @@ const getAllEvents = async (): Promise<IEvents[] | null> => {
   if (!eventService) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get All events from EventService'
+      'ইভেন্ট গুলো খুজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return eventService;
@@ -40,7 +40,7 @@ const updateEventService = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Event not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ইভেন্ট খুঁজে পাওয়া যায়নি!');
   }
   return result;
 };
@@ -50,13 +50,13 @@ const deleteEventService = async (id: string): Promise<IEvents | null> => {
   console.log('after', isExist);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Event not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ইভেন্ট খুঁজে পাওয়া যায়নি!');
   }
 
   const event = await EventModel.findOneAndDelete({ _id: id });
 
   if (!event) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Event');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ইভেন মুছে ফেলতে ব্যর্থ হয়েছে');
   }
 
   return event;
@@ -77,7 +77,7 @@ const getUpcomingEvents = async (): Promise<IEvents[] | null> => {
   if (!events) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'Failed to get upcoming events'
+      'আসন্ন ইভেন্ট খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
 

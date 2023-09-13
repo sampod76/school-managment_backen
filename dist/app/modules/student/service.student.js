@@ -59,6 +59,7 @@ const getAllStudentsFromDb = (filters, paginationOptions) => __awaiter(void 0, v
     }
     const whereConditions = andConditions.length > 0 ? { $and: andConditions } : {};
     const result = yield model_student_1.Student.find(whereConditions)
+        .populate("student.photo")
         .sort(sortConditions)
         .skip(skip)
         .limit(limit);
@@ -104,7 +105,7 @@ const createSingleStudentFromDb = (data) => __awaiter(void 0, void 0, void 0, fu
 const updateStudentFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield model_student_1.Student.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Student not found !');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শিক্ষার্থী খুঁজে পেতে ব্যর্থ হয়েছে !');
     }
     const { current_address, permanent_address, father_info, other_guardian_info, mother_info, student } = payload, studentData = __rest(payload, ["current_address", "permanent_address", "father_info", "other_guardian_info", "mother_info", "student"]);
     const updatedStudentData = Object.assign({}, studentData);

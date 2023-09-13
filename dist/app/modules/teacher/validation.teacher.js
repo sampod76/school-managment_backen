@@ -26,7 +26,7 @@ const createTeacherZodSchema = zod_1.z.object({
             })
                 .max(50)
                 .trim(),
-            birth_registration_number: zod_1.z.string().max(50).trim().optional(),
+            nid: zod_1.z.string().max(50).trim().optional(),
             date_of_birth: zod_1.z
                 .string({
                 required_error: 'শিক্ষকের জন্ম তারিখ বাধ্যতামূলক প্রয়োজন',
@@ -95,7 +95,7 @@ const createTeacherZodSchema = zod_1.z.object({
             })
                 .max(50)
                 .trim(),
-            birth_registration: zod_1.z.string().max(50).trim().optional(),
+            // birth_registration: z.string().max(50).trim().optional(),
             phone_number: zod_1.z.string().max(50).trim().optional(),
             profession: zod_1.z
                 .string({
@@ -130,7 +130,7 @@ const createTeacherZodSchema = zod_1.z.object({
             })
                 .max(50)
                 .trim(),
-            birth_registration: zod_1.z.string().max(50).trim().optional(),
+            // birth_registration: z.string().max(50).trim().optional(),
             phone_number: zod_1.z
                 .string({
                 required_error: 'বাবার ফোন নাম্বার বাধ্যতামূলক প্রয়োজন',
@@ -326,7 +326,7 @@ const updateTeacherZodSchema = zod_1.z.object({
                 .max(50)
                 .trim()
                 .optional(),
-            birth_registration_number: zod_1.z.string().max(50).trim().optional(),
+            nid: zod_1.z.string().max(50).trim().optional(),
             date_of_birth: zod_1.z
                 .string()
                 .max(50)
@@ -382,7 +382,7 @@ const updateTeacherZodSchema = zod_1.z.object({
                 .max(50)
                 .trim()
                 .optional(),
-            birth_registration: zod_1.z.string().max(50).trim().optional(),
+            // birth_registration: z.string().max(50).trim().optional(),
             phone_number: zod_1.z.string().max(50).trim().optional(),
             profession: zod_1.z
                 .string()
@@ -412,7 +412,7 @@ const updateTeacherZodSchema = zod_1.z.object({
                 .max(50)
                 .trim()
                 .optional(),
-            birth_registration: zod_1.z.string().max(50).trim().optional(),
+            // birth_registration: z.string().max(50).trim().optional(),
             phone_number: zod_1.z
                 .string()
                 .max(50)

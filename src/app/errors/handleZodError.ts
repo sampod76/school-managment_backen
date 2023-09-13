@@ -11,7 +11,8 @@ const handleZodError = (error: ZodError): IGenericErrorResponse => {
   });
   return {
     statusCode,
-    message: 'Validation Error',
+    message: 'বাধ্যতামূলক দিতে হবে এমন কিছু ফিল্ড বাদ পড়ে গেছে',
+    devMessage: 'Validation Error',
     errorMessages: errors,
   };
 };

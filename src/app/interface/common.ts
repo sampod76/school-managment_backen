@@ -12,6 +12,7 @@ export type IGenericResponse<T> = {
 export type IGenericErrorResponse = {
   statusCode: number;
   message: string;
+  devMessage?: string;
   /*  errorMessages:{  
     path:string;
     message:string

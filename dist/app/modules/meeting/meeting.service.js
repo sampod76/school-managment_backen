@@ -25,14 +25,14 @@ const createMeetingFromDb = (MeetingData) => __awaiter(void 0, void 0, void 0, f
     MeetingData.meeting_date = formattedDate;
     const createdCLass = meeting_model_1.MeetingModel.create(MeetingData);
     if (!createdCLass) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Meeting');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'নতুন মিটিং তৈরি ব্যর্থ হয়েছে');
     }
     return createdCLass;
 });
 const getAllMeetingFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
     const allExpense = yield meeting_model_1.MeetingModel.find({}).sort({ _id: -1 });
     if (!allExpense) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Meeting');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allExpense;
 });
@@ -45,18 +45,18 @@ const updateMeetingFromDb = (id, payload) => __awaiter(void 0, void 0, void 0, f
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Meeting not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     return result;
 });
 const deleteMeetingFromDb = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield meeting_model_1.MeetingModel.findOne({ _id: id });
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Meeting not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'মিটিং এর তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     const books = yield meeting_model_1.MeetingModel.findOneAndDelete({ _id: id });
     if (!books) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Meeting');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'মিটিং এর তালিকা আপডেট করতে ব্যর্থ হয়েছে');
     }
     return books;
 });

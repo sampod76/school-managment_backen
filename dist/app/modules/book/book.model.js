@@ -6,15 +6,18 @@ exports.STATUS = ['active', 'inactive'];
 const bookSchema = new mongoose_1.Schema({
     bookName: {
         type: String,
+        trim: true,
         required: true,
     },
     status: {
         type: String,
+        trim: true,
         enum: exports.STATUS,
         required: true,
     },
     bookCode: {
         type: String,
+        trim: true,
         required: true,
     },
     class: {

@@ -19,14 +19,14 @@ const workPlan_model_1 = require("./workPlan.model");
 const createWorkPlan = (WorkPlanData) => {
     const createdWorkPlan = workPlan_model_1.WorkPlanModel.create(WorkPlanData);
     if (!createdWorkPlan) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Work Plan first');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'নতুন কর্মপরিকল্পনা তৈরি ব্যর্থ হয়েছে ');
     }
     return createdWorkPlan;
 };
 const getAllWorkPlan = () => __awaiter(void 0, void 0, void 0, function* () {
     const allWorkPlanService = workPlan_model_1.WorkPlanModel.find({});
     if (!allWorkPlanService) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get All Work Plan');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'সফল কর্ম পরিকল্পনা খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allWorkPlanService;
 });
@@ -39,7 +39,7 @@ const updateWorkPlanService = (id, payload) => __awaiter(void 0, void 0, void 0,
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Work Plan not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'কর্মপরিকল্পনা আপডেট করতে ব্যর্থ হয়েছে!');
     }
     return result;
 });
@@ -47,11 +47,11 @@ const deleteWorkPlanService = (id) => __awaiter(void 0, void 0, void 0, function
     const isExist = yield workPlan_model_1.WorkPlanModel.findOne({ _id: id });
     console.log('after', isExist);
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Work not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'সফল কর্ম পরিকল্পনা খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     const work = yield workPlan_model_1.WorkPlanModel.findOneAndDelete({ _id: id });
     if (!work) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete WorkPlan');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'কর্মপরিকল্পনা মুছে ফেলতে ব্যর্থ হয়েছে ');
     }
     return work;
 });
@@ -64,7 +64,7 @@ const getTodaysWorkPlan = () => __awaiter(void 0, void 0, void 0, function* () {
         },
     });
     if (!todaysWork) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, "Failed to get today's Work Plan");
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, "আজকের কর্ম করে কল্পনা খুঁজে পেতে ব্যর্থ হয়েছে ");
     }
     return todaysWork;
 });

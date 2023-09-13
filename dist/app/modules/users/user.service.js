@@ -19,14 +19,14 @@ const user_model_1 = require("./user.model");
 const createUser = (userData) => {
     const createdUser = user_model_1.User.create(userData);
     if (!createdUser) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create User first');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'ব্যবহারকারী একাউন্ট তৈরি ব্যর্থ হয়েছে ');
     }
     return createdUser;
 };
 const getAllUsers = () => __awaiter(void 0, void 0, void 0, function* () {
     const allUsers = user_model_1.User.find();
     if (!allUsers) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Users');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'সকল ব্যবহারকারীর তথ্য পেতে ব্যর্থ হয়েছে');
     }
     return allUsers;
 });

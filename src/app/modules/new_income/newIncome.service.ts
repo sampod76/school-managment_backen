@@ -19,7 +19,7 @@ const createNewIncomeFromDb = async (
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Income'
+      'নতুন আয় তৈরি করা ব্যর্থ হয়েছে'
     );
   }
   return createdCLass;
@@ -33,7 +33,7 @@ const getAllNewIncomesFromDb = async (): Promise<IIncome[] | null> => {
   if (!allIncomes) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Incomes'
+      'সকল আয় খুজে পাওয়া ব্যর্থ হয়েছে'
     );
   }
   return allIncomes;
@@ -97,7 +97,7 @@ const getIncomeTimeRangeFromDb = async (
   if (!allIncomes) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Incomes'
+      'সকল আয় খুজে পাওয়া ব্যর্থ হয়েছে'
     );
   }
   return allIncomes;
@@ -118,7 +118,7 @@ const updateNewIncomeFromDb = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Income not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'আয়ের তালিকা আপডেট করা ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -126,11 +126,11 @@ const updateNewIncomeFromDb = async (
 const deleteNewIncomeFromDb = async (id: string): Promise<IIncome | null> => {
   const isExist = await IncomeModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Income not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'আয় তৈরি করা ব্যর্থ হয়েছে!');
   }
   const books = await IncomeModel.findOneAndDelete({ _id: id });
   if (!books) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Income');
+    throw new ApiError(httpStatus.NOT_FOUND, 'আয়ের তালিকা মুছে ফেলা ব্যর্থ হয়েছে');
   }
   return books;
 };

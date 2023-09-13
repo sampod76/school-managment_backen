@@ -19,7 +19,7 @@ const class_model_1 = require("./class.model");
 const createClass = (ClassData) => {
     const createdCLass = class_model_1.ClassModel.create(ClassData);
     if (!createdCLass) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to create Class first');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শ্রেণী তৈরিতে ব্যর্থ হয়েছে');
     }
     return createdCLass;
 };
@@ -42,7 +42,7 @@ const getAllClasses = () => __awaiter(void 0, void 0, void 0, function* () {
         },
     ]);
     if (!allClass) {
-        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'failed to get all Classes');
+        throw new ApiError_1.default(http_status_1.default.EXPECTATION_FAILED, 'শ্রেণী খুঁজে পেতে ব্যর্থ হয়েছে');
     }
     return allClass;
 });
@@ -55,7 +55,7 @@ const updateClass = (id, payload) => __awaiter(void 0, void 0, void 0, function*
         new: true,
     });
     if (!result) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণীর তথ্য আপডেট করতে ব্যর্থ হয়েছে!');
     }
     return result;
 });
@@ -64,11 +64,11 @@ const deleteClass = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const isExist = yield class_model_1.ClassModel.findOne({ _id: id });
     console.log('after', isExist);
     if (!isExist) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Class not found!');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণী খুঁজে পেতে ব্যর্থ হয়েছে!');
     }
     const user = yield class_model_1.ClassModel.findOneAndDelete({ _id: id });
     if (!user) {
-        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'Failed to delete Class');
+        throw new ApiError_1.default(http_status_1.default.NOT_FOUND, 'শ্রেণীর তথ্য মুছে ফেলতে ব্যর্থ হয়েছে');
     }
     return user;
 });

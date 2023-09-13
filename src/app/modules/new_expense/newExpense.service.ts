@@ -19,7 +19,7 @@ const createNewExpenseFromDb = async (
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Expense'
+      'নতুন ব্যায় তৈরি করা ব্যর্থ হয়েছে'
     );
   }
   return createdCLass;
@@ -85,7 +85,7 @@ const getExpensesTimeRangeFromDb = async (
   if (!allExpense) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Expenses'
+      'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allExpense;
@@ -98,7 +98,7 @@ const getAllNewExpensesFromDb = async (): Promise<IExpense[] | null> => {
   if (!allExpense) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Expenses'
+      'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
   return allExpense;
@@ -119,7 +119,7 @@ const updateNewExpenseFromDb = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Expense not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ব্যয়ের তালিকা আপডেট করা ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -127,11 +127,11 @@ const updateNewExpenseFromDb = async (
 const deleteNewExpenseFromDb = async (id: string): Promise<IExpense | null> => {
   const isExist = await ExpenseModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Expense not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ব্যয়ের তালিকা খুঁজে পেতে ব্যর্থ হয়েছে!');
   }
   const books = await ExpenseModel.findOneAndDelete({ _id: id });
   if (!books) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Expense');
+    throw new ApiError(httpStatus.NOT_FOUND, 'ব্যয় রিমুভ করা ব্যর্থ হয়েছে');
   }
   return books;
 };

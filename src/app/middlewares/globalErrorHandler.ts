@@ -21,7 +21,7 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
   console.log(`globalErrorHandler:`, error);
 
   let statusCode = 500;
-  let message = 'Something went wrong';
+  let message ="অভ্যন্তরীণ সার্ভার জনিত ত্রুটি" /* 'Something went wrong' */;
   // let errorMessage:Array<IGenericErrorMessage>= []
   let errorMessage: IGenericErrorMessage[] = [];
 

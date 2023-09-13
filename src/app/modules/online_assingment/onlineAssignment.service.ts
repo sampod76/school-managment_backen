@@ -11,7 +11,7 @@ const createOnlineAssignmentToDB = async (
   if (!createdOnlineAssignment) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Online Assignment'
+      'নতুন অনলাইন এসাইনমেন্ট তৈরি ব্যর্থ হয়েছে '
     );
   }
   return createdOnlineAssignment;
@@ -24,7 +24,7 @@ const getOnlineAssignmentToDB = async (): Promise<
   if (!allBooks) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Online Assignment'
+      'অনলাইন এসাইনমেন্ট এর তালিকা পেতে ব্যর্থ হয়েছে'
     );
   }
   return allBooks;
@@ -49,7 +49,7 @@ const updateOnlineAssignmentFromDb = async (
     }
   );
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Online Assignment not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'অনলাইন এসাইনমেন্ট এর তালিকা আপডেট করতে ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -59,7 +59,7 @@ const deleteOnlineAssignmentFromDb = async (
 ): Promise<IOnlineAssignment | null> => {
   const isExist = await OnlineAssignmentModel.findOne({ _id: id });
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Online Assignment not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'অনলাইন এসাইনমেন্ট এর তালিকা পেতে ব্যর্থ হয়েছে!');
   }
   const onlineAssignment = await OnlineAssignmentModel.findOneAndDelete({
     _id: id,
@@ -67,7 +67,7 @@ const deleteOnlineAssignmentFromDb = async (
   if (!onlineAssignment) {
     throw new ApiError(
       httpStatus.NOT_FOUND,
-      'Failed to delete OnlineAssignment'
+      'অনলাইন এসাইনমেন্ট মুছে ফেলা ব্যর্থ হয়েছে '
     );
   }
   return onlineAssignment;

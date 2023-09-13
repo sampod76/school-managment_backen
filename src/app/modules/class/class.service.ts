@@ -9,7 +9,7 @@ const createClass = (ClassData: IClass): Promise<IClass | null> => {
   if (!createdCLass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to create Class first'
+      'শ্রেণী তৈরিতে ব্যর্থ হয়েছে'
     );
   }
 
@@ -40,7 +40,7 @@ const getAllClasses = async (): Promise<IClass[] | null> => {
   if (!allClass) {
     throw new ApiError(
       httpStatus.EXPECTATION_FAILED,
-      'failed to get all Classes'
+      'শ্রেণী খুঁজে পেতে ব্যর্থ হয়েছে'
     );
   }
 
@@ -61,7 +61,7 @@ const updateClass = async (
     new: true,
   });
   if (!result) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণীর তথ্য আপডেট করতে ব্যর্থ হয়েছে!');
   }
   return result;
 };
@@ -73,13 +73,13 @@ const deleteClass = async (id: string): Promise<IClass | null> => {
   console.log('after', isExist);
 
   if (!isExist) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Class not found!');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণী খুঁজে পেতে ব্যর্থ হয়েছে!');
   }
 
   const user = await ClassModel.findOneAndDelete({ _id: id });
 
   if (!user) {
-    throw new ApiError(httpStatus.NOT_FOUND, 'Failed to delete Class');
+    throw new ApiError(httpStatus.NOT_FOUND, 'শ্রেণীর তথ্য মুছে ফেলতে ব্যর্থ হয়েছে');
   }
 
   return user;

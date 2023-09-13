@@ -23,11 +23,5 @@ exports.studentSearchableFields = [
 ];
 exports.studentFilterableFields = [
     'searchTerm',
-    'id',
-    "count",
-    "status",
-    'bloodGroup',
-    'email',
-    'contactNo',
-    'emergencyContactNo',
+    'class'
 ];
