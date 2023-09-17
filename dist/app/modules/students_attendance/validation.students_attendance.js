@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentsAttendanceValidation = void 0;
 const zod_1 = require("zod");
+const userConstant_1 = require("../../../constant/userConstant");
 const createStudentsAttendanceZodSchema = zod_1.z.object({
     body: zod_1.z.object({
         classInfo: zod_1.z.object({
@@ -16,7 +17,7 @@ const createStudentsAttendanceZodSchema = zod_1.z.object({
         students: zod_1.z.array(zod_1.z.object({
             student_userId: zod_1.z.string({ required_error: "শিক্ষার্থীর ইউজার আইডি অবশ্যই দিতে হবে" }).trim(),
             student: zod_1.z.string({ required_error: "শিক্ষার্থীর ডাটা আইডি অবশ্যই দিতে হবে" }).trim(),
-            attendance: zod_1.z.enum(['হ্যাঁ', 'না']),
+            attendance: zod_1.z.enum([...userConstant_1.YN_VALUES]).optional(),
         })),
     }),
 });
@@ -34,7 +35,7 @@ const updateStudentsAttendanceZodSchema = zod_1.z.object({
         students: zod_1.z.array(zod_1.z.object({
             student_userId: zod_1.z.string().trim().optional(),
             student: zod_1.z.string().trim().optional(),
-            attendance: zod_1.z.enum(['হ্যাঁ', 'না']).optional(),
+            attendance: zod_1.z.enum([...userConstant_1.YN_VALUES]).optional(),
         })),
     }),
 });

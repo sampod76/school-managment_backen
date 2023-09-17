@@ -23,6 +23,7 @@ const route_student_1 = require("../modules/student/pendingStudent/route.student
 const route_student_2 = require("../modules/student/route.student");
 const route_students_attendance_1 = require("../modules/students_attendance/route.students_attendance");
 const route_teacher_1 = require("../modules/teacher/route.teacher");
+const route_teachers_attendance_1 = require("../modules/teachers_attendance/route.teachers_attendance");
 const user_route_1 = require("../modules/users/user.route");
 const workPlan_route_1 = require("../modules/work-plan/workPlan.route");
 //https://docs.google.com/document/d/1gTsTpFvhfZB-2y0_BbZQVzmbG3YwsZwPrwAbsYqpOzM/edit
@@ -108,6 +109,11 @@ const moduleRoutes = [
         //sampod nath
         path: '/student-attendance',
         route: route_students_attendance_1.StudentsAttendanceRoutes,
+    },
+    {
+        //sampod nath
+        path: '/teacher-attendance',
+        route: route_teachers_attendance_1.TeachersAttendanceRoutes,
     },
     {
         path: '/meeting',
