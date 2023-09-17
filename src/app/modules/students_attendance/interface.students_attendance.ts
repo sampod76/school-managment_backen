@@ -12,11 +12,15 @@ export type IStudentAttendance = {
   }[];
 };
 
-export type StudentAttendanceModel = Model<IStudentAttendance, Record<string, unknown>>;
+export type StudentAttendanceModel = Model<
+  IStudentAttendance,
+  Record<string, unknown>
+>;
 
 export type IStudentAttendanceFilters = {
   searchTerm?: string;
   className?: string;
   sectionName?: string;
+  studentUserId?: string;
   date?: string;
 };

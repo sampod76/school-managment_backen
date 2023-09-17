@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { YN_VALUES } from '../../../constant/userConstant';
 
 const createStudentsAttendanceZodSchema = z.object({
   body: z.object({
@@ -15,7 +16,7 @@ const createStudentsAttendanceZodSchema = z.object({
       z.object({
         student_userId: z.string({required_error:"শিক্ষার্থীর ইউজার আইডি অবশ্যই দিতে হবে"}).trim(),
         student: z.string({required_error:"শিক্ষার্থীর ডাটা আইডি অবশ্যই দিতে হবে"}).trim(),
-        attendance: z.enum(['হ্যাঁ', 'না']),
+        attendance: z.enum([...YN_VALUES] as [string, ...string[]]).optional(),
       })
     ),
   }),
@@ -36,7 +37,7 @@ const updateStudentsAttendanceZodSchema = z.object({
       z.object({
         student_userId: z.string().trim().optional(),
         student: z.string().trim().optional(),
-        attendance: z.enum(['হ্যাঁ', 'না']).optional(),
+        attendance: z.enum([...YN_VALUES] as [string, ...string[]]).optional(),
       })
     ),
   }),
