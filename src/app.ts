@@ -4,11 +4,11 @@ import cors from 'cors';
 import httpStatus from 'http-status';
 
 import express, {
-    Application,
-    NextFunction,
-    Request,
-    RequestHandler,
-    Response,
+  Application,
+  NextFunction,
+  Request,
+  RequestHandler,
+  Response,
 } from 'express';
 // create xss-clean.d.ts file after work this xss
 import path from 'path';
@@ -133,6 +133,9 @@ const test = async () => {
     // const result2 = await RunContest.deleteMany({});
     // console.log(result2);
     // console.log(ENUM_USER_ROLE.STUDENT);
+    setInterval(() => {
+      console.log("object");
+    },600000)
   } catch (error) {
     console.log(error);
   }
