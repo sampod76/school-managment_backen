@@ -23,7 +23,7 @@ const getAllClassRoutine = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IClassRoutine[]>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Class Routine retrieved successfully',
+    message: 'Class Routine retrieved successfully!',
     data: result,
   });
 });
@@ -37,7 +37,7 @@ const getSingleClassRoutine = catchAsync(
     sendResponse<IClassRoutine>(res, {
       success: true,
       statusCode: httpStatus.OK,
-      message: 'Class Routine retrieved successfully',
+      message: 'Class Routine retrieved successfully!',
       data: result,
     });
   }
@@ -56,7 +56,7 @@ const updateClassRoutine = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IClassRoutine>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Class Routine updated successfully',
+    message: 'Class Routine updated successfully!',
     data: result,
   });
 });
@@ -69,7 +69,7 @@ const deleteClassRoutine = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IClassRoutine>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Class Routine deleted successfully',
+    message: 'Class Routine deleted successfully!',
     data: result,
   });
 });
